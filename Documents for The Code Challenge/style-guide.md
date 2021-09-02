@@ -22,7 +22,7 @@ The designs were created to the following widths:
 - Light Gray: #BFBFBF
 - Gray: #9E9AA7
 - Grayish Violet: #35323E
-- Very Dark Violet: 232127
+- Very Dark Violet: #232127
 
 ### Background Colors
 

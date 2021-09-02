@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		091DC9B126E10D5E00C4F2CF /* FontTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091DC9B026E10D5E00C4F2CF /* FontTestView.swift */; };
+		091DC9B326E1105A00C4F2CF /* Color extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091DC9B226E1105A00C4F2CF /* Color extension.swift */; };
 		09D259D826E0E46400E78369 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09D259D726E0E46400E78369 /* Assets.xcassets */; };
 		09D259DB26E0E46400E78369 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09D259DA26E0E46400E78369 /* Preview Assets.xcassets */; };
 		09D259E626E0E46400E78369 /* shortly_app_swiftui_fmlzpwTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D259E526E0E46400E78369 /* shortly_app_swiftui_fmlzpwTests.swift */; };
@@ -67,6 +69,8 @@
 		091DC9AD26E1090F00C4F2CF /* bug due to starbucks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bug due to starbucks.png"; sourceTree = "<group>"; };
 		091DC9AE26E1090F00C4F2CF /* the screen I saw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "the screen I saw.png"; sourceTree = "<group>"; };
 		091DC9AF26E1093100C4F2CF /* The Problem I faced.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "The Problem I faced.md"; sourceTree = "<group>"; };
+		091DC9B026E10D5E00C4F2CF /* FontTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontTestView.swift; sourceTree = "<group>"; };
+		091DC9B226E1105A00C4F2CF /* Color extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color extension.swift"; sourceTree = "<group>"; };
 		09D259D026E0E46200E78369 /* shortly-app-swiftui-fmlzpw.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "shortly-app-swiftui-fmlzpw.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		09D259D726E0E46400E78369 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		09D259DA26E0E46400E78369 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -236,6 +240,8 @@
 				09D259FF26E0E5BF00E78369 /* shortly_app_swiftui_fmlzpwApp.swift */,
 				09D25A0026E0E5BF00E78369 /* UrlAndShortened_Pair.swift */,
 				09D25A0226E0E5BF00E78369 /* ContentView.swift */,
+				091DC9B026E10D5E00C4F2CF /* FontTestView.swift */,
+				091DC9B226E1105A00C4F2CF /* Color extension.swift */,
 				09D25A0326E0E5BF00E78369 /* Poppins */,
 			);
 			path = design;
@@ -416,9 +422,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				091DC9B326E1105A00C4F2CF /* Color extension.swift in Sources */,
 				09D25A1726E0E5BF00E78369 /* shortly_app_swiftui_fmlzpwApp.swift in Sources */,
 				09D25A1A26E0E5BF00E78369 /* ContentView.swift in Sources */,
 				09D25A1826E0E5BF00E78369 /* UrlAndShortened_Pair.swift in Sources */,
+				091DC9B126E10D5E00C4F2CF /* FontTestView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

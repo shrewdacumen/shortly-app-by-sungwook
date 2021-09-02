@@ -9,8 +9,13 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        Text("Hello, world!")
+      
+      #if DEBUG
+        FontTestView()
             .padding()
+      #endif
+      
+      
     }
 }
 
