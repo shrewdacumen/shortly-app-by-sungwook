@@ -6,24 +6,24 @@
 	<false/>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Poppins-ExtraLight</string>
-		<string>Poppins-ThinItalic</string>
-		<string>Poppins-ExtraLightItalic</string>
-		<string>Poppins-BoldItalic</string>
-		<string>Poppins-Light</string>
-		<string>Poppins-Medium</string>
-		<string>Poppins-SemiBoldItalic</string>
-		<string>Poppins-ExtraBoldItalic</string>
-		<string>Poppins-ExtraBold</string>
-		<string>Poppins-BlackItalic</string>
-		<string>Poppins-Regular</string>
-		<string>Poppins-LightItalic</string>
-		<string>Poppins-Bold</string>
-		<string>Poppins-Black</string>
-		<string>Poppins-Thin</string>
-		<string>Poppins-SemiBold</string>
-		<string>Poppins-Italic</string>
-		<string>Poppins-MediumItalic</string>
+		<string>Poppins-ExtraLight.ttf</string>
+		<string>Poppins-ThinItalic.ttf</string>
+		<string>Poppins-ExtraLightItalic.ttf</string>
+		<string>Poppins-BoldItalic.ttf</string>
+		<string>Poppins-Light.ttf</string>
+		<string>Poppins-Medium.ttf</string>
+		<string>Poppins-SemiBoldItalic.ttf</string>
+		<string>Poppins-ExtraBoldItalic.ttf</string>
+		<string>Poppins-ExtraBold.ttf</string>
+		<string>Poppins-BlackItalic.ttf</string>
+		<string>Poppins-Regular.ttf</string>
+		<string>Poppins-LightItalic.ttf</string>
+		<string>Poppins-Bold.ttf</string>
+		<string>Poppins-Black.ttf</string>
+		<string>Poppins-Thin.ttf</string>
+		<string>Poppins-SemiBold.ttf</string>
+		<string>Poppins-Italic.ttf</string>
+		<string>Poppins-MediumItalic.ttf</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>

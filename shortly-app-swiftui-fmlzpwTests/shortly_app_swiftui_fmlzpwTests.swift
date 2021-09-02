@@ -32,15 +32,38 @@ class shortly_app_swiftui_fmlzpwTests: XCTestCase {
   
   func test_fonts() {
     
+    var is_Poppins_included = false
+    var count_Poppins_ThinItalic = 0
+    
+    var number_of_fonttypes_of_Poppins = 0
+    
     UIFont.familyNames.forEach { font_family in
+      
+
+      
+      if String(font_family.prefix(7)) == "Poppins" {
+        
+        is_Poppins_included = true
+        
+        number_of_fonttypes_of_Poppins = UIFont.fontNames(forFamilyName: font_family).count
+      }
       
       for font_name in UIFont.fontNames(forFamilyName: font_family) {
         
-        print("\(font_name)")
+        if font_name == "Poppins-ThinItalic" {
+          
+          count_Poppins_ThinItalic += 1
+        }
       }
       
-      
     }
+
+    
+    XCTAssertTrue(is_Poppins_included)
+    
+    XCTAssertEqual(count_Poppins_ThinItalic, 1)
+    
+    XCTAssertEqual(number_of_fonttypes_of_Poppins, 18)
   }
   
   
