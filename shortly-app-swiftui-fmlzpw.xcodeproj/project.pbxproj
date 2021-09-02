@@ -1,0 +1,685 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		09D259D826E0E46400E78369 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09D259D726E0E46400E78369 /* Assets.xcassets */; };
+		09D259DB26E0E46400E78369 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09D259DA26E0E46400E78369 /* Preview Assets.xcassets */; };
+		09D259E626E0E46400E78369 /* shortly_app_swiftui_fmlzpwTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D259E526E0E46400E78369 /* shortly_app_swiftui_fmlzpwTests.swift */; };
+		09D259F126E0E46400E78369 /* shortly_app_swiftui_fmlzpwUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D259F026E0E46400E78369 /* shortly_app_swiftui_fmlzpwUITests.swift */; };
+		09D25A1726E0E5BF00E78369 /* shortly_app_swiftui_fmlzpwApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D259FF26E0E5BF00E78369 /* shortly_app_swiftui_fmlzpwApp.swift */; };
+		09D25A1826E0E5BF00E78369 /* UrlAndShortened_Pair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D25A0026E0E5BF00E78369 /* UrlAndShortened_Pair.swift */; };
+		09D25A1926E0E5BF00E78369 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 09D25A0126E0E5BF00E78369 /* README.md */; };
+		09D25A1A26E0E5BF00E78369 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D25A0226E0E5BF00E78369 /* ContentView.swift */; };
+		09D25A1B26E0E5BF00E78369 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 09D25A0426E0E5BF00E78369 /* Poppins-ExtraLight.ttf */; };
+		09D25A1C26E0E5BF00E78369 /* Poppins-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 09D25A0526E0E5BF00E78369 /* Poppins-ThinItalic.ttf */; };
+		09D25A1D26E0E5BF00E78369 /* Poppins-ExtraLightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 09D25A0626E0E5BF00E78369 /* Poppins-ExtraLightItalic.ttf */; };
+		09D25A1E26E0E5BF00E78369 /* Poppins-BoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 09D25A0726E0E5BF00E78369 /* Poppins-BoldItalic.ttf */; };
+		09D25A1F26E0E5BF00E78369 /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 09D25A0826E0E5BF00E78369 /* Poppins-Light.ttf */; };
+		09D25A2026E0E5BF00E78369 /* Poppins-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 09D25A0926E0E5BF00E78369 /* Poppins-Medium.ttf */; };
+		09D25A2126E0E5BF00E78369 /* Poppins-SemiBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 09D25A0A26E0E5BF00E78369 /* Poppins-SemiBoldItalic.ttf */; };
+		09D25A2226E0E5BF00E78369 /* Poppins-ExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 09D25A0B26E0E5BF00E78369 /* Poppins-ExtraBoldItalic.ttf */; };
+		09D25A2326E0E5BF00E78369 /* Poppins-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 09D25A0C26E0E5BF00E78369 /* Poppins-ExtraBold.ttf */; };
+		09D25A2426E0E5BF00E78369 /* Poppins-BlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 09D25A0D26E0E5BF00E78369 /* Poppins-BlackItalic.ttf */; };
+		09D25A2526E0E5BF00E78369 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 09D25A0E26E0E5BF00E78369 /* OFL.txt */; };
+		09D25A2626E0E5BF00E78369 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 09D25A0F26E0E5BF00E78369 /* Poppins-Regular.ttf */; };
+		09D25A2726E0E5BF00E78369 /* Poppins-LightItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 09D25A1026E0E5BF00E78369 /* Poppins-LightItalic.ttf */; };
+		09D25A2826E0E5BF00E78369 /* Poppins-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 09D25A1126E0E5BF00E78369 /* Poppins-Bold.ttf */; };
+		09D25A2926E0E5BF00E78369 /* Poppins-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 09D25A1226E0E5BF00E78369 /* Poppins-Black.ttf */; };
+		09D25A2A26E0E5BF00E78369 /* Poppins-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 09D25A1326E0E5BF00E78369 /* Poppins-Thin.ttf */; };
+		09D25A2B26E0E5BF00E78369 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 09D25A1426E0E5BF00E78369 /* Poppins-SemiBold.ttf */; };
+		09D25A2C26E0E5BF00E78369 /* Poppins-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 09D25A1526E0E5BF00E78369 /* Poppins-Italic.ttf */; };
+		09D25A2D26E0E5BF00E78369 /* Poppins-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 09D25A1626E0E5BF00E78369 /* Poppins-MediumItalic.ttf */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		09D259E226E0E46400E78369 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 09D259C826E0E46200E78369 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 09D259CF26E0E46200E78369;
+			remoteInfo = "shortly-app-swiftui-fmlzpw";
+		};
+		09D259ED26E0E46400E78369 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 09D259C826E0E46200E78369 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 09D259CF26E0E46200E78369;
+			remoteInfo = "shortly-app-swiftui-fmlzpw";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		09D259D026E0E46200E78369 /* shortly-app-swiftui-fmlzpw.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "shortly-app-swiftui-fmlzpw.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		09D259D726E0E46400E78369 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		09D259DA26E0E46400E78369 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		09D259DC26E0E46400E78369 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		09D259E126E0E46400E78369 /* shortly-app-swiftui-fmlzpwTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "shortly-app-swiftui-fmlzpwTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		09D259E526E0E46400E78369 /* shortly_app_swiftui_fmlzpwTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shortly_app_swiftui_fmlzpwTests.swift; sourceTree = "<group>"; };
+		09D259E726E0E46400E78369 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		09D259EC26E0E46400E78369 /* shortly-app-swiftui-fmlzpwUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "shortly-app-swiftui-fmlzpwUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		09D259F026E0E46400E78369 /* shortly_app_swiftui_fmlzpwUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = shortly_app_swiftui_fmlzpwUITests.swift; sourceTree = "<group>"; };
+		09D259F226E0E46400E78369 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		09D259FF26E0E5BF00E78369 /* shortly_app_swiftui_fmlzpwApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = shortly_app_swiftui_fmlzpwApp.swift; sourceTree = "<group>"; };
+		09D25A0026E0E5BF00E78369 /* UrlAndShortened_Pair.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UrlAndShortened_Pair.swift; sourceTree = "<group>"; };
+		09D25A0126E0E5BF00E78369 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		09D25A0226E0E5BF00E78369 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		09D25A0426E0E5BF00E78369 /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
+		09D25A0526E0E5BF00E78369 /* Poppins-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ThinItalic.ttf"; sourceTree = "<group>"; };
+		09D25A0626E0E5BF00E78369 /* Poppins-ExtraLightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLightItalic.ttf"; sourceTree = "<group>"; };
+		09D25A0726E0E5BF00E78369 /* Poppins-BoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-BoldItalic.ttf"; sourceTree = "<group>"; };
+		09D25A0826E0E5BF00E78369 /* Poppins-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Light.ttf"; sourceTree = "<group>"; };
+		09D25A0926E0E5BF00E78369 /* Poppins-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Medium.ttf"; sourceTree = "<group>"; };
+		09D25A0A26E0E5BF00E78369 /* Poppins-SemiBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBoldItalic.ttf"; sourceTree = "<group>"; };
+		09D25A0B26E0E5BF00E78369 /* Poppins-ExtraBoldItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraBoldItalic.ttf"; sourceTree = "<group>"; };
+		09D25A0C26E0E5BF00E78369 /* Poppins-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraBold.ttf"; sourceTree = "<group>"; };
+		09D25A0D26E0E5BF00E78369 /* Poppins-BlackItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-BlackItalic.ttf"; sourceTree = "<group>"; };
+		09D25A0E26E0E5BF00E78369 /* OFL.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
+		09D25A0F26E0E5BF00E78369 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
+		09D25A1026E0E5BF00E78369 /* Poppins-LightItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-LightItalic.ttf"; sourceTree = "<group>"; };
+		09D25A1126E0E5BF00E78369 /* Poppins-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Bold.ttf"; sourceTree = "<group>"; };
+		09D25A1226E0E5BF00E78369 /* Poppins-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Black.ttf"; sourceTree = "<group>"; };
+		09D25A1326E0E5BF00E78369 /* Poppins-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Thin.ttf"; sourceTree = "<group>"; };
+		09D25A1426E0E5BF00E78369 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
+		09D25A1526E0E5BF00E78369 /* Poppins-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Italic.ttf"; sourceTree = "<group>"; };
+		09D25A1626E0E5BF00E78369 /* Poppins-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-MediumItalic.ttf"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		09D259CD26E0E46200E78369 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09D259DE26E0E46400E78369 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09D259E926E0E46400E78369 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		09D259C726E0E46200E78369 = {
+			isa = PBXGroup;
+			children = (
+				09D259D226E0E46200E78369 /* shortly-app-swiftui-fmlzpw */,
+				09D259E426E0E46400E78369 /* shortly-app-swiftui-fmlzpwTests */,
+				09D259EF26E0E46400E78369 /* shortly-app-swiftui-fmlzpwUITests */,
+				09D259D126E0E46200E78369 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		09D259D126E0E46200E78369 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				09D259D026E0E46200E78369 /* shortly-app-swiftui-fmlzpw.app */,
+				09D259E126E0E46400E78369 /* shortly-app-swiftui-fmlzpwTests.xctest */,
+				09D259EC26E0E46400E78369 /* shortly-app-swiftui-fmlzpwUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		09D259D226E0E46200E78369 /* shortly-app-swiftui-fmlzpw */ = {
+			isa = PBXGroup;
+			children = (
+				09D259FE26E0E5BF00E78369 /* design */,
+				09D259D726E0E46400E78369 /* Assets.xcassets */,
+				09D259DC26E0E46400E78369 /* Info.plist */,
+				09D259D926E0E46400E78369 /* Preview Content */,
+			);
+			path = "shortly-app-swiftui-fmlzpw";
+			sourceTree = "<group>";
+		};
+		09D259D926E0E46400E78369 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				09D259DA26E0E46400E78369 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		09D259E426E0E46400E78369 /* shortly-app-swiftui-fmlzpwTests */ = {
+			isa = PBXGroup;
+			children = (
+				09D259E526E0E46400E78369 /* shortly_app_swiftui_fmlzpwTests.swift */,
+				09D259E726E0E46400E78369 /* Info.plist */,
+			);
+			path = "shortly-app-swiftui-fmlzpwTests";
+			sourceTree = "<group>";
+		};
+		09D259EF26E0E46400E78369 /* shortly-app-swiftui-fmlzpwUITests */ = {
+			isa = PBXGroup;
+			children = (
+				09D259F026E0E46400E78369 /* shortly_app_swiftui_fmlzpwUITests.swift */,
+				09D259F226E0E46400E78369 /* Info.plist */,
+			);
+			path = "shortly-app-swiftui-fmlzpwUITests";
+			sourceTree = "<group>";
+		};
+		09D259FE26E0E5BF00E78369 /* design */ = {
+			isa = PBXGroup;
+			children = (
+				09D25A0126E0E5BF00E78369 /* README.md */,
+				09D259FF26E0E5BF00E78369 /* shortly_app_swiftui_fmlzpwApp.swift */,
+				09D25A0026E0E5BF00E78369 /* UrlAndShortened_Pair.swift */,
+				09D25A0226E0E5BF00E78369 /* ContentView.swift */,
+				09D25A0326E0E5BF00E78369 /* Poppins */,
+			);
+			path = design;
+			sourceTree = "<group>";
+		};
+		09D25A0326E0E5BF00E78369 /* Poppins */ = {
+			isa = PBXGroup;
+			children = (
+				09D25A0E26E0E5BF00E78369 /* OFL.txt */,
+				09D25A0426E0E5BF00E78369 /* Poppins-ExtraLight.ttf */,
+				09D25A0526E0E5BF00E78369 /* Poppins-ThinItalic.ttf */,
+				09D25A0626E0E5BF00E78369 /* Poppins-ExtraLightItalic.ttf */,
+				09D25A0726E0E5BF00E78369 /* Poppins-BoldItalic.ttf */,
+				09D25A0826E0E5BF00E78369 /* Poppins-Light.ttf */,
+				09D25A0926E0E5BF00E78369 /* Poppins-Medium.ttf */,
+				09D25A0A26E0E5BF00E78369 /* Poppins-SemiBoldItalic.ttf */,
+				09D25A0B26E0E5BF00E78369 /* Poppins-ExtraBoldItalic.ttf */,
+				09D25A0C26E0E5BF00E78369 /* Poppins-ExtraBold.ttf */,
+				09D25A0D26E0E5BF00E78369 /* Poppins-BlackItalic.ttf */,
+				09D25A0F26E0E5BF00E78369 /* Poppins-Regular.ttf */,
+				09D25A1026E0E5BF00E78369 /* Poppins-LightItalic.ttf */,
+				09D25A1126E0E5BF00E78369 /* Poppins-Bold.ttf */,
+				09D25A1226E0E5BF00E78369 /* Poppins-Black.ttf */,
+				09D25A1326E0E5BF00E78369 /* Poppins-Thin.ttf */,
+				09D25A1426E0E5BF00E78369 /* Poppins-SemiBold.ttf */,
+				09D25A1526E0E5BF00E78369 /* Poppins-Italic.ttf */,
+				09D25A1626E0E5BF00E78369 /* Poppins-MediumItalic.ttf */,
+			);
+			path = Poppins;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		09D259CF26E0E46200E78369 /* shortly-app-swiftui-fmlzpw */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 09D259F526E0E46400E78369 /* Build configuration list for PBXNativeTarget "shortly-app-swiftui-fmlzpw" */;
+			buildPhases = (
+				09D259CC26E0E46200E78369 /* Sources */,
+				09D259CD26E0E46200E78369 /* Frameworks */,
+				09D259CE26E0E46200E78369 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "shortly-app-swiftui-fmlzpw";
+			productName = "shortly-app-swiftui-fmlzpw";
+			productReference = 09D259D026E0E46200E78369 /* shortly-app-swiftui-fmlzpw.app */;
+			productType = "com.apple.product-type.application";
+		};
+		09D259E026E0E46400E78369 /* shortly-app-swiftui-fmlzpwTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 09D259F826E0E46400E78369 /* Build configuration list for PBXNativeTarget "shortly-app-swiftui-fmlzpwTests" */;
+			buildPhases = (
+				09D259DD26E0E46400E78369 /* Sources */,
+				09D259DE26E0E46400E78369 /* Frameworks */,
+				09D259DF26E0E46400E78369 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				09D259E326E0E46400E78369 /* PBXTargetDependency */,
+			);
+			name = "shortly-app-swiftui-fmlzpwTests";
+			productName = "shortly-app-swiftui-fmlzpwTests";
+			productReference = 09D259E126E0E46400E78369 /* shortly-app-swiftui-fmlzpwTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		09D259EB26E0E46400E78369 /* shortly-app-swiftui-fmlzpwUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 09D259FB26E0E46400E78369 /* Build configuration list for PBXNativeTarget "shortly-app-swiftui-fmlzpwUITests" */;
+			buildPhases = (
+				09D259E826E0E46400E78369 /* Sources */,
+				09D259E926E0E46400E78369 /* Frameworks */,
+				09D259EA26E0E46400E78369 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				09D259EE26E0E46400E78369 /* PBXTargetDependency */,
+			);
+			name = "shortly-app-swiftui-fmlzpwUITests";
+			productName = "shortly-app-swiftui-fmlzpwUITests";
+			productReference = 09D259EC26E0E46400E78369 /* shortly-app-swiftui-fmlzpwUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		09D259C826E0E46200E78369 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1250;
+				LastUpgradeCheck = 1250;
+				TargetAttributes = {
+					09D259CF26E0E46200E78369 = {
+						CreatedOnToolsVersion = 12.5.1;
+					};
+					09D259E026E0E46400E78369 = {
+						CreatedOnToolsVersion = 12.5.1;
+						TestTargetID = 09D259CF26E0E46200E78369;
+					};
+					09D259EB26E0E46400E78369 = {
+						CreatedOnToolsVersion = 12.5.1;
+						TestTargetID = 09D259CF26E0E46200E78369;
+					};
+				};
+			};
+			buildConfigurationList = 09D259CB26E0E46200E78369 /* Build configuration list for PBXProject "shortly-app-swiftui-fmlzpw" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 09D259C726E0E46200E78369;
+			productRefGroup = 09D259D126E0E46200E78369 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				09D259CF26E0E46200E78369 /* shortly-app-swiftui-fmlzpw */,
+				09D259E026E0E46400E78369 /* shortly-app-swiftui-fmlzpwTests */,
+				09D259EB26E0E46400E78369 /* shortly-app-swiftui-fmlzpwUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		09D259CE26E0E46200E78369 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09D25A2A26E0E5BF00E78369 /* Poppins-Thin.ttf in Resources */,
+				09D25A2D26E0E5BF00E78369 /* Poppins-MediumItalic.ttf in Resources */,
+				09D25A2526E0E5BF00E78369 /* OFL.txt in Resources */,
+				09D25A1D26E0E5BF00E78369 /* Poppins-ExtraLightItalic.ttf in Resources */,
+				09D25A2426E0E5BF00E78369 /* Poppins-BlackItalic.ttf in Resources */,
+				09D25A1B26E0E5BF00E78369 /* Poppins-ExtraLight.ttf in Resources */,
+				09D25A2B26E0E5BF00E78369 /* Poppins-SemiBold.ttf in Resources */,
+				09D25A1E26E0E5BF00E78369 /* Poppins-BoldItalic.ttf in Resources */,
+				09D25A1F26E0E5BF00E78369 /* Poppins-Light.ttf in Resources */,
+				09D25A2926E0E5BF00E78369 /* Poppins-Black.ttf in Resources */,
+				09D25A2C26E0E5BF00E78369 /* Poppins-Italic.ttf in Resources */,
+				09D25A2326E0E5BF00E78369 /* Poppins-ExtraBold.ttf in Resources */,
+				09D25A2726E0E5BF00E78369 /* Poppins-LightItalic.ttf in Resources */,
+				09D25A1926E0E5BF00E78369 /* README.md in Resources */,
+				09D25A2126E0E5BF00E78369 /* Poppins-SemiBoldItalic.ttf in Resources */,
+				09D25A2626E0E5BF00E78369 /* Poppins-Regular.ttf in Resources */,
+				09D25A2226E0E5BF00E78369 /* Poppins-ExtraBoldItalic.ttf in Resources */,
+				09D25A2826E0E5BF00E78369 /* Poppins-Bold.ttf in Resources */,
+				09D25A1C26E0E5BF00E78369 /* Poppins-ThinItalic.ttf in Resources */,
+				09D25A2026E0E5BF00E78369 /* Poppins-Medium.ttf in Resources */,
+				09D259DB26E0E46400E78369 /* Preview Assets.xcassets in Resources */,
+				09D259D826E0E46400E78369 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09D259DF26E0E46400E78369 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09D259EA26E0E46400E78369 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		09D259CC26E0E46200E78369 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09D25A1726E0E5BF00E78369 /* shortly_app_swiftui_fmlzpwApp.swift in Sources */,
+				09D25A1A26E0E5BF00E78369 /* ContentView.swift in Sources */,
+				09D25A1826E0E5BF00E78369 /* UrlAndShortened_Pair.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09D259DD26E0E46400E78369 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09D259E626E0E46400E78369 /* shortly_app_swiftui_fmlzpwTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		09D259E826E0E46400E78369 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				09D259F126E0E46400E78369 /* shortly_app_swiftui_fmlzpwUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		09D259E326E0E46400E78369 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 09D259CF26E0E46200E78369 /* shortly-app-swiftui-fmlzpw */;
+			targetProxy = 09D259E226E0E46400E78369 /* PBXContainerItemProxy */;
+		};
+		09D259EE26E0E46400E78369 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 09D259CF26E0E46200E78369 /* shortly-app-swiftui-fmlzpw */;
+			targetProxy = 09D259ED26E0E46400E78369 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		09D259F326E0E46400E78369 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		09D259F426E0E46400E78369 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		09D259F626E0E46400E78369 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"shortly-app-swiftui-fmlzpw/Preview Content\"";
+				DEVELOPMENT_TEAM = B44N46G7XC;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "shortly-app-swiftui-fmlzpw/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "net.sungw.utility.experimental.shortly-app-swiftui-fmlzpw";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		09D259F726E0E46400E78369 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"shortly-app-swiftui-fmlzpw/Preview Content\"";
+				DEVELOPMENT_TEAM = B44N46G7XC;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = "shortly-app-swiftui-fmlzpw/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "net.sungw.utility.experimental.shortly-app-swiftui-fmlzpw";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		09D259F926E0E46400E78369 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B44N46G7XC;
+				INFOPLIST_FILE = "shortly-app-swiftui-fmlzpwTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "net.sungw.utility.experimental.shortly-app-swiftui-fmlzpwTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/shortly-app-swiftui-fmlzpw.app/shortly-app-swiftui-fmlzpw";
+			};
+			name = Debug;
+		};
+		09D259FA26E0E46400E78369 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B44N46G7XC;
+				INFOPLIST_FILE = "shortly-app-swiftui-fmlzpwTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "net.sungw.utility.experimental.shortly-app-swiftui-fmlzpwTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/shortly-app-swiftui-fmlzpw.app/shortly-app-swiftui-fmlzpw";
+			};
+			name = Release;
+		};
+		09D259FC26E0E46400E78369 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B44N46G7XC;
+				INFOPLIST_FILE = "shortly-app-swiftui-fmlzpwUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "net.sungw.utility.experimental.shortly-app-swiftui-fmlzpwUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "shortly-app-swiftui-fmlzpw";
+			};
+			name = Debug;
+		};
+		09D259FD26E0E46400E78369 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B44N46G7XC;
+				INFOPLIST_FILE = "shortly-app-swiftui-fmlzpwUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "net.sungw.utility.experimental.shortly-app-swiftui-fmlzpwUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "shortly-app-swiftui-fmlzpw";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		09D259CB26E0E46200E78369 /* Build configuration list for PBXProject "shortly-app-swiftui-fmlzpw" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				09D259F326E0E46400E78369 /* Debug */,
+				09D259F426E0E46400E78369 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		09D259F526E0E46400E78369 /* Build configuration list for PBXNativeTarget "shortly-app-swiftui-fmlzpw" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				09D259F626E0E46400E78369 /* Debug */,
+				09D259F726E0E46400E78369 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		09D259F826E0E46400E78369 /* Build configuration list for PBXNativeTarget "shortly-app-swiftui-fmlzpwTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				09D259F926E0E46400E78369 /* Debug */,
+				09D259FA26E0E46400E78369 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		09D259FB26E0E46400E78369 /* Build configuration list for PBXNativeTarget "shortly-app-swiftui-fmlzpwUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				09D259FC26E0E46400E78369 /* Debug */,
+				09D259FD26E0E46400E78369 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 09D259C826E0E46200E78369 /* Project object */;
+}
