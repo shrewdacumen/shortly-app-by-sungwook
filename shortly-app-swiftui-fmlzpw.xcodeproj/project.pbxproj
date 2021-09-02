@@ -54,6 +54,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		091DC9A126E108AC00C4F2CF /* 1.3_main_screen_link_history.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.3_main_screen_link_history.png; sourceTree = "<group>"; };
+		091DC9A226E108AC00C4F2CF /* 1.2_main_screen_empty_missing_link.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.2_main_screen_empty_missing_link.png; sourceTree = "<group>"; };
+		091DC9A326E108AC00C4F2CF /* 1.1_main_screen_empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 1.1_main_screen_empty.png; sourceTree = "<group>"; };
+		091DC9A526E108AC00C4F2CF /* shape.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = shape.svg; sourceTree = "<group>"; };
+		091DC9A626E108AC00C4F2CF /* illustration.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = illustration.svg; sourceTree = "<group>"; };
+		091DC9A726E108AC00C4F2CF /* logo.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = logo.svg; sourceTree = "<group>"; };
+		091DC9A826E108AC00C4F2CF /* del.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = del.svg; sourceTree = "<group>"; };
+		091DC9A926E108AC00C4F2CF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		091DC9AA26E108AC00C4F2CF /* style-guide.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "style-guide.md"; sourceTree = "<group>"; };
+		091DC9AC26E1090F00C4F2CF /* command line attempts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "command line attempts.png"; sourceTree = "<group>"; };
+		091DC9AD26E1090F00C4F2CF /* bug due to starbucks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bug due to starbucks.png"; sourceTree = "<group>"; };
+		091DC9AE26E1090F00C4F2CF /* the screen I saw.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "the screen I saw.png"; sourceTree = "<group>"; };
+		091DC9AF26E1093100C4F2CF /* The Problem I faced.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "The Problem I faced.md"; sourceTree = "<group>"; };
 		09D259D026E0E46200E78369 /* shortly-app-swiftui-fmlzpw.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "shortly-app-swiftui-fmlzpw.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		09D259D726E0E46400E78369 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		09D259DA26E0E46400E78369 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -114,6 +127,49 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		091DC99F26E108AC00C4F2CF /* Documents for The Code Challenge */ = {
+			isa = PBXGroup;
+			children = (
+				091DC9A026E108AC00C4F2CF /* design */,
+				091DC9A426E108AC00C4F2CF /* images */,
+				091DC9A926E108AC00C4F2CF /* README.md */,
+				091DC9AA26E108AC00C4F2CF /* style-guide.md */,
+			);
+			path = "Documents for The Code Challenge";
+			sourceTree = SOURCE_ROOT;
+		};
+		091DC9A026E108AC00C4F2CF /* design */ = {
+			isa = PBXGroup;
+			children = (
+				091DC9A126E108AC00C4F2CF /* 1.3_main_screen_link_history.png */,
+				091DC9A226E108AC00C4F2CF /* 1.2_main_screen_empty_missing_link.png */,
+				091DC9A326E108AC00C4F2CF /* 1.1_main_screen_empty.png */,
+			);
+			path = design;
+			sourceTree = "<group>";
+		};
+		091DC9A426E108AC00C4F2CF /* images */ = {
+			isa = PBXGroup;
+			children = (
+				091DC9A526E108AC00C4F2CF /* shape.svg */,
+				091DC9A626E108AC00C4F2CF /* illustration.svg */,
+				091DC9A726E108AC00C4F2CF /* logo.svg */,
+				091DC9A826E108AC00C4F2CF /* del.svg */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
+		091DC9AB26E1090F00C4F2CF /* Network glitch, ownership problem, etc */ = {
+			isa = PBXGroup;
+			children = (
+				091DC9AF26E1093100C4F2CF /* The Problem I faced.md */,
+				091DC9AC26E1090F00C4F2CF /* command line attempts.png */,
+				091DC9AD26E1090F00C4F2CF /* bug due to starbucks.png */,
+				091DC9AE26E1090F00C4F2CF /* the screen I saw.png */,
+			);
+			path = "Network glitch, ownership problem, etc";
+			sourceTree = SOURCE_ROOT;
+		};
 		09D259C726E0E46200E78369 = {
 			isa = PBXGroup;
 			children = (
@@ -137,6 +193,8 @@
 		09D259D226E0E46200E78369 /* shortly-app-swiftui-fmlzpw */ = {
 			isa = PBXGroup;
 			children = (
+				091DC99F26E108AC00C4F2CF /* Documents for The Code Challenge */,
+				091DC9AB26E1090F00C4F2CF /* Network glitch, ownership problem, etc */,
 				09D259FE26E0E5BF00E78369 /* design */,
 				09D259D726E0E46400E78369 /* Assets.xcassets */,
 				09D259DC26E0E46400E78369 /* Info.plist */,
