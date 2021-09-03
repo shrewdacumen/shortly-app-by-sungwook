@@ -1,5 +1,29 @@
 #  ReadMe for the Code Challenge
 
+## refer to the folder `Network glitch, ownership problem, etc` for the trouble I've faced
+
+
+## My Environment Xcode 13 beta 5 (Not Xcode 12): SwiftUI3 capable.
+I'm using Swift3, the latest one.
+in order to maximize the ability I have been using Xcode 13 beta 5 (SwiftUI3)
+However, for the compatibility I had to lower the version to Xcode 12 (SwiftUI2) where many feature are deprecated already.
+
+The problem is that On Xcode 12 Info.plist is continually giving me a strange error that is not acutally error:
+  It compiles well and test well, but gives a false error.
+However, On Xcode 13, I have no such issue: I have no choice because I should stick to Xcode 12 to make my project accessible by the company.
+
+## Some functions and features will be different from the stable version Xcode 12 as the followings:
+  - all the asynchronous async, await feature of SwiftUI3 is not available (I'll try not to use this, even if I knew these things well.)
+  - popular functions like func overlay<Overlay>(_ overlay: Overlay, alignment: Alignment = .center) -> some View where Overlay : View is replaced by 
+     func overlay<V>(alignment: Alignment = .center, content: () -> V) -> some View where V : View in SwiftUI3.0 (Xcode13 beta)
+  - I'am tempted to use asynchronous task(priority:_:) modifier than on synchronous onAppear(perform:), but I try not to: for the compatibility to Xcode 12.
+
+Therefore, sometimes unknowingly, I may use the SwiftUI3 functions and modifiers: if this happens, the project even in the format of Xcode 12 won't be compiled but Xcode 13 beta 5. However, I will try to uae the deprecated function if possible.  If that happens, please download Xcode 13 beta 5 from developer.apple.com and then compile the project, instead.
+
+Because I'm downgrade the project to Xcode12 project format, there are some bugs involved in Info.plist but it is a glitch. It will compile and run without problem. Xcode 12 compiler may keep giving you an error message for the missing Info.plist but it is an expected bug in Xcode 12.
+If you created the project on Xcode 13, it won't happen.  However, in order to maintain compatibility with Xcode 12, I intentionally created the project in Xcode 12 format.  (Xcode 13, Info.plist disappear and are consolidated to project settings.) 
+
+
 
 
 Your users should be able to:

@@ -36,6 +36,7 @@
 		09D25A2B26E0E5BF00E78369 /* Poppins-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 09D25A1426E0E5BF00E78369 /* Poppins-SemiBold.ttf */; };
 		09D25A2C26E0E5BF00E78369 /* Poppins-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 09D25A1526E0E5BF00E78369 /* Poppins-Italic.ttf */; };
 		09D25A2D26E0E5BF00E78369 /* Poppins-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 09D25A1626E0E5BF00E78369 /* Poppins-MediumItalic.ttf */; };
+		09E3D65226E1E9FA00B79222 /* Array extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E3D65126E1E9FA00B79222 /* Array extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,7 +64,7 @@
 		091DC9A626E108AC00C4F2CF /* illustration.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = illustration.svg; sourceTree = "<group>"; };
 		091DC9A726E108AC00C4F2CF /* logo.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = logo.svg; sourceTree = "<group>"; };
 		091DC9A826E108AC00C4F2CF /* del.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = del.svg; sourceTree = "<group>"; };
-		091DC9A926E108AC00C4F2CF /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		091DC9A926E108AC00C4F2CF /* CS README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "CS README.md"; sourceTree = "<group>"; };
 		091DC9AA26E108AC00C4F2CF /* style-guide.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "style-guide.md"; sourceTree = "<group>"; };
 		091DC9AC26E1090F00C4F2CF /* command line attempts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "command line attempts.png"; sourceTree = "<group>"; };
 		091DC9AD26E1090F00C4F2CF /* bug due to starbucks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bug due to starbucks.png"; sourceTree = "<group>"; };
@@ -104,6 +105,7 @@
 		09D25A1426E0E5BF00E78369 /* Poppins-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-SemiBold.ttf"; sourceTree = "<group>"; };
 		09D25A1526E0E5BF00E78369 /* Poppins-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Italic.ttf"; sourceTree = "<group>"; };
 		09D25A1626E0E5BF00E78369 /* Poppins-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-MediumItalic.ttf"; sourceTree = "<group>"; };
+		09E3D65126E1E9FA00B79222 /* Array extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,7 +138,7 @@
 			children = (
 				091DC9A026E108AC00C4F2CF /* design */,
 				091DC9A426E108AC00C4F2CF /* images */,
-				091DC9A926E108AC00C4F2CF /* README.md */,
+				091DC9A926E108AC00C4F2CF /* CS README.md */,
 				091DC9AA26E108AC00C4F2CF /* style-guide.md */,
 			);
 			path = "Documents for The Code Challenge";
@@ -242,6 +244,7 @@
 				09D25A0226E0E5BF00E78369 /* ContentView.swift */,
 				091DC9B026E10D5E00C4F2CF /* FontTestView.swift */,
 				091DC9B226E1105A00C4F2CF /* Color extension.swift */,
+				09E3D65126E1E9FA00B79222 /* Array extension.swift */,
 				09D25A0326E0E5BF00E78369 /* Poppins */,
 			);
 			path = design;
@@ -426,6 +429,7 @@
 				09D25A1726E0E5BF00E78369 /* shortly_app_swiftui_fmlzpwApp.swift in Sources */,
 				09D25A1A26E0E5BF00E78369 /* ContentView.swift in Sources */,
 				09D25A1826E0E5BF00E78369 /* UrlAndShortened_Pair.swift in Sources */,
+				09E3D65226E1E9FA00B79222 /* Array extension.swift in Sources */,
 				091DC9B126E10D5E00C4F2CF /* FontTestView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
