@@ -47,20 +47,22 @@ struct FontTestView: View {
         /// Grayish Violet #35323E -- still too dark
         /// Cyan: #2ACFCF
         /// Red: #F46262
-        Text("Popins-Bold 24 Cyan")
-        //          .foregroundColor(Color(hex_string: "#35323E"))
-          .foregroundColor(Color(hex_string: "#2ACFCF"))
-          .font(Font.custom("Poppins-Bold", size: 24))
+        Text("Popins-Bold 20 Cyan")
+          .foregroundColor(Color(hex_string: ColorEnum.primary_cyan.rawValue))
+          .font(Font.custom("Poppins-Bold", size: 20))
         
         
-        Text("Popins-Bold 24")
+        Text("Popins-Bold 20 Red")
+          .foregroundColor(Color(hex_string: ColorEnum.secondary_red.rawValue))
+          .font(Font.custom("Poppins-Bold", size: 20))
         
-          .foregroundColor(Color(hex_string: "#F46262"))
-          .font(Font.custom("Poppins-Bold", size: 24))
+        Text("Popins-Black 20 gray")
+          .foregroundColor(Color(hex_string: ColorEnum.neutral_gray.rawValue))
+          .font(Font.custom("Poppins-Black", size: 20))
         
-        Text("Popins-Black 24")
-          .foregroundColor(Color(hex_string: "#35323E"))
-          .font(Font.custom("Poppins-Black", size: 24))
+        Text("Popins-Black 20 grayishViolet")
+          .foregroundColor(Color(hex_string: ColorEnum.neutral_grayishViolet.rawValue))
+          .font(Font.custom("Poppins-Black", size: 20))
         
       }
       
