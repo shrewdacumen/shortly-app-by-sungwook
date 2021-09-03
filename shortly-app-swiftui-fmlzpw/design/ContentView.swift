@@ -117,7 +117,7 @@ struct ContentView: View {
         
         ForEach(dataStore.urlPairs) { urlPair in
           
-          ZStack {
+          ZStack(alignment: .center) {
             
             
             /// This view determines the background color of each row.
@@ -145,7 +145,7 @@ struct ContentView: View {
               if isButtonTapped == false {
                 
                 // TODO: incomplete. make a new SwiftUIView for this.
-                ZStack {
+                ZStack(alignment: .center) {
                   
                   RoundedRectangle(cornerRadius: 5)
                     .frame(width: upper_cell_size.width*0.75, height: 40, alignment: .topLeading)
@@ -159,7 +159,7 @@ struct ContentView: View {
                 
               } else { // The button tapped
                 
-                ZStack {
+                ZStack(alignment: .center) {
                   
                   RoundedRectangle(cornerRadius: 5)
                     .frame(width: upper_cell_size.width*0.75, height: 40, alignment: .topLeading)
