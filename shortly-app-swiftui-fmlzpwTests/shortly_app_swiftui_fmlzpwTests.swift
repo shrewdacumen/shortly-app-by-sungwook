@@ -91,4 +91,21 @@ class shortly_app_swiftui_fmlzpwTests: XCTestCase {
     XCTAssertEqual(rgbColor!.b, 39.0/255.0)
     XCTAssertEqual(rgbColor!.a, 1.0)
   }
+  
+  func test_StringExtension_strict() {
+    
+    XCTAssertTrue("http://sungw.net".validateUrl())
+    XCTAssertTrue("https://sungw.net".validateUrl())
+    XCTAssertFalse("http://sungw_net".validateUrl())
+    XCTAssertTrue("https://sungw.net/my-portfolio".validateUrl())
+  }
+  
+  func test_StringExtension_userFriendly() {
+    
+    XCTAssertTrue("sungw.net".validateUrl())
+    XCTAssertTrue("sungw.net/my-portfolio".validateUrl())
+    XCTAssertTrue("sungw.net/my-portfolio/".validateUrl())
+    XCTAssertTrue("https://sungw.net/".validateUrl())
+    XCTAssertTrue("https://sungw.net/my-portfolio/".validateUrl())
+  }
 }
