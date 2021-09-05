@@ -32,7 +32,7 @@ If you created the project on Xcode 13, it won't happen.  However, in order to m
       And please note that **[Alert](https://developer.apple.com/documentation/swiftui/alert)** is deprecated again in **SwiftUI3 (Xcode13)**, being replaced by the modifier  **alert(_:isPresented:presenting:actions:message:)**.
       As I had misunderstood the way of presenting the error message, I interpreted wrongly it to be an Alert view.
       - the version 2
-      As the picture '1.2_main_screen_empty_missing_link.png', I changed it accordingly.
+      As the picture '1.2_main_screen_empty_missing_link.png', I changed the corresponding view of the Lower Cell of ContentView by ConditionalTextFieldOverlayModifier.
   - The returned state of 'input' field empty shall be treated in the same way but with a different error message.
   - Orientation is fixed at Portrate mode.
   - I can not clearly determine the design decision for the color scheme of Dark mode.
