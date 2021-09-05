@@ -115,9 +115,19 @@ struct ContentView: View {
         .padding()
     }
     
+    
+    
     VStack { /// Top Stack
       
-      // MARK: - upper cell 2nd
+      
+      // MARK: - Upper cell 1st, Image
+      
+      
+      
+      
+      
+      
+      // MARK: - Upper cell 2nd, ScrollView
       ScrollView {
         
         Text("Your Link History")
@@ -197,13 +207,14 @@ struct ContentView: View {
         } /// THE END OF ForEach {}
         
         
-      }
+      } /// THE END OF ScrollView {}
       .frame(width: upper_cell_size.width, height: upper_cell_size.height, alignment: .top)
       .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.background_offWhite.rawValue)))
       
       
-      // MARK: - Lower Cell
-      VStack {
+      
+      // MARK: - Lower Cell, the Stack
+      VStack { /// THE BEGINNING OF Lower Celll Stack {}
         
         TextField("Shorten a link here", text: $url_string) { isEditing in
           
@@ -251,7 +262,7 @@ struct ContentView: View {
           }
           
           
-        }
+        } /// THE END OF Lower Celll Stack {}
       .frame(width: upper_cell_size.width, height: lower_cell_size.height, alignment: .center)
       .alert(isPresented: $isAlertPresented) {
         
@@ -261,6 +272,8 @@ struct ContentView: View {
           
         case .noError:
           
+          /// The flow won't go here any more due to `isAlertPresented == false`
+          /// But it is necessary for all switch cases should be represented in code by the rule of Swift compiler.
           break
           
           
@@ -310,10 +323,9 @@ struct ContentView: View {
     } /// THE END OF Top Stack {}
     
   }
+
   
-  //  func validate(url: String) {
-  //
-  //  }
+  
 }
 
 
