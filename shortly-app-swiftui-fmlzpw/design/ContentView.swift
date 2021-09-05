@@ -272,6 +272,7 @@ struct ContentView: View {
             .conditionalOverlay(condition: inputFieldError)
             .onAppear {
               
+              /// inputFieldError should be reset after 2_000 milliseconds to make the textField usable.
               if inputFieldError != .noError {
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(2_000)) {
