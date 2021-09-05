@@ -73,7 +73,7 @@ struct ContentView: View {
   @ObservedObject var dataStore: DataStore
   
   @State var url_string = ""
-  @State var isEditing = false
+  @State var isTextFieldEditing = false
   
   
   /// in SwiftUI 2.0 way, an old way.
@@ -84,7 +84,7 @@ struct ContentView: View {
   
   
   // MARK: - properties
-  let the_percenage_of_upper_cell = 0.70 /// 70%
+  @State var the_percenage_of_upper_cell = TheGlobalParameter.the_percenage_of_upper_cell
   
   /// `lazy` can NOT be used due to @State
   /// Cannot use mutating getter on immutable value: 'self' is immutable
@@ -120,150 +120,184 @@ struct ContentView: View {
     VStack { /// Top Stack
       
       
-      // MARK: - Upper cell 1st, Image
-      
-      
-      
-      
-      
-      
-      // MARK: - Upper cell 2nd, ScrollView
-      ScrollView {
-        
-        Text("Your Link History")
-          .foregroundColor(Color(hex_string: ColorEnum.neutral_veryDarkViolet.rawValue))
-          .font(Font.custom("Poppins-Regular", size: CGFloat(FontSize_Enum.bodyCopy.rawValue)))
-          .padding(.top, 40)
+      if dataStore.urlPairs.isEmpty {
         
         
-        ForEach(dataStore.urlPairs) { urlPair in
+        // MARK: - Upper cell 1st, FacadeView
+        FacadeView(the_percenage_of_the_cell: $the_percenage_of_upper_cell)
+        
+        
+      } else {
+        
+        
+        // MARK: - Upper cell 2nd, ScrollView
+        ScrollView {
           
-          ZStack(alignment: .center) {
+          Text("Your Link History")
+            .foregroundColor(Color(hex_string: ColorEnum.neutral_veryDarkViolet.rawValue))
+            .font(Font.custom("Poppins-Regular", size: CGFloat(FontSize_Enum.bodyCopy.rawValue)))
+            .padding(.top, 40)
+          
+          
+          ForEach(dataStore.urlPairs) { urlPair in
             
-            
-            /// This view determines the background color of each row.
-            RoundedRectangle(cornerRadius: 10)
-              .frame(width: upper_cell_size.width*0.85, height: 150, alignment: .topLeading)
-              .foregroundColor(Color(hex_string: ColorEnum.background_white.rawValue))
-            
-            
-            // MARK: one row of the source of truth
-            VStack {
-              
-              Text(urlPair.url_string)
-                .foregroundColor(Color(hex_string: ColorEnum.neutral_veryDarkViolet.rawValue))
-                .font(Font.custom("Poppins-Regular", size: CGFloat(FontSize_Enum.bodyCopy.rawValue)))
-                .frame(alignment: .bottom)
-              
-              Divider()
-              
-              Text(urlPair.shortened_url)
-                .foregroundColor(Color(hex_string: ColorEnum.primary_cyan.rawValue))
-                .font(Font.custom("Poppins-Regular", size: CGFloat(FontSize_Enum.bodyCopy.rawValue)))
-                .frame(alignment: .top)
+            ZStack(alignment: .center) {
               
               
-              // TODO: incomplete. make a new SwiftUIView for this block.
-              if urlPair.isCopied == false {
+              /// This view determines the background color of each row.
+              RoundedRectangle(cornerRadius: 10)
+                .frame(width: upper_cell_size.width*0.85, height: 150, alignment: .topLeading)
+                .foregroundColor(Color(hex_string: ColorEnum.background_white.rawValue))
+              
+              
+              // MARK: one row of the source of truth
+              VStack {
                 
-                ZStack(alignment: .center) {
+                Text(urlPair.url_string)
+                  .foregroundColor(Color(hex_string: ColorEnum.neutral_veryDarkViolet.rawValue))
+                  .font(Font.custom("Poppins-Regular", size: CGFloat(FontSize_Enum.bodyCopy.rawValue)))
+                  .frame(alignment: .bottom)
+                
+                Divider()
+                
+                Text(urlPair.shortened_url)
+                  .foregroundColor(Color(hex_string: ColorEnum.primary_cyan.rawValue))
+                  .font(Font.custom("Poppins-Regular", size: CGFloat(FontSize_Enum.bodyCopy.rawValue)))
+                  .frame(alignment: .top)
+                
+                
+                // TODO: incomplete. make a new SwiftUIView for this block.
+                if urlPair.isCopied == false {
                   
-                  RoundedRectangle(cornerRadius: 5)
-                    .frame(width: upper_cell_size.width*0.75, height: 40, alignment: .topLeading)
-                    .foregroundColor(Color(hex_string: ColorEnum.primary_cyan.rawValue))
+                  ZStack(alignment: .center) {
+                    
+                    RoundedRectangle(cornerRadius: 5)
+                      .frame(width: upper_cell_size.width*0.75, height: 40, alignment: .topLeading)
+                      .foregroundColor(Color(hex_string: ColorEnum.primary_cyan.rawValue))
+                    
+                    // TODO: incomplete. add action to Text view to onCopyCommand()
+                    Text("COPY")
+                      .font(Font.custom("Poppins-Bold", size: CGFloat(FontSize_Enum.bodyCopy.rawValue)))
+                      .foregroundColor(Color(hex_string: ColorEnum.background_white.rawValue))
+                  }
+                  .frame(alignment: .top)
                   
-                  // TODO: incomplete. add action to Text view to onCopyCommand()
-                  Text("COPY")
-                    .font(Font.custom("Poppins-Bold", size: CGFloat(FontSize_Enum.bodyCopy.rawValue)))
-                    .foregroundColor(Color(hex_string: ColorEnum.background_white.rawValue))
+                } else { // The button tapped
+                  
+                  ZStack(alignment: .center) {
+                    
+                    RoundedRectangle(cornerRadius: 5)
+                      .frame(width: upper_cell_size.width*0.75, height: 40, alignment: .topLeading)
+                      .foregroundColor(Color(hex_string: ColorEnum.neutral_veryDarkViolet.rawValue))
+                    
+                    // TODO: incomplete. add action to Text view to onCopyCommand()
+                    Text("COPIED")
+                      .font(Font.custom("Poppins-Bold", size: CGFloat(FontSize_Enum.bodyCopy.rawValue)))
+                      .foregroundColor(Color(hex_string: ColorEnum.background_white.rawValue))
+                  }
+                  .frame(alignment: .top)
+                  
                 }
-                .frame(alignment: .top)
                 
-              } else { // The button tapped
                 
-                ZStack(alignment: .center) {
-                  
-                  RoundedRectangle(cornerRadius: 5)
-                    .frame(width: upper_cell_size.width*0.75, height: 40, alignment: .topLeading)
-                    .foregroundColor(Color(hex_string: ColorEnum.neutral_veryDarkViolet.rawValue))
-                  
-                  // TODO: incomplete. add action to Text view to onCopyCommand()
-                  Text("COPIED")
-                    .font(Font.custom("Poppins-Bold", size: CGFloat(FontSize_Enum.bodyCopy.rawValue)))
-                    .foregroundColor(Color(hex_string: ColorEnum.background_white.rawValue))
-                }
-                .frame(alignment: .top)
+              }
+              .padding(.all, 0)
+              
+            }
+            .padding()
+            .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.background_offWhite.rawValue)))
+            
+          } /// THE END OF ForEach {}
+          
+          
+        } /// THE END OF ScrollView {}
+        .frame(width: upper_cell_size.width, height: upper_cell_size.height, alignment: .top)
+        .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.background_offWhite.rawValue)))
+        
+        
+      } /// THE END OF if dataStore.urlPairs.isEmpty {}
+      
+      
+      
+      // MARK: - Lower Cell, the ZStack
+      ZStack(alignment: .center) {
+        
+        
+        TheShapeImageView()
+        
+        
+        HStack {
+          
+          /// 1st row
+          Spacer()
+          
+          /// ** CAVEAT **
+          /// spacing of the VStack below: the spacing between the input field and the button
+          VStack(alignment: .center, spacing: 10) { /// THE BEGINNING OF Lower Celll Stack {}
+            
+            /// 2nd row
+            TextField("Shorten a link here", text: $url_string) { isEditing in
+              
+              self.isTextFieldEditing = isEditing
+              
+            } onCommit: {
+              
+              /// input string == empty string
+              if url_string.isEmpty {
+                
+                inputFieldError = .emptyString
+                
+                isAlertPresented = true
+                
+              } else if url_string.validateUrl() == false {
+                
+                inputFieldError = .invalidUrl
+                
+                isAlertPresented = true
+                
+                url_string = ""
+                
+              } else {
+                
+                inputFieldError = .noError
+                
+                isAlertPresented = false
                 
               }
               
               
             }
-            .padding(.all, 0)
+            .frame(width: lower_cell_size.width * 0.70, height: 60, alignment: .center)
+            .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.background_offWhite.rawValue)))
             
+            
+            /// 3rd row
+            Button {
+              
+              //TODO: incomplete. add URL_Session action here!
+              
+              
+              
+            } label: {
+              
+              Text("Shorten It")
+                .font(Font.custom("Poppins-Bold", size: CGFloat(Double(FontSize_Enum.bodyCopy.rawValue)*1.50)))
+                .foregroundColor(Color(hex_string: ColorEnum.background_white.rawValue))
+              
+            }
+            .frame(width: lower_cell_size.width * 0.70, height: 60, alignment: .center)
+            .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.primary_cyan.rawValue)))
           }
-          .padding()
-          .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.background_offWhite.rawValue)))
           
-        } /// THE END OF ForEach {}
-        
-        
-      } /// THE END OF ScrollView {}
-      .frame(width: upper_cell_size.width, height: upper_cell_size.height, alignment: .top)
-      .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.background_offWhite.rawValue)))
-      
-      
-      
-      // MARK: - Lower Cell, the Stack
-      VStack { /// THE BEGINNING OF Lower Celll Stack {}
-        
-        TextField("Shorten a link here", text: $url_string) { isEditing in
-          
-          self.isEditing = isEditing
-          
-        } onCommit: {
-          
-          /// input string == empty string
-          if url_string.isEmpty {
-            
-            inputFieldError = .emptyString
-            
-            isAlertPresented = true
-            
-          } else if url_string.validateUrl() == false {
-            
-            inputFieldError = .invalidUrl
-            
-            isAlertPresented = true
-          
-            url_string = ""
-            
-          } else {
-            
-            inputFieldError = .noError
-            
-            isAlertPresented = false
-            
-          }
-
-          
+          /// 4th row
+          Spacer()
         }
-        .frame(width: lower_cell_size.width * 0.70, height: 40, alignment: .center)
-          
-          
-          Button {
-            
-            //TODO: incomplete. add URL_Session action here!
-            
-            
-            
-          } label: {
-            
-            Text("Shorten It")
-          }
-          
-          
-        } /// THE END OF Lower Celll Stack {}
-      .frame(width: upper_cell_size.width, height: lower_cell_size.height, alignment: .center)
+        
+        
+      } /// THE END OF Lower Celll ZStack {}
+      .frame(width: lower_cell_size.width, height: lower_cell_size.height, alignment: .center)
+      .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.neutral_veryDarkViolet.rawValue))
+      )
       .alert(isPresented: $isAlertPresented) {
         
         var the_alert: Alert = Alert(title: Text("no error"), message: Text("no error"))
@@ -291,7 +325,6 @@ struct ContentView: View {
             )
             
             return the_alert
-            
           }
           
           
@@ -300,7 +333,7 @@ struct ContentView: View {
           isAlertPresented = true
           
           /// SwiftUI2.0, an old way
-          let a_view = self.alert(isPresented: $isAlertPresented) {
+          self.alert(isPresented: $isAlertPresented) {
             
             /// SwiftUI2.0, an old way
             the_alert = Alert(title: Text("Url Eror"),
@@ -309,15 +342,17 @@ struct ContentView: View {
             )
             
             return the_alert
-            
           }
-
+          
           
         }
         
         return the_alert
         
       }  /// THE END OF alert() {}
+
+      
+
       
       
     } /// THE END OF Top Stack {}
