@@ -13,6 +13,10 @@ struct UrlAndShortened_Pair: Identifiable {
   let id = UUID()
   let url_string: String
   let shortened_url: String
+  
+  /// I make isCopied chagible and persistent.
+  /// it is pertain to onCopyCommand(perform:)
+  var isCopied = false
 }
 
 

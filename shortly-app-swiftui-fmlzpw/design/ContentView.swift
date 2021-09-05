@@ -51,10 +51,17 @@ enum ColorEnum: String {
   case background_offWhite = "#F0F1F6"
 }
 
-enum FontSizeEnum: Int {
+enum FontSize_Enum: Int {
   
   case bodyCopy = 17
   case mobile = 375
+}
+
+enum InputFieldError_Enum {
+  
+  case noError
+  case emptyString
+  case invalidUrl
 }
 
 
@@ -68,9 +75,13 @@ struct ContentView: View {
   @State var url_string = ""
   @State var isEditing = false
   
-  /// This will be the default value 3 sec after tapped the button.
-  @State var isButtonTapped = false
-  let delay_after_theButtonTapped = 3
+  
+  /// in SwiftUI 2.0 way, an old way.
+  @State private var isAlertPresented = false
+  
+  @State private var inputFieldError = InputFieldError_Enum.noError
+  
+  
   
   // MARK: - properties
   let the_percenage_of_upper_cell = 0.70 /// 70%
@@ -111,7 +122,7 @@ struct ContentView: View {
         
         Text("Your Link History")
           .foregroundColor(Color(hex_string: ColorEnum.neutral_veryDarkViolet.rawValue))
-          .font(Font.custom("Poppins-Regular", size: CGFloat(FontSizeEnum.bodyCopy.rawValue)))
+          .font(Font.custom("Poppins-Regular", size: CGFloat(FontSize_Enum.bodyCopy.rawValue)))
           .padding(.top, 40)
         
         
@@ -131,28 +142,29 @@ struct ContentView: View {
               
               Text(urlPair.url_string)
                 .foregroundColor(Color(hex_string: ColorEnum.neutral_veryDarkViolet.rawValue))
-                .font(Font.custom("Poppins-Regular", size: CGFloat(FontSizeEnum.bodyCopy.rawValue)))
+                .font(Font.custom("Poppins-Regular", size: CGFloat(FontSize_Enum.bodyCopy.rawValue)))
                 .frame(alignment: .bottom)
               
               Divider()
               
               Text(urlPair.shortened_url)
                 .foregroundColor(Color(hex_string: ColorEnum.primary_cyan.rawValue))
-                .font(Font.custom("Poppins-Regular", size: CGFloat(FontSizeEnum.bodyCopy.rawValue)))
+                .font(Font.custom("Poppins-Regular", size: CGFloat(FontSize_Enum.bodyCopy.rawValue)))
                 .frame(alignment: .top)
               
               
-              if isButtonTapped == false {
+              // TODO: incomplete. make a new SwiftUIView for this block.
+              if urlPair.isCopied == false {
                 
-                // TODO: incomplete. make a new SwiftUIView for this.
                 ZStack(alignment: .center) {
                   
                   RoundedRectangle(cornerRadius: 5)
                     .frame(width: upper_cell_size.width*0.75, height: 40, alignment: .topLeading)
                     .foregroundColor(Color(hex_string: ColorEnum.primary_cyan.rawValue))
                   
+                  // TODO: incomplete. add action to Text view to onCopyCommand()
                   Text("COPY")
-                    .font(Font.custom("Poppins-Bold", size: CGFloat(FontSizeEnum.bodyCopy.rawValue)))
+                    .font(Font.custom("Poppins-Bold", size: CGFloat(FontSize_Enum.bodyCopy.rawValue)))
                     .foregroundColor(Color(hex_string: ColorEnum.background_white.rawValue))
                 }
                 .frame(alignment: .top)
@@ -165,22 +177,15 @@ struct ContentView: View {
                     .frame(width: upper_cell_size.width*0.75, height: 40, alignment: .topLeading)
                     .foregroundColor(Color(hex_string: ColorEnum.neutral_veryDarkViolet.rawValue))
                   
+                  // TODO: incomplete. add action to Text view to onCopyCommand()
                   Text("COPIED")
-                    .font(Font.custom("Poppins-Bold", size: CGFloat(FontSizeEnum.bodyCopy.rawValue)))
+                    .font(Font.custom("Poppins-Bold", size: CGFloat(FontSize_Enum.bodyCopy.rawValue)))
                     .foregroundColor(Color(hex_string: ColorEnum.background_white.rawValue))
                 }
                 .frame(alignment: .top)
-                .onAppear {
-                  
-                  /// this will make isButtonTapped have the default value after delay_after_theButtonTapped sec.
-                  DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(delay_after_theButtonTapped)) {
-                    
-                    isButtonTapped = false
-                  }
-                }
                 
               }
-
+              
               
             }
             .padding(.all, 0)
@@ -206,24 +211,100 @@ struct ContentView: View {
           
         } onCommit: {
           
-          if url_string.validateUrl() == false {
+          /// input string == empty string
+          if url_string.isEmpty {
             
+            inputFieldError = .emptyString
+            
+            isAlertPresented = true
+            
+          } else if url_string.validateUrl() == false {
+            
+            inputFieldError = .invalidUrl
+            
+            isAlertPresented = true
+          
             url_string = ""
+            
+          } else {
+            
+            inputFieldError = .noError
+            
+            isAlertPresented = false
+            
           }
+
           
         }
         .frame(width: lower_cell_size.width * 0.70, height: 40, alignment: .center)
+          
+          
+          Button {
+            
+            //TODO: incomplete. add URL_Session action here!
+            
+            
+            
+          } label: {
+            
+            Text("Shorten It")
+          }
+          
+          
+        }
+      .frame(width: upper_cell_size.width, height: lower_cell_size.height, alignment: .center)
+      .alert(isPresented: $isAlertPresented) {
         
-        Button {
+        var the_alert: Alert = Alert(title: Text("no error"), message: Text("no error"))
+        
+        switch inputFieldError {
           
-        } label: {
+        case .noError:
           
-          Text("Shorten It")
+          break
+          
+          
+        case .emptyString:
+          
+          isAlertPresented = true
+          
+          /// SwiftUI2.0, an old way
+          self.alert(isPresented: $isAlertPresented) {
+            
+            /// SwiftUI2.0, an old way
+            the_alert = Alert(title: Text("Empty String"),
+                              message: Text("You didn't enter the link"),
+                              dismissButton: .default(Text("OK"))
+            )
+            
+            return the_alert
+            
+          }
+          
+          
+        case .invalidUrl:
+          
+          isAlertPresented = true
+          
+          /// SwiftUI2.0, an old way
+          let a_view = self.alert(isPresented: $isAlertPresented) {
+            
+            /// SwiftUI2.0, an old way
+            the_alert = Alert(title: Text("Url Eror"),
+                              message: Text("You entered an invalid url"),
+                              dismissButton: .default(Text("OK"))
+            )
+            
+            return the_alert
+            
+          }
+
+          
         }
         
+        return the_alert
         
-      }
-      .frame(width: upper_cell_size.width, height: lower_cell_size.height, alignment: .center)
+      }  /// THE END OF alert() {}
       
       
     } /// THE END OF Top Stack {}
