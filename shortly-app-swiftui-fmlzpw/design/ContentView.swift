@@ -226,7 +226,7 @@ struct ContentView: View {
         TheShapeImageView()
         
         
-        HStack {
+        HStack { /// THE BEGINING OF Top Stack {}
           
           /// 1st row
           Spacer()
@@ -269,6 +269,17 @@ struct ContentView: View {
             }
             .frame(width: lower_cell_size.width * 0.70, height: 60, alignment: .center)
             .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.background_offWhite.rawValue)))
+            .conditionalOverlay(condition: inputFieldError)
+            .onAppear {
+              
+              if inputFieldError != .noError {
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(2_000)) {
+                  
+                  inputFieldError = .noError
+                }
+              }
+            }
             
             
             /// 3rd row
@@ -298,61 +309,7 @@ struct ContentView: View {
       .frame(width: lower_cell_size.width, height: lower_cell_size.height, alignment: .center)
       .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.neutral_veryDarkViolet.rawValue))
       )
-      .alert(isPresented: $isAlertPresented) {
-        
-        var the_alert: Alert = Alert(title: Text("no error"), message: Text("no error"))
-        
-        switch inputFieldError {
-          
-        case .noError:
-          
-          /// The flow won't go here any more due to `isAlertPresented == false`
-          /// But it is necessary for all switch cases should be represented in code by the rule of Swift compiler.
-          break
-          
-          
-        case .emptyString:
-          
-          isAlertPresented = true
-          
-          /// SwiftUI2.0, an old way
-          self.alert(isPresented: $isAlertPresented) {
-            
-            /// SwiftUI2.0, an old way
-            the_alert = Alert(title: Text("Empty String"),
-                              message: Text("You didn't enter the link"),
-                              dismissButton: .default(Text("OK"))
-            )
-            
-            return the_alert
-          }
-          
-          
-        case .invalidUrl:
-          
-          isAlertPresented = true
-          
-          /// SwiftUI2.0, an old way
-          self.alert(isPresented: $isAlertPresented) {
-            
-            /// SwiftUI2.0, an old way
-            the_alert = Alert(title: Text("Url Eror"),
-                              message: Text("You entered an invalid url"),
-                              dismissButton: .default(Text("OK"))
-            )
-            
-            return the_alert
-          }
-          
-          
-        }
-        
-        return the_alert
-        
-      }  /// THE END OF alert() {}
-
       
-
       
       
     } /// THE END OF Top Stack {}
