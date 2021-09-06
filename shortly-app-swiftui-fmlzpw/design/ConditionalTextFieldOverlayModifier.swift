@@ -28,7 +28,14 @@ struct ConditionalTextFieldOverlayModifier: ViewModifier {
                         .font(Font.custom("Poppins-Regular", size: FontSize_Enum.bodyCopy.rawValue)))
         .border(Color(hex_string: ColorEnum.secondary_red.rawValue) ?? Color.red, width: 3)
     
-    } else {
+    } else if condition == .duplicated {
+      
+      content.overlay(Text("It is a duplicate")
+                        .foregroundColor(Color(hex_string: ColorEnum.secondary_red.rawValue))
+                        .font(Font.custom("Poppins-Regular", size: FontSize_Enum.bodyCopy.rawValue)))
+        .border(Color(hex_string: ColorEnum.secondary_red.rawValue) ?? Color.red, width: 3)
+      
+      } else {
       
       content
     }

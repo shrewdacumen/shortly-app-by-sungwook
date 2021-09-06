@@ -62,6 +62,7 @@ enum InputFieldError_Enum {
   case noError
   case emptyString
   case invalidUrl
+  case duplicated
 }
 
 
@@ -75,9 +76,6 @@ struct ContentView: View {
   @State var url_string = ""
   @State var isTextFieldEditing = false
   
-  
-  /// in SwiftUI 2.0 way, an old way.
-  @State private var isAlertPresented = false
   
   @State private var inputFieldError = InputFieldError_Enum.noError
   
@@ -242,22 +240,21 @@ struct ContentView: View {
                   
                   inputFieldError = .emptyString
                   
-                  isAlertPresented = true
-                  
                 } else if url_string.validateUrl() == false {
                   
                   inputFieldError = .invalidUrl
                   
-                  isAlertPresented = true
+                  url_string = ""
+                  
+                } else if dataStore.doesContain(url_string: url_string) {
+                  
+                  inputFieldError = .duplicated
                   
                   url_string = ""
                   
                 } else {
                   
                   inputFieldError = .noError
-                  
-                  isAlertPresented = false
-                  
                 }
                 
                 
@@ -283,11 +280,23 @@ struct ContentView: View {
               Button {
                 
                 //TODO: incomplete. progress bar should appear.
-                guard inputFieldError == .noError else {
+                guard inputFieldError == .noError && url_string.isEmpty == false else {
                   
                   return
                 }
+                
+                /// Check if it is .duplicated
+                if dataStore.doesContain(url_string: url_string) {
+                  
+                  inputFieldError = .duplicated
+                  
+                  url_string = ""
+                  
+                  return
+                }
+                
        
+                print("entered URLSession.")
                 
                 let queryParams = ["url":url_string]
                 var urlComponents = URLComponents()
@@ -356,7 +365,7 @@ struct ContentView: View {
                   
                   if TheGlobalUIParameter.is_debugging_mode {
                     
-                  sneakPeak_JSONObject(received_JSONObject)
+                    sneakPeak_JSONObject(received_JSONObject)
                   }
                   
                   guard let dic = received_JSONObject as? Dictionary<String, Any> else {

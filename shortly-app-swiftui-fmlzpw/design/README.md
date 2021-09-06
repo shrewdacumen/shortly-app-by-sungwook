@@ -45,6 +45,8 @@ If you created the project on Xcode 13, it won't happen.  However, in order to m
       But I'll advance a bit the color scheme arbitrarily even if I am not sure that it would be suitable for this project so far.
       
   - TheGlobalUIParameter.is_debugging_mode controls whether it is in debugging mode or not.
+  
+  - Entering the same `url-string` will be discarded, not being added as a row but showing its error message on the TextEdit Field again as the same way as others. 
     
   
 

@@ -11,7 +11,7 @@ import Foundation
 struct UrlAndShortened_Pair: Identifiable {
   
   let id = UUID()
-  let url_string: String
+  let url_string: String /// use this as key value
   let shortened_url: String
   
   /// I make isCopied chagible and persistent.
@@ -23,6 +23,23 @@ struct UrlAndShortened_Pair: Identifiable {
 class DataStore: ObservableObject {
   
   @Published var urlPairs: [UrlAndShortened_Pair]
+  
+  func doesContain(url_string: String) -> Bool {
+    
+    let found = urlPairs.first {
+      
+      $0.url_string == url_string
+    }
+    
+    if found != nil {
+      
+      return true
+      
+    } else {
+      
+      return false
+    }
+  }
   
   init(urlPairs: [UrlAndShortened_Pair]) {
     
