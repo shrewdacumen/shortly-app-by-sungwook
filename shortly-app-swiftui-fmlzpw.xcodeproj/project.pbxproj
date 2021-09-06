@@ -11,6 +11,8 @@
 		091DC9B326E1105A00C4F2CF /* Color extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091DC9B226E1105A00C4F2CF /* Color extension.swift */; };
 		092B308D26E5DE9200B2222B /* IgnoreSafeArea_Unversal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092B308C26E5DE9200B2222B /* IgnoreSafeArea_Unversal.swift */; };
 		092B308F26E5E91200B2222B /* BackgroundUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092B308E26E5E91200B2222B /* BackgroundUIView.swift */; };
+		092B309126E5F93C00B2222B /* errorReason.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092B309026E5F93C00B2222B /* errorReason.swift */; };
+		092B309326E5FE0C00B2222B /* sneakPeak_JSONObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092B309226E5FE0C00B2222B /* sneakPeak_JSONObject.swift */; };
 		09341BFD26E4E9DB00C212E1 /* FacadeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09341BFC26E4E9DB00C212E1 /* FacadeView.swift */; };
 		09341BFF26E5053500C212E1 /* TheShapeImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09341BFE26E5053500C212E1 /* TheShapeImageView.swift */; };
 		09341C0126E505CA00C212E1 /* TheGlobalUIParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09341C0026E505C900C212E1 /* TheGlobalUIParameter.swift */; };
@@ -82,6 +84,8 @@
 		091DC9B226E1105A00C4F2CF /* Color extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color extension.swift"; sourceTree = "<group>"; };
 		092B308C26E5DE9200B2222B /* IgnoreSafeArea_Unversal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IgnoreSafeArea_Unversal.swift; sourceTree = "<group>"; };
 		092B308E26E5E91200B2222B /* BackgroundUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundUIView.swift; sourceTree = "<group>"; };
+		092B309026E5F93C00B2222B /* errorReason.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = errorReason.swift; sourceTree = "<group>"; };
+		092B309226E5FE0C00B2222B /* sneakPeak_JSONObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sneakPeak_JSONObject.swift; sourceTree = "<group>"; };
 		09341BFC26E4E9DB00C212E1 /* FacadeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacadeView.swift; sourceTree = "<group>"; };
 		09341BFE26E5053500C212E1 /* TheShapeImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheShapeImageView.swift; sourceTree = "<group>"; };
 		09341C0026E505C900C212E1 /* TheGlobalUIParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheGlobalUIParameter.swift; sourceTree = "<group>"; };
@@ -263,7 +267,9 @@
 				092B308E26E5E91200B2222B /* BackgroundUIView.swift */,
 				09341BFE26E5053500C212E1 /* TheShapeImageView.swift */,
 				09341C0026E505C900C212E1 /* TheGlobalUIParameter.swift */,
+				092B309026E5F93C00B2222B /* errorReason.swift */,
 				0994293326E511C600B9298B /* ConditionalTextFieldOverlayModifier.swift */,
+				092B309226E5FE0C00B2222B /* sneakPeak_JSONObject.swift */,
 				092B308C26E5DE9200B2222B /* IgnoreSafeArea_Unversal.swift */,
 				09B366B126E5BCEA003E2BDE /* DebuggingBorderModifier.swift */,
 				091DC9B226E1105A00C4F2CF /* Color extension.swift */,
@@ -457,7 +463,9 @@
 				09B366B226E5BCEA003E2BDE /* DebuggingBorderModifier.swift in Sources */,
 				092B308F26E5E91200B2222B /* BackgroundUIView.swift in Sources */,
 				09D25A1826E0E5BF00E78369 /* UrlAndShortened_Pair.swift in Sources */,
+				092B309326E5FE0C00B2222B /* sneakPeak_JSONObject.swift in Sources */,
 				09341BFF26E5053500C212E1 /* TheShapeImageView.swift in Sources */,
+				092B309126E5F93C00B2222B /* errorReason.swift in Sources */,
 				09E3D65226E1E9FA00B79222 /* Array extension.swift in Sources */,
 				091DC9B126E10D5E00C4F2CF /* FontTestView.swift in Sources */,
 				09341C0126E505CA00C212E1 /* TheGlobalUIParameter.swift in Sources */,

@@ -282,7 +282,117 @@ struct ContentView: View {
               /// 2nd row
               Button {
                 
-                //TODO: incomplete. add URL_Session action here!
+                //TODO: incomplete. progress bar should appear.
+                guard inputFieldError == .noError else {
+                  
+                  return
+                }
+       
+                
+                let queryParams = ["url":url_string]
+                var urlComponents = URLComponents()
+
+                var cs = CharacterSet.urlQueryAllowed
+                cs.remove("+")
+
+                urlComponents.scheme = "https"
+                urlComponents.host = "api.shrtco.de"
+                urlComponents.path = "/v2/shorten"
+                urlComponents.percentEncodedQuery = queryParams.map {
+                  
+                    $0.addingPercentEncoding(withAllowedCharacters: cs)!
+                    + "=" + $1.addingPercentEncoding(withAllowedCharacters: cs)!
+                }.joined(separator: "&")
+                
+                print("urlString = \(String(describing: urlComponents.string))")
+                
+                
+                
+                guard let url = urlComponents.url else {
+                  
+                  fatalError("wrong url")
+                }
+                
+                // MARK: URLSessionConfiguration.default
+                let URLSessionConfig = URLSessionConfiguration.default
+                URLSessionConfig.allowsConstrainedNetworkAccess = true
+                URLSessionConfig.allowsCellularAccess = true
+                URLSessionConfig.waitsForConnectivity = true
+                
+                
+                // MARK: URLSession(configuration: URLSessionConfig).dataTask(with: url) { data, response, error in }
+                let urlSessionDataTask = URLSession(configuration: URLSessionConfig).dataTask(with: url) { web_raw_data, response, error in
+                  
+                  if let response = response {
+                    
+                    
+                    guard let statusCode = (response as? HTTPURLResponse)?.statusCode else {
+                      
+                      fatalError()
+                    }
+                    
+                    guard  statusCode == 200 || statusCode == 201 else {
+                      
+                      print("statusCode = \(statusCode)")
+                      print("An unknown error")
+                      
+                      // TODO: incomplete. returns a message
+                      return
+                    }
+                  }
+                  
+                  guard let web_raw_data_NonOptional = web_raw_data else {
+                    
+                    fatalError("no data received")
+                  }
+                  
+                  guard let received_JSONObject = try? JSONSerialization.jsonObject(with: web_raw_data_NonOptional, options: [.mutableContainers]) else {
+                    
+                    fatalError("the error in jasonObject catch")
+                  }
+                  
+                  
+                  if TheGlobalUIParameter.is_debugging_mode {
+                    
+                  sneakPeak_JSONObject(received_JSONObject)
+                  }
+                  
+                  guard let dic = received_JSONObject as? Dictionary<String, Any> else {
+                    
+                    fatalError("Dictionary<String, Any>")
+                  }
+                  
+                  
+                  if let error_code = dic["error_code"] as? Int {
+                    
+                    print("error code = \(error_code)")
+                    print("\((dic["error"] as? String) ?? "no error message")")
+                    
+                    // TODO: incomplete. returns a message
+                    return
+                    
+                  }
+                  
+                  
+                  guard let result = dic["result"] as? [String : String] else {
+                    
+                    fatalError("result format error")
+                  }
+                  
+
+                  guard let shortCode = result["full_short_link"] else {
+                    
+                    fatalError("full_short_link not found")
+                  }
+                  
+                  print("\(shortCode)")
+                  
+                  dataStore.urlPairs.append(UrlAndShortened_Pair(url_string: url_string, shortened_url: shortCode))
+                
+                }
+                
+                
+                urlSessionDataTask.resume()
                 
                 
                 
