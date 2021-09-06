@@ -120,6 +120,7 @@ struct ContentView: View {
           
           // MARK: - Upper cell 1st, FacadeView
           FacadeView(the_percenage_of_the_cell: $the_percenage_of_upper_cell)
+            .padding(.top, hasNotch ? 0.0:proxy.safeAreaInsets.top)
           
         } else {
           
@@ -224,16 +225,12 @@ struct ContentView: View {
           
           HStack { /// THE BEGINING OF Top Stack {}
             
-            /// 1st row
-            //            Spacer()
-            
             /// ** CAVEAT **
             /// spacing of the VStack below: the spacing between the input field and the button
             VStack(alignment: .center, spacing: TheGlobalUIParameter.row_spacing_of_lower_cell) { /// THE BEGINNING OF Lower Celll Stack {}
               
               
-              
-              /// 2nd row
+              /// 1st row
               TextField("Shorten a link here", text: $url_string) { isEditing in
                 
                 self.isTextFieldEditing = isEditing
@@ -274,7 +271,7 @@ struct ContentView: View {
                 /// inputFieldError should be reset after 2_000 milliseconds to make the textField usable.
                 if inputFieldError != .noError {
                   
-                  DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(2_000)) {
+                  DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1_000)) {
                     
                     inputFieldError = .noError
                   }
@@ -282,7 +279,7 @@ struct ContentView: View {
               }
               
               
-              /// 3rd row
+              /// 2nd row
               Button {
                 
                 //TODO: incomplete. add URL_Session action here!
@@ -301,11 +298,8 @@ struct ContentView: View {
               
             }  /// THE END OF VStack {}
             //            .debuggingBorder()
-            .offset(x: 0, y: hasNotch ? 0:-40)
-            
-            
-            /// 4th row
-            //            Spacer()
+            .offset(x: 0, y: hasNotch ? 0:-lower_cell_size.height*0.12)
+
             
           } /// THE END OF HStack
           .frame(width: lower_cell_size.width, height: lower_cell_size.height, alignment: .center)
@@ -322,7 +316,7 @@ struct ContentView: View {
         
         
       } /// THE END OF Top Stack {}
-      .ignoreSafeAreaUniversal(hasNotch: hasNotch)
+      .ignoresSafeArea()
       .background(
         
         BackgroundUIView(upper_cell_size: upper_cell_size, lower_cell_size: lower_cell_size)
