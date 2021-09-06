@@ -323,6 +323,8 @@ struct ContentView: View {
                 // MARK: URLSession(configuration: URLSessionConfig).dataTask(with: url) { data, response, error in }
                 let urlSessionDataTask = URLSession(configuration: URLSessionConfig).dataTask(with: url) { web_raw_data, response, error in
                   
+                  
+                  // MARK: - This closure should be a sub-thread.
                   if let response = response {
                     
                     
@@ -387,7 +389,11 @@ struct ContentView: View {
                   
                   print("\(shortCode)")
                   
-                  dataStore.urlPairs.append(UrlAndShortened_Pair(url_string: url_string, shortened_url: shortCode))
+                  DispatchQueue.main.async {
+                    
+                    dataStore.urlPairs.append(UrlAndShortened_Pair(url_string: url_string, shortened_url: shortCode))
+                  }
+                  
                 
                 }
                 
