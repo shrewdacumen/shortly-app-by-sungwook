@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FacadeView: View {
   
-  @Binding var the_percenage_of_the_cell: Double
+  let the_percenage_of_the_cell: Double
   
   
   var body: some View {
@@ -49,9 +49,9 @@ struct FacadeView: View {
 struct FasadeView_Previews: PreviewProvider {
     static var previews: some View {
       
-      FacadeView(the_percenage_of_the_cell: Binding(get: {return TheGlobalUIParameter.the_percenage_of_upper_cell}, set: {_ in }))
+      FacadeView(the_percenage_of_the_cell: TheGlobalUIParameter.the_percenage_of_upper_cell)
       
-      FacadeView(the_percenage_of_the_cell: Binding(get: {return TheGlobalUIParameter.the_percenage_of_upper_cell}, set: {_ in }))
+      FacadeView(the_percenage_of_the_cell: TheGlobalUIParameter.the_percenage_of_upper_cell)
         .preferredColorScheme(.dark)
     }
 }

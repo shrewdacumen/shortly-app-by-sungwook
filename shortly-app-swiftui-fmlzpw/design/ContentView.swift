@@ -73,21 +73,17 @@ struct ContentView: View {
   // MARK: - sources of truth
   @ObservedObject var dataStore: DataStore
   
-  @State var url_string = ""
-  @State var isTextFieldEditing = false
-  
-  
-  @State private var inputFieldError = InputFieldError_Enum.noError
-  
-  
   
   // MARK: - properties
-  @State var the_percenage_of_upper_cell = TheGlobalUIParameter.the_percenage_of_upper_cell
+  let the_percenage_of_upper_cell = TheGlobalUIParameter.the_percenage_of_upper_cell
   
   /// URLSession animation
   @State var  is_URLSessionAnimation_Running = false
-
   
+  /// confined for the lower_cell
+  @State var url_string = ""
+  @State var inputFieldError = InputFieldError_Enum.noError
+  @State var isTextFieldEditing = false
   
   var body: some View {
     
@@ -125,7 +121,7 @@ struct ContentView: View {
             
             
             // MARK: - Upper cell 1st, FacadeView
-            FacadeView(the_percenage_of_the_cell: $the_percenage_of_upper_cell)
+            FacadeView(the_percenage_of_the_cell: the_percenage_of_upper_cell)
               .frame(width: upper_cell_size.width, height: upper_cell_size.height, alignment: .top)
               .padding(.top, hasNotch ? 0.0:proxy.safeAreaInsets.top)
               .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.background_offWhite.rawValue))
@@ -135,79 +131,21 @@ struct ContentView: View {
             
             
             
-            // MARK: - Upper cell 2nd, ScrollView
-            ScrollView {
-              
-              Text("Your Link History")
-                .foregroundColor(Color(hex_string: ColorEnum.neutral_veryDarkViolet.rawValue))
-                .font(Font.custom("Poppins-Regular", size: FontSize_Enum.bodyCopy.rawValue))
-                .padding(.top, hasNotch ? 40:10)
-              
-              
-              ForEach(dataStore.urlPairs) { urlPair in
-                
-                ZStack(alignment: .center) {
-                  
-                  
-                  /// This view determines the background color of each row.
-                  RoundedRectangle(cornerRadius: 10)
-                    .frame(width: upper_cell_size.width*TheGlobalUIParameter.row_width_ratio_of_upper_cell, height: TheGlobalUIParameter.row_height__of_upper_cell, alignment: .topLeading)
-                    .foregroundColor(Color(hex_string: ColorEnum.background_white.rawValue))
-                  
-                  
-                  // MARK: one row of the source of truth
-                  VStack {
-                    
-                    
-                    HStack {
-                      
-                      Text(urlPair.url_string)
-                        .foregroundColor(Color(hex_string: ColorEnum.neutral_veryDarkViolet.rawValue))
-                        .font(Font.custom("Poppins-Regular", size: FontSize_Enum.bodyCopy.rawValue))
-                        .frame(alignment: .bottom)
-                      
-                      Image("del")
-                        .onTapGesture {
-                          
-                          withAnimation(.easeIn(duration: TheGlobalUIParameter.animation_duration)) {
-                            
-                            dataStore.remove(urlPair: urlPair)
-                          }
-                        }
-                    }
-                    
-                    
-                    Divider()
-                    
-                    Text(urlPair.shortened_url)
-                      .foregroundColor(Color(hex_string: ColorEnum.primary_cyan.rawValue))
-                      .font(Font.custom("Poppins-Regular", size: FontSize_Enum.bodyCopy.rawValue))
-                      .frame(alignment: .top)
-                    
-                    
-                    CopyButtonView(upper_cell_size: upper_cell_size, urlPair: urlPair)
-                    
-                    
-                  }
-                  .padding(.all, 0)
-                  
-                }
-                .padding(.bottom, 5)
-                .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.background_offWhite.rawValue)))
-                
-              } /// THE END OF ForEach {}
-              
-              
-            } /// THE END OF ScrollView {}
-            .frame(width: upper_cell_size.width, height: upper_cell_size.height, alignment: .top)
-            .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.background_offWhite.rawValue)))
+            // MARK: - Upper cell 2nd, UpperCellDataView
+            UpperCellDataView(dataStore: dataStore, hasNotch: hasNotch, upper_cell_size: upper_cell_size, lower_cell_size: lower_cell_size)
             
             
           } /// THE END OF if dataStore.urlPairs.isEmpty {}
           
           
           
-          // MARK: - Lower Cell, the ZStack
+          // MARK: - Lower Cell, ZStack
+          
+          /// ** NOTE **
+          /// Because I have no time to improve the performane in this challenge.
+          /// I put it unused for a while.
+          //          LowerCellInputView(hasNotch: hasNotch, upper_cell_size: upper_cell_size, lower_cell_size: lower_cell_size, dataStore: dataStore, is_URLSessionAnimation_Running: $is_URLSessionAnimation_Running)
+          
           ZStack(alignment: .center) {
             
             
@@ -431,7 +369,7 @@ struct ContentView: View {
   }
   
   
-
+  
   func isValidString() -> Bool {
     
     /// input string == empty string
@@ -458,6 +396,7 @@ struct ContentView: View {
     
     return inputFieldError == .noError ? true:false
   }
+  
   
 }
 
