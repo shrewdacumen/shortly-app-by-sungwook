@@ -43,6 +43,8 @@ If you created the project on Xcode 13, it won't happen.  However, in order to m
   
   - I can not clearly determine the design decision for the color scheme of Dark mode.
       But I'll advance a bit the color scheme arbitrarily even if I am not sure that it would be suitable for this project so far.
+      
+  - TheGlobalUIParameter.is_debugging_mode controls whether it is in debugging mode or not.
     
   
 

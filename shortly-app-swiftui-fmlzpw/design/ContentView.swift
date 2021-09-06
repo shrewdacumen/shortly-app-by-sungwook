@@ -86,24 +86,6 @@ struct ContentView: View {
   // MARK: - properties
   @State var the_percenage_of_upper_cell = TheGlobalUIParameter.the_percenage_of_upper_cell
   
-  /// `lazy` can NOT be used due to @State
-  /// Cannot use mutating getter on immutable value: 'self' is immutable
-  var max_screen_size: CGSize {
-    
-    UIScreen.main.bounds.size
-  }
-  
-  var upper_cell_size: CGSize {
-    
-    /// 70% of max size
-    CGSize(width: max_screen_size.width, height: max_screen_size.height * the_percenage_of_upper_cell)
-  }
-  
-  var lower_cell_size: CGSize {
-    
-    /// 70% of max size
-    CGSize(width: max_screen_size.width, height: max_screen_size.height - upper_cell_size.height)
-  }
   
   
   
@@ -116,204 +98,238 @@ struct ContentView: View {
     }
     
     
-    
-    VStack { /// Top Stack
+    GeometryReader { proxy in
       
       
-      if dataStore.urlPairs.isEmpty {
+      let hasNotch = proxy.safeAreaInsets.bottom > 0
+      
+      let max_displayable_size = hasNotch == false ? CGSize(width: proxy.size.width, height: proxy.size.height - proxy.safeAreaInsets.top) : UIScreen.main.bounds.size
+      
+      let upper_cell_size =
+      CGSize(width: max_displayable_size.width, height: max_displayable_size.height * TheGlobalUIParameter.the_percenage_of_upper_cell)
+      
+      let lower_cell_size =
+      CGSize(width: max_displayable_size.width, height: max_displayable_size.height - upper_cell_size.height)
+      
+      
+      VStack { /// Top Stack
         
         
-        // MARK: - Upper cell 1st, FacadeView
-        FacadeView(the_percenage_of_the_cell: $the_percenage_of_upper_cell)
-        
-        
-      } else {
-        
-        
-        // MARK: - Upper cell 2nd, ScrollView
-        ScrollView {
-          
-          Text("Your Link History")
-            .foregroundColor(Color(hex_string: ColorEnum.neutral_veryDarkViolet.rawValue))
-            .font(Font.custom("Poppins-Regular", size: FontSize_Enum.bodyCopy.rawValue))
-            .padding(.top, 40)
+        if dataStore.urlPairs.isEmpty {
           
           
-          ForEach(dataStore.urlPairs) { urlPair in
+          // MARK: - Upper cell 1st, FacadeView
+          FacadeView(the_percenage_of_the_cell: $the_percenage_of_upper_cell)
+          
+        } else {
+          
+          
+          // MARK: - Upper cell 2nd, ScrollView
+          ScrollView {
             
-            ZStack(alignment: .center) {
+            Text("Your Link History")
+              .foregroundColor(Color(hex_string: ColorEnum.neutral_veryDarkViolet.rawValue))
+              .font(Font.custom("Poppins-Regular", size: FontSize_Enum.bodyCopy.rawValue))
+              .padding(.top, hasNotch ? 40:10)
+            
+            
+            ForEach(dataStore.urlPairs) { urlPair in
               
-              
-              /// This view determines the background color of each row.
-              RoundedRectangle(cornerRadius: 10)
-                .frame(width: upper_cell_size.width*TheGlobalUIParameter.row_width_ratio_of_upper_cell, height: TheGlobalUIParameter.row_height__of_upper_cell, alignment: .topLeading)
-                .foregroundColor(Color(hex_string: ColorEnum.background_white.rawValue))
-              
-              
-              // MARK: one row of the source of truth
-              VStack {
-                
-                Text(urlPair.url_string)
-                  .foregroundColor(Color(hex_string: ColorEnum.neutral_veryDarkViolet.rawValue))
-                  .font(Font.custom("Poppins-Regular", size: FontSize_Enum.bodyCopy.rawValue))
-                  .frame(alignment: .bottom)
-                
-                Divider()
-                
-                Text(urlPair.shortened_url)
-                  .foregroundColor(Color(hex_string: ColorEnum.primary_cyan.rawValue))
-                  .font(Font.custom("Poppins-Regular", size: FontSize_Enum.bodyCopy.rawValue))
-                  .frame(alignment: .top)
+              ZStack(alignment: .center) {
                 
                 
-                // TODO: incomplete. make a new SwiftUIView for this block.
-                if urlPair.isCopied == false {
+                /// This view determines the background color of each row.
+                RoundedRectangle(cornerRadius: 10)
+                  .frame(width: upper_cell_size.width*TheGlobalUIParameter.row_width_ratio_of_upper_cell, height: TheGlobalUIParameter.row_height__of_upper_cell, alignment: .topLeading)
+                  .foregroundColor(Color(hex_string: ColorEnum.background_white.rawValue))
+                
+                
+                // MARK: one row of the source of truth
+                VStack {
                   
-                  ZStack(alignment: .center) {
+                  Text(urlPair.url_string)
+                    .foregroundColor(Color(hex_string: ColorEnum.neutral_veryDarkViolet.rawValue))
+                    .font(Font.custom("Poppins-Regular", size: FontSize_Enum.bodyCopy.rawValue))
+                    .frame(alignment: .bottom)
+                  
+                  Divider()
+                  
+                  Text(urlPair.shortened_url)
+                    .foregroundColor(Color(hex_string: ColorEnum.primary_cyan.rawValue))
+                    .font(Font.custom("Poppins-Regular", size: FontSize_Enum.bodyCopy.rawValue))
+                    .frame(alignment: .top)
+                  
+                  
+                  // TODO: incomplete. make a new SwiftUIView for this block.
+                  if urlPair.isCopied == false {
                     
-                    RoundedRectangle(cornerRadius: 5)
-                      .frame(width: upper_cell_size.width*TheGlobalUIParameter.button_width_ratio_of_upper_cell, height: TheGlobalUIParameter.button_height__of_upper_cell, alignment: .topLeading)
-                      .foregroundColor(Color(hex_string: ColorEnum.primary_cyan.rawValue))
+                    ZStack(alignment: .center) {
+                      
+                      RoundedRectangle(cornerRadius: 5)
+                        .frame(width: upper_cell_size.width*TheGlobalUIParameter.button_width_ratio_of_upper_cell, height: TheGlobalUIParameter.button_height__of_upper_cell, alignment: .topLeading)
+                        .foregroundColor(Color(hex_string: ColorEnum.primary_cyan.rawValue))
+                      
+                      // TODO: incomplete. add action to Text view to onCopyCommand()
+                      Text("COPY")
+                        .font(Font.custom("Poppins-Bold", size: FontSize_Enum.bodyCopy.rawValue))
+                        .foregroundColor(Color(hex_string: ColorEnum.background_white.rawValue))
+                    }
+                    .frame(alignment: .top)
                     
-                    // TODO: incomplete. add action to Text view to onCopyCommand()
-                    Text("COPY")
-                      .font(Font.custom("Poppins-Bold", size: FontSize_Enum.bodyCopy.rawValue))
-                      .foregroundColor(Color(hex_string: ColorEnum.background_white.rawValue))
+                  } else { // The button tapped
+                    
+                    ZStack(alignment: .center) {
+                      
+                      RoundedRectangle(cornerRadius: 5)
+                        .frame(width: upper_cell_size.width*TheGlobalUIParameter.button_width_ratio_of_upper_cell, height: TheGlobalUIParameter.button_height__of_upper_cell, alignment: .topLeading)
+                        .foregroundColor(Color(hex_string: ColorEnum.neutral_veryDarkViolet.rawValue))
+                      
+                      // TODO: incomplete. add action to Text view to onCopyCommand()
+                      Text("COPIED")
+                        .font(Font.custom("Poppins-Bold", size: FontSize_Enum.bodyCopy.rawValue))
+                        .foregroundColor(Color(hex_string: ColorEnum.background_white.rawValue))
+                    }
+                    .frame(alignment: .top)
+                    
                   }
-                  .frame(alignment: .top)
                   
-                } else { // The button tapped
-                  
-                  ZStack(alignment: .center) {
-                    
-                    RoundedRectangle(cornerRadius: 5)
-                      .frame(width: upper_cell_size.width*TheGlobalUIParameter.button_width_ratio_of_upper_cell, height: TheGlobalUIParameter.button_height__of_upper_cell, alignment: .topLeading)
-                      .foregroundColor(Color(hex_string: ColorEnum.neutral_veryDarkViolet.rawValue))
-                    
-                    // TODO: incomplete. add action to Text view to onCopyCommand()
-                    Text("COPIED")
-                      .font(Font.custom("Poppins-Bold", size: FontSize_Enum.bodyCopy.rawValue))
-                      .foregroundColor(Color(hex_string: ColorEnum.background_white.rawValue))
-                  }
-                  .frame(alignment: .top)
                   
                 }
-                
-                
-              }
-              .padding(.all, 0)
-              
-            }
-            .padding()
-            .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.background_offWhite.rawValue)))
-            
-          } /// THE END OF ForEach {}
-          
-          
-        } /// THE END OF ScrollView {}
-        .frame(width: upper_cell_size.width, height: upper_cell_size.height, alignment: .top)
-        .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.background_offWhite.rawValue)))
-        
-        
-      } /// THE END OF if dataStore.urlPairs.isEmpty {}
-      
-      
-      
-      // MARK: - Lower Cell, the ZStack
-      ZStack(alignment: .center) {
-        
-        
-        TheShapeImageView()
-        
-        
-        HStack { /// THE BEGINING OF Top Stack {}
-          
-          /// 1st row
-          Spacer()
-          
-          /// ** CAVEAT **
-          /// spacing of the VStack below: the spacing between the input field and the button
-          VStack(alignment: .center, spacing: 10) { /// THE BEGINNING OF Lower Celll Stack {}
-            
-            /// 2nd row
-            TextField("Shorten a link here", text: $url_string) { isEditing in
-              
-              self.isTextFieldEditing = isEditing
-              
-            } onCommit: {
-              
-              /// input string == empty string
-              if url_string.isEmpty {
-                
-                inputFieldError = .emptyString
-                
-                isAlertPresented = true
-                
-              } else if url_string.validateUrl() == false {
-                
-                inputFieldError = .invalidUrl
-                
-                isAlertPresented = true
-                
-                url_string = ""
-                
-              } else {
-                
-                inputFieldError = .noError
-                
-                isAlertPresented = false
+                .padding(.all, 0)
                 
               }
+              .padding()
+              .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.background_offWhite.rawValue)))
+              
+            } /// THE END OF ForEach {}
+            
+            
+          } /// THE END OF ScrollView {}
+          .frame(width: upper_cell_size.width, height: upper_cell_size.height, alignment: .top)
+          .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.background_offWhite.rawValue)))
+          
+          
+        } /// THE END OF if dataStore.urlPairs.isEmpty {}
+        
+        
+        
+        // MARK: - Lower Cell, the ZStack
+        ZStack(alignment: .center) {
+          
+          
+          TheShapeImageView()
+          
+          let first_row_width_of_lower_cell = lower_cell_size.width * TheGlobalUIParameter.row_width_ratio_of_lower_cell
+          let first_row_height_of_lower_cell = TheGlobalUIParameter.row_height_of_lower_cell
+          
+          HStack { /// THE BEGINING OF Top Stack {}
+            
+            /// 1st row
+            //            Spacer()
+            
+            /// ** CAVEAT **
+            /// spacing of the VStack below: the spacing between the input field and the button
+            VStack(alignment: .center, spacing: TheGlobalUIParameter.row_spacing_of_lower_cell) { /// THE BEGINNING OF Lower Celll Stack {}
               
               
-            }
-            .frame(width: lower_cell_size.width * 0.70, height: 60, alignment: .center)
-            .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.background_offWhite.rawValue)))
-            .conditionalOverlay(condition: inputFieldError)
-            .onAppear {
               
-              /// inputFieldError should be reset after 2_000 milliseconds to make the textField usable.
-              if inputFieldError != .noError {
+              /// 2nd row
+              TextField("Shorten a link here", text: $url_string) { isEditing in
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(2_000)) {
+                self.isTextFieldEditing = isEditing
+                
+              } onCommit: {
+                
+                /// input string == empty string
+                if url_string.isEmpty {
+                  
+                  inputFieldError = .emptyString
+                  
+                  isAlertPresented = true
+                  
+                } else if url_string.validateUrl() == false {
+                  
+                  inputFieldError = .invalidUrl
+                  
+                  isAlertPresented = true
+                  
+                  url_string = ""
+                  
+                } else {
                   
                   inputFieldError = .noError
+                  
+                  isAlertPresented = false
+                  
+                }
+                
+                
+              }
+              
+              .frame(width: first_row_width_of_lower_cell, height: first_row_height_of_lower_cell, alignment: .center)
+              .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.background_offWhite.rawValue)))
+              .conditionalOverlay(condition: inputFieldError)
+              .onAppear {
+                
+                /// inputFieldError should be reset after 2_000 milliseconds to make the textField usable.
+                if inputFieldError != .noError {
+                  
+                  DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(2_000)) {
+                    
+                    inputFieldError = .noError
+                  }
                 }
               }
-            }
+              
+              
+              /// 3rd row
+              Button {
+                
+                //TODO: incomplete. add URL_Session action here!
+                
+                
+                
+              } label: {
+                
+                Text("Shorten It")
+                  .font(Font.custom("Poppins-Bold", size: FontSize_Enum.bodyCopy.rawValue*TheGlobalUIParameter.shorten_it_ratio))
+                  .foregroundColor(Color(hex_string: ColorEnum.background_white.rawValue))
+                
+              }
+              .frame(width: lower_cell_size.width * TheGlobalUIParameter.row_width_ratio_of_lower_cell, height: TheGlobalUIParameter.row_height_of_lower_cell, alignment: .center)
+              .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.primary_cyan.rawValue)))
+              
+            }  /// THE END OF VStack {}
+            //            .debuggingBorder()
+            .offset(x: 0, y: hasNotch ? 0:-40)
             
             
-            /// 3rd row
-            Button {
-              
-              //TODO: incomplete. add URL_Session action here!
-              
-              
-              
-            } label: {
-              
-              Text("Shorten It")
-                .font(Font.custom("Poppins-Bold", size: FontSize_Enum.bodyCopy.rawValue*TheGlobalUIParameter.shorten_it_ratio))
-                .foregroundColor(Color(hex_string: ColorEnum.background_white.rawValue))
-              
-            }
-            .frame(width: lower_cell_size.width * 0.70, height: 60, alignment: .center)
-            .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.primary_cyan.rawValue)))
-          }
+            /// 4th row
+            //            Spacer()
+            
+          } /// THE END OF HStack
+          .frame(width: lower_cell_size.width, height: lower_cell_size.height, alignment: .center)
+          //          .debuggingBorder()
           
-          /// 4th row
-          Spacer()
-        }
+          
+          
+          
+        } /// THE END OF Lower Celll ZStack {}
+        .frame(width: lower_cell_size.width, height: lower_cell_size.height, alignment: .center)
+        .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.neutral_veryDarkViolet.rawValue))
+        )
         
         
-      } /// THE END OF Lower Celll ZStack {}
-      .frame(width: lower_cell_size.width, height: lower_cell_size.height, alignment: .center)
-      .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.neutral_veryDarkViolet.rawValue))
+        
+      } /// THE END OF Top Stack {}
+      .ignoreSafeAreaUniversal(hasNotch: hasNotch)
+      .background(
+        
+        BackgroundUIView(upper_cell_size: upper_cell_size, lower_cell_size: lower_cell_size)
+        
       )
       
-      
-      
-    } /// THE END OF Top Stack {}
+    }
     
   }
 

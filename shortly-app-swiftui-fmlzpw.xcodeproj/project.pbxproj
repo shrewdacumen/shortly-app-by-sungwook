@@ -9,10 +9,13 @@
 /* Begin PBXBuildFile section */
 		091DC9B126E10D5E00C4F2CF /* FontTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091DC9B026E10D5E00C4F2CF /* FontTestView.swift */; };
 		091DC9B326E1105A00C4F2CF /* Color extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091DC9B226E1105A00C4F2CF /* Color extension.swift */; };
+		092B308D26E5DE9200B2222B /* IgnoreSafeArea_Unversal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092B308C26E5DE9200B2222B /* IgnoreSafeArea_Unversal.swift */; };
+		092B308F26E5E91200B2222B /* BackgroundUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092B308E26E5E91200B2222B /* BackgroundUIView.swift */; };
 		09341BFD26E4E9DB00C212E1 /* FacadeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09341BFC26E4E9DB00C212E1 /* FacadeView.swift */; };
 		09341BFF26E5053500C212E1 /* TheShapeImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09341BFE26E5053500C212E1 /* TheShapeImageView.swift */; };
 		09341C0126E505CA00C212E1 /* TheGlobalUIParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09341C0026E505C900C212E1 /* TheGlobalUIParameter.swift */; };
 		0994293426E511C600B9298B /* ConditionalTextFieldOverlayModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0994293326E511C600B9298B /* ConditionalTextFieldOverlayModifier.swift */; };
+		09B366B226E5BCEA003E2BDE /* DebuggingBorderModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B366B126E5BCEA003E2BDE /* DebuggingBorderModifier.swift */; };
 		09D259D826E0E46400E78369 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09D259D726E0E46400E78369 /* Assets.xcassets */; };
 		09D259DB26E0E46400E78369 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09D259DA26E0E46400E78369 /* Preview Assets.xcassets */; };
 		09D259E626E0E46400E78369 /* shortly_app_swiftui_fmlzpwTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D259E526E0E46400E78369 /* shortly_app_swiftui_fmlzpwTests.swift */; };
@@ -77,10 +80,13 @@
 		091DC9AF26E1093100C4F2CF /* The Problem I faced.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "The Problem I faced.md"; sourceTree = "<group>"; };
 		091DC9B026E10D5E00C4F2CF /* FontTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontTestView.swift; sourceTree = "<group>"; };
 		091DC9B226E1105A00C4F2CF /* Color extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color extension.swift"; sourceTree = "<group>"; };
+		092B308C26E5DE9200B2222B /* IgnoreSafeArea_Unversal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IgnoreSafeArea_Unversal.swift; sourceTree = "<group>"; };
+		092B308E26E5E91200B2222B /* BackgroundUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundUIView.swift; sourceTree = "<group>"; };
 		09341BFC26E4E9DB00C212E1 /* FacadeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacadeView.swift; sourceTree = "<group>"; };
 		09341BFE26E5053500C212E1 /* TheShapeImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheShapeImageView.swift; sourceTree = "<group>"; };
 		09341C0026E505C900C212E1 /* TheGlobalUIParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheGlobalUIParameter.swift; sourceTree = "<group>"; };
 		0994293326E511C600B9298B /* ConditionalTextFieldOverlayModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalTextFieldOverlayModifier.swift; sourceTree = "<group>"; };
+		09B366B126E5BCEA003E2BDE /* DebuggingBorderModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebuggingBorderModifier.swift; sourceTree = "<group>"; };
 		09D259D026E0E46200E78369 /* shortly-app-swiftui-fmlzpw.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "shortly-app-swiftui-fmlzpw.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		09D259D726E0E46400E78369 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		09D259DA26E0E46400E78369 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -254,9 +260,12 @@
 				09D25A0226E0E5BF00E78369 /* ContentView.swift */,
 				09341BFC26E4E9DB00C212E1 /* FacadeView.swift */,
 				091DC9B026E10D5E00C4F2CF /* FontTestView.swift */,
+				092B308E26E5E91200B2222B /* BackgroundUIView.swift */,
 				09341BFE26E5053500C212E1 /* TheShapeImageView.swift */,
 				09341C0026E505C900C212E1 /* TheGlobalUIParameter.swift */,
 				0994293326E511C600B9298B /* ConditionalTextFieldOverlayModifier.swift */,
+				092B308C26E5DE9200B2222B /* IgnoreSafeArea_Unversal.swift */,
+				09B366B126E5BCEA003E2BDE /* DebuggingBorderModifier.swift */,
 				091DC9B226E1105A00C4F2CF /* Color extension.swift */,
 				09E3D65126E1E9FA00B79222 /* Array extension.swift */,
 				09E3D65326E214F700B79222 /* String extension.swift */,
@@ -445,12 +454,15 @@
 				09341BFD26E4E9DB00C212E1 /* FacadeView.swift in Sources */,
 				09D25A1A26E0E5BF00E78369 /* ContentView.swift in Sources */,
 				0994293426E511C600B9298B /* ConditionalTextFieldOverlayModifier.swift in Sources */,
+				09B366B226E5BCEA003E2BDE /* DebuggingBorderModifier.swift in Sources */,
+				092B308F26E5E91200B2222B /* BackgroundUIView.swift in Sources */,
 				09D25A1826E0E5BF00E78369 /* UrlAndShortened_Pair.swift in Sources */,
 				09341BFF26E5053500C212E1 /* TheShapeImageView.swift in Sources */,
 				09E3D65226E1E9FA00B79222 /* Array extension.swift in Sources */,
 				091DC9B126E10D5E00C4F2CF /* FontTestView.swift in Sources */,
 				09341C0126E505CA00C212E1 /* TheGlobalUIParameter.swift in Sources */,
 				09E3D65426E214F700B79222 /* String extension.swift in Sources */,
+				092B308D26E5DE9200B2222B /* IgnoreSafeArea_Unversal.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

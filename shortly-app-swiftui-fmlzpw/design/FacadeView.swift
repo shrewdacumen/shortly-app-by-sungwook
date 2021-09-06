@@ -17,12 +17,9 @@ struct FacadeView: View {
     VStack(alignment: .center, spacing: 10) {
       
       Image("logo")
-        .padding(.top, 100)
-      
       
       
       Image("illustration")
-      
       
       
       VStack(alignment: .center, spacing: 10) {
