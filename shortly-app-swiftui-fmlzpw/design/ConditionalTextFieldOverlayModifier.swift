@@ -18,14 +18,14 @@ struct ConditionalTextFieldOverlayModifier: ViewModifier {
 
       content.overlay(Text("Please add a link here")
                         .foregroundColor(Color(hex_string: ColorEnum.secondary_red.rawValue))
-                        .font(Font.custom("Poppins-Regular", size: CGFloat(FontSize_Enum.bodyCopy.rawValue))))
+                        .font(Font.custom("Poppins-Regular", size: FontSize_Enum.bodyCopy.rawValue)))
         .border(Color(hex_string: ColorEnum.secondary_red.rawValue) ?? Color.red, width: 3)
       
     } else if condition == .invalidUrl {
       
       content.overlay(Text("Please enter a correct URL")
                         .foregroundColor(Color(hex_string: ColorEnum.secondary_red.rawValue))
-                        .font(Font.custom("Poppins-Regular", size: CGFloat(FontSize_Enum.bodyCopy.rawValue))))
+                        .font(Font.custom("Poppins-Regular", size: FontSize_Enum.bodyCopy.rawValue)))
         .border(Color(hex_string: ColorEnum.secondary_red.rawValue) ?? Color.red, width: 3)
     
     } else {

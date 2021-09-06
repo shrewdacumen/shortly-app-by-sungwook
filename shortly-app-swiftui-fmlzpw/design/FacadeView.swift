@@ -33,11 +33,11 @@ struct FacadeView: View {
         
         Text("Paste your first link into")
           .foregroundColor(Color(hex_string: ColorEnum.neutral_grayishViolet.rawValue))
-          .font(Font.custom("Poppins-Regular", size: CGFloat(FontSize_Enum.bodyCopy.rawValue)))
+          .font(Font.custom("Poppins-Regular", size: FontSize_Enum.bodyCopy.rawValue))
         
         Text("the field to shorten it")
           .foregroundColor(Color(hex_string: ColorEnum.neutral_grayishViolet.rawValue))
-          .font(Font.custom("Poppins-Regular", size: CGFloat(FontSize_Enum.bodyCopy.rawValue)))
+          .font(Font.custom("Poppins-Regular", size: FontSize_Enum.bodyCopy.rawValue))
       }
       
       //      Spacer()
@@ -51,9 +51,9 @@ struct FacadeView: View {
 struct FasadeView_Previews: PreviewProvider {
     static var previews: some View {
       
-      FacadeView(the_percenage_of_the_cell: Binding(get: {return TheGlobalParameter.the_percenage_of_upper_cell}, set: {_ in }))
+      FacadeView(the_percenage_of_the_cell: Binding(get: {return TheGlobalUIParameter.the_percenage_of_upper_cell}, set: {_ in }))
       
-      FacadeView(the_percenage_of_the_cell: Binding(get: {return TheGlobalParameter.the_percenage_of_upper_cell}, set: {_ in }))
+      FacadeView(the_percenage_of_the_cell: Binding(get: {return TheGlobalUIParameter.the_percenage_of_upper_cell}, set: {_ in }))
         .preferredColorScheme(.dark)
     }
 }

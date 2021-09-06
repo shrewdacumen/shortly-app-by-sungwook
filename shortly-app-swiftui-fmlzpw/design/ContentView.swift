@@ -51,10 +51,10 @@ enum ColorEnum: String {
   case background_offWhite = "#F0F1F6"
 }
 
-enum FontSize_Enum: Int {
+enum FontSize_Enum: CGFloat {
   
-  case bodyCopy = 17
-  case mobile = 375
+  case bodyCopy = 17.0
+  case mobile = 375.0
 }
 
 enum InputFieldError_Enum {
@@ -84,7 +84,7 @@ struct ContentView: View {
   
   
   // MARK: - properties
-  @State var the_percenage_of_upper_cell = TheGlobalParameter.the_percenage_of_upper_cell
+  @State var the_percenage_of_upper_cell = TheGlobalUIParameter.the_percenage_of_upper_cell
   
   /// `lazy` can NOT be used due to @State
   /// Cannot use mutating getter on immutable value: 'self' is immutable
@@ -135,7 +135,7 @@ struct ContentView: View {
           
           Text("Your Link History")
             .foregroundColor(Color(hex_string: ColorEnum.neutral_veryDarkViolet.rawValue))
-            .font(Font.custom("Poppins-Regular", size: CGFloat(FontSize_Enum.bodyCopy.rawValue)))
+            .font(Font.custom("Poppins-Regular", size: FontSize_Enum.bodyCopy.rawValue))
             .padding(.top, 40)
           
           
@@ -146,7 +146,7 @@ struct ContentView: View {
               
               /// This view determines the background color of each row.
               RoundedRectangle(cornerRadius: 10)
-                .frame(width: upper_cell_size.width*0.85, height: 150, alignment: .topLeading)
+                .frame(width: upper_cell_size.width*TheGlobalUIParameter.row_width_ratio_of_upper_cell, height: TheGlobalUIParameter.row_height__of_upper_cell, alignment: .topLeading)
                 .foregroundColor(Color(hex_string: ColorEnum.background_white.rawValue))
               
               
@@ -155,14 +155,14 @@ struct ContentView: View {
                 
                 Text(urlPair.url_string)
                   .foregroundColor(Color(hex_string: ColorEnum.neutral_veryDarkViolet.rawValue))
-                  .font(Font.custom("Poppins-Regular", size: CGFloat(FontSize_Enum.bodyCopy.rawValue)))
+                  .font(Font.custom("Poppins-Regular", size: FontSize_Enum.bodyCopy.rawValue))
                   .frame(alignment: .bottom)
                 
                 Divider()
                 
                 Text(urlPair.shortened_url)
                   .foregroundColor(Color(hex_string: ColorEnum.primary_cyan.rawValue))
-                  .font(Font.custom("Poppins-Regular", size: CGFloat(FontSize_Enum.bodyCopy.rawValue)))
+                  .font(Font.custom("Poppins-Regular", size: FontSize_Enum.bodyCopy.rawValue))
                   .frame(alignment: .top)
                 
                 
@@ -172,12 +172,12 @@ struct ContentView: View {
                   ZStack(alignment: .center) {
                     
                     RoundedRectangle(cornerRadius: 5)
-                      .frame(width: upper_cell_size.width*0.75, height: 40, alignment: .topLeading)
+                      .frame(width: upper_cell_size.width*TheGlobalUIParameter.button_width_ratio_of_upper_cell, height: TheGlobalUIParameter.button_height__of_upper_cell, alignment: .topLeading)
                       .foregroundColor(Color(hex_string: ColorEnum.primary_cyan.rawValue))
                     
                     // TODO: incomplete. add action to Text view to onCopyCommand()
                     Text("COPY")
-                      .font(Font.custom("Poppins-Bold", size: CGFloat(FontSize_Enum.bodyCopy.rawValue)))
+                      .font(Font.custom("Poppins-Bold", size: FontSize_Enum.bodyCopy.rawValue))
                       .foregroundColor(Color(hex_string: ColorEnum.background_white.rawValue))
                   }
                   .frame(alignment: .top)
@@ -187,12 +187,12 @@ struct ContentView: View {
                   ZStack(alignment: .center) {
                     
                     RoundedRectangle(cornerRadius: 5)
-                      .frame(width: upper_cell_size.width*0.75, height: 40, alignment: .topLeading)
+                      .frame(width: upper_cell_size.width*TheGlobalUIParameter.button_width_ratio_of_upper_cell, height: TheGlobalUIParameter.button_height__of_upper_cell, alignment: .topLeading)
                       .foregroundColor(Color(hex_string: ColorEnum.neutral_veryDarkViolet.rawValue))
                     
                     // TODO: incomplete. add action to Text view to onCopyCommand()
                     Text("COPIED")
-                      .font(Font.custom("Poppins-Bold", size: CGFloat(FontSize_Enum.bodyCopy.rawValue)))
+                      .font(Font.custom("Poppins-Bold", size: FontSize_Enum.bodyCopy.rawValue))
                       .foregroundColor(Color(hex_string: ColorEnum.background_white.rawValue))
                   }
                   .frame(alignment: .top)
@@ -293,7 +293,7 @@ struct ContentView: View {
             } label: {
               
               Text("Shorten It")
-                .font(Font.custom("Poppins-Bold", size: CGFloat(Double(FontSize_Enum.bodyCopy.rawValue)*1.50)))
+                .font(Font.custom("Poppins-Bold", size: FontSize_Enum.bodyCopy.rawValue*TheGlobalUIParameter.shorten_it_ratio))
                 .foregroundColor(Color(hex_string: ColorEnum.background_white.rawValue))
               
             }
