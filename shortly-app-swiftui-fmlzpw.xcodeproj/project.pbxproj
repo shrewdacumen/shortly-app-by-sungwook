@@ -263,6 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				09D25A0126E0E5BF00E78369 /* README.md */,
+				09341C0026E505C900C212E1 /* TheGlobalUIParameter.swift */,
 				09D259FF26E0E5BF00E78369 /* shortly_app_swiftui_fmlzpwApp.swift */,
 				09D25A0026E0E5BF00E78369 /* UrlAndShortened_Pair.swift */,
 				09D25A0226E0E5BF00E78369 /* ContentView.swift */,
@@ -272,7 +273,6 @@
 				0962BF2626E6440100AC7CB1 /* AnimatingTextView.swift */,
 				09341BFE26E5053500C212E1 /* TheShapeImageView.swift */,
 				0962BF2826E6492500AC7CB1 /* CopyButtonView.swift */,
-				09341C0026E505C900C212E1 /* TheGlobalUIParameter.swift */,
 				092B309026E5F93C00B2222B /* errorReason.swift */,
 				0994293326E511C600B9298B /* ConditionalTextFieldOverlayModifier.swift */,
 				092B309226E5FE0C00B2222B /* sneakPeak_JSONObject.swift */,

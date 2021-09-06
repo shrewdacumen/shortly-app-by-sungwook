@@ -14,15 +14,16 @@ struct FacadeView: View {
   
   var body: some View {
     
-    VStack(alignment: .center, spacing: 10) {
+    VStack(alignment: .center, spacing: 0) {
       
       Image("logo")
       
-      
       Image("illustration")
+        .resizable()
+        .aspectRatio(contentMode: .fit)
       
       
-      VStack(alignment: .center, spacing: 10) {
+      VStack(alignment: .center, spacing: 0) {
         
         Text("Let's get started!")
           .foregroundColor(Color(hex_string: ColorEnum.neutral_grayishViolet.rawValue))

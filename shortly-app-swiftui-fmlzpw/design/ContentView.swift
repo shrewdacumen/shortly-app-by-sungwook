@@ -192,7 +192,7 @@ struct ContentView: View {
                   .padding(.all, 0)
                   
                 }
-                .padding()
+                .padding(.bottom, 5)
                 .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.background_offWhite.rawValue)))
                 
               } /// THE END OF ForEach {}
