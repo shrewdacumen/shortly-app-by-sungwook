@@ -18,7 +18,13 @@ struct TheGlobalUIParameter {
   /// However, this is made as a demonstration to make it easier/clearer for the recruiter to uncderstand.
   static let is_debugging_mode = true
   
+  static let animation_duration = TimeInterval(1.3)
   
+  static let message_font_size = CGFloat(40)
+  
+  static let message_animation_duration = 700
+  
+  static let delay_before_clearing_the_error_message = 800
   
   static let the_percenage_of_upper_cell = 0.65 /// 65%
   

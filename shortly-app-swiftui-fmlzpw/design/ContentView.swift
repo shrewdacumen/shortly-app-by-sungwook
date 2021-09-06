@@ -84,7 +84,9 @@ struct ContentView: View {
   // MARK: - properties
   @State var the_percenage_of_upper_cell = TheGlobalUIParameter.the_percenage_of_upper_cell
   
-  
+  /// URLSession animation
+  @State var  is_URLSessionAnimation_Running = false
+
   
   
   var body: some View {
@@ -110,349 +112,352 @@ struct ContentView: View {
       CGSize(width: max_displayable_size.width, height: max_displayable_size.height - upper_cell_size.height)
       
       
-      VStack { /// Top Stack
+      
+      
+      /// ZStack for displaying URLSessionAniumation
+      ZStack {
         
-        
-        if dataStore.urlPairs.isEmpty {
+        /// Because the space btween the_upper_cell and the_lower_cell should be `0`
+        VStack(spacing: 0) { /// Top Stack
           
           
-          // MARK: - Upper cell 1st, FacadeView
-          FacadeView(the_percenage_of_the_cell: $the_percenage_of_upper_cell)
-            .padding(.top, hasNotch ? 0.0:proxy.safeAreaInsets.top)
-          
-        } else {
-          
-          
-          // MARK: - Upper cell 2nd, ScrollView
-          ScrollView {
-            
-            Text("Your Link History")
-              .foregroundColor(Color(hex_string: ColorEnum.neutral_veryDarkViolet.rawValue))
-              .font(Font.custom("Poppins-Regular", size: FontSize_Enum.bodyCopy.rawValue))
-              .padding(.top, hasNotch ? 40:10)
+          if dataStore.urlPairs.isEmpty {
             
             
-            ForEach(dataStore.urlPairs) { urlPair in
+            // MARK: - Upper cell 1st, FacadeView
+            FacadeView(the_percenage_of_the_cell: $the_percenage_of_upper_cell)
+              .frame(width: upper_cell_size.width, height: upper_cell_size.height, alignment: .top)
+              .padding(.top, hasNotch ? 0.0:proxy.safeAreaInsets.top)
+              .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.background_offWhite.rawValue))
+              )
+            
+          } else {
+            
+            
+            
+            // MARK: - Upper cell 2nd, ScrollView
+            ScrollView {
               
-              ZStack(alignment: .center) {
+              Text("Your Link History")
+                .foregroundColor(Color(hex_string: ColorEnum.neutral_veryDarkViolet.rawValue))
+                .font(Font.custom("Poppins-Regular", size: FontSize_Enum.bodyCopy.rawValue))
+                .padding(.top, hasNotch ? 40:10)
+              
+              
+              ForEach(dataStore.urlPairs) { urlPair in
                 
-                
-                /// This view determines the background color of each row.
-                RoundedRectangle(cornerRadius: 10)
-                  .frame(width: upper_cell_size.width*TheGlobalUIParameter.row_width_ratio_of_upper_cell, height: TheGlobalUIParameter.row_height__of_upper_cell, alignment: .topLeading)
-                  .foregroundColor(Color(hex_string: ColorEnum.background_white.rawValue))
-                
-                
-                // MARK: one row of the source of truth
-                VStack {
-                  
-                  Text(urlPair.url_string)
-                    .foregroundColor(Color(hex_string: ColorEnum.neutral_veryDarkViolet.rawValue))
-                    .font(Font.custom("Poppins-Regular", size: FontSize_Enum.bodyCopy.rawValue))
-                    .frame(alignment: .bottom)
-                  
-                  Divider()
-                  
-                  Text(urlPair.shortened_url)
-                    .foregroundColor(Color(hex_string: ColorEnum.primary_cyan.rawValue))
-                    .font(Font.custom("Poppins-Regular", size: FontSize_Enum.bodyCopy.rawValue))
-                    .frame(alignment: .top)
+                ZStack(alignment: .center) {
                   
                   
-                  // TODO: incomplete. make a new SwiftUIView for this block.
-                  if urlPair.isCopied == false {
+                  /// This view determines the background color of each row.
+                  RoundedRectangle(cornerRadius: 10)
+                    .frame(width: upper_cell_size.width*TheGlobalUIParameter.row_width_ratio_of_upper_cell, height: TheGlobalUIParameter.row_height__of_upper_cell, alignment: .topLeading)
+                    .foregroundColor(Color(hex_string: ColorEnum.background_white.rawValue))
+                  
+                  
+                  // MARK: one row of the source of truth
+                  VStack {
                     
-                    ZStack(alignment: .center) {
-                      
-                      RoundedRectangle(cornerRadius: 5)
-                        .frame(width: upper_cell_size.width*TheGlobalUIParameter.button_width_ratio_of_upper_cell, height: TheGlobalUIParameter.button_height__of_upper_cell, alignment: .topLeading)
-                        .foregroundColor(Color(hex_string: ColorEnum.primary_cyan.rawValue))
-                      
-                      // TODO: incomplete. add action to Text view to onCopyCommand()
-                      Text("COPY")
-                        .font(Font.custom("Poppins-Bold", size: FontSize_Enum.bodyCopy.rawValue))
-                        .foregroundColor(Color(hex_string: ColorEnum.background_white.rawValue))
-                    }
-                    .frame(alignment: .top)
                     
-                  } else { // The button tapped
-                    
-                    ZStack(alignment: .center) {
+                    HStack {
                       
-                      RoundedRectangle(cornerRadius: 5)
-                        .frame(width: upper_cell_size.width*TheGlobalUIParameter.button_width_ratio_of_upper_cell, height: TheGlobalUIParameter.button_height__of_upper_cell, alignment: .topLeading)
+                      Text(urlPair.url_string)
                         .foregroundColor(Color(hex_string: ColorEnum.neutral_veryDarkViolet.rawValue))
+                        .font(Font.custom("Poppins-Regular", size: FontSize_Enum.bodyCopy.rawValue))
+                        .frame(alignment: .bottom)
                       
-                      // TODO: incomplete. add action to Text view to onCopyCommand()
-                      Text("COPIED")
-                        .font(Font.custom("Poppins-Bold", size: FontSize_Enum.bodyCopy.rawValue))
-                        .foregroundColor(Color(hex_string: ColorEnum.background_white.rawValue))
+                      Image("del")
+                        .onTapGesture {
+                          
+                          withAnimation(.easeIn(duration: TheGlobalUIParameter.animation_duration)) {
+                            
+                            dataStore.remove(urlPair: urlPair)
+                          }
+                        }
                     }
-                    .frame(alignment: .top)
                     
+                    
+                    Divider()
+                    
+                    Text(urlPair.shortened_url)
+                      .foregroundColor(Color(hex_string: ColorEnum.primary_cyan.rawValue))
+                      .font(Font.custom("Poppins-Regular", size: FontSize_Enum.bodyCopy.rawValue))
+                      .frame(alignment: .top)
+                    
+                    
+                    CopyButtonView(upper_cell_size: upper_cell_size, urlPair: urlPair)
+                    
+                    
+                  }
+                  .padding(.all, 0)
+                  
+                }
+                .padding()
+                .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.background_offWhite.rawValue)))
+                
+              } /// THE END OF ForEach {}
+              
+              
+            } /// THE END OF ScrollView {}
+            .frame(width: upper_cell_size.width, height: upper_cell_size.height, alignment: .top)
+            .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.background_offWhite.rawValue)))
+            
+            
+          } /// THE END OF if dataStore.urlPairs.isEmpty {}
+          
+          
+          
+          // MARK: - Lower Cell, the ZStack
+          ZStack(alignment: .center) {
+            
+            
+            TheShapeImageView()
+            
+            let first_row_width_of_lower_cell = lower_cell_size.width * TheGlobalUIParameter.row_width_ratio_of_lower_cell
+            let first_row_height_of_lower_cell = TheGlobalUIParameter.row_height_of_lower_cell
+            
+            HStack { /// THE BEGINING OF Top Stack {}
+              
+              /// ** CAVEAT **
+              /// spacing of the VStack below: the spacing between the input field and the button
+              VStack(alignment: .center, spacing: TheGlobalUIParameter.row_spacing_of_lower_cell) { /// THE BEGINNING OF Lower Celll Stack {}
+                
+                
+                /// 1st row
+                TextField("Shorten a link here", text: $url_string) { isEditing in
+                  
+                  self.isTextFieldEditing = isEditing
+                  
+                } onCommit: {
+                  
+                  _ = isValidString()
+                  
+                }
+                .foregroundColor(Color(hex_string: ColorEnum.neutral_veryDarkViolet.rawValue))
+                .frame(width: first_row_width_of_lower_cell, height: first_row_height_of_lower_cell, alignment: .center)
+                .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.background_offWhite.rawValue)))
+                .conditionalOverlay(condition: inputFieldError)
+                .onAppear {
+                  
+                  /// inputFieldError should be reset after 2_000 milliseconds to make the textField usable.
+                  if inputFieldError != .noError {
+                    
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(TheGlobalUIParameter.delay_before_clearing_the_error_message)) {
+                      
+                      inputFieldError = .noError
+                    }
+                  }
+                }
+                
+                
+                /// 2nd row
+                Button {
+                  
+                  guard isValidString() else {
+                    
+                    return
                   }
                   
                   
-                }
-                .padding(.all, 0)
-                
-              }
-              .padding()
-              .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.background_offWhite.rawValue)))
-              
-            } /// THE END OF ForEach {}
-            
-            
-          } /// THE END OF ScrollView {}
-          .frame(width: upper_cell_size.width, height: upper_cell_size.height, alignment: .top)
-          .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.background_offWhite.rawValue)))
-          
-          
-        } /// THE END OF if dataStore.urlPairs.isEmpty {}
-        
-        
-        
-        // MARK: - Lower Cell, the ZStack
-        ZStack(alignment: .center) {
-          
-          
-          TheShapeImageView()
-          
-          let first_row_width_of_lower_cell = lower_cell_size.width * TheGlobalUIParameter.row_width_ratio_of_lower_cell
-          let first_row_height_of_lower_cell = TheGlobalUIParameter.row_height_of_lower_cell
-          
-          HStack { /// THE BEGINING OF Top Stack {}
-            
-            /// ** CAVEAT **
-            /// spacing of the VStack below: the spacing between the input field and the button
-            VStack(alignment: .center, spacing: TheGlobalUIParameter.row_spacing_of_lower_cell) { /// THE BEGINNING OF Lower Celll Stack {}
-              
-              
-              /// 1st row
-              TextField("Shorten a link here", text: $url_string) { isEditing in
-                
-                self.isTextFieldEditing = isEditing
-                
-              } onCommit: {
-                
-                /// input string == empty string
-                if url_string.isEmpty {
+                  //TODO: incomplete. progress bar should appear.
+                  print("Just entered URLSession.")
+                  is_URLSessionAnimation_Running = true
                   
-                  inputFieldError = .emptyString
                   
-                } else if url_string.validateUrl() == false {
+                  let queryParams = ["url" : url_string]
+                  var urlComponents = URLComponents()
                   
-                  inputFieldError = .invalidUrl
+                  var cs = CharacterSet.urlQueryAllowed
+                  cs.remove("+")
                   
-                  url_string = ""
-                  
-                } else if dataStore.doesContain(url_string: url_string) {
-                  
-                  inputFieldError = .duplicated
-                  
-                  url_string = ""
-                  
-                } else {
-                  
-                  inputFieldError = .noError
-                }
-                
-                
-              }
-              
-              .frame(width: first_row_width_of_lower_cell, height: first_row_height_of_lower_cell, alignment: .center)
-              .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.background_offWhite.rawValue)))
-              .conditionalOverlay(condition: inputFieldError)
-              .onAppear {
-                
-                /// inputFieldError should be reset after 2_000 milliseconds to make the textField usable.
-                if inputFieldError != .noError {
-                  
-                  DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(1_000)) {
+                  urlComponents.scheme = "https"
+                  urlComponents.host = "api.shrtco.de"
+                  urlComponents.path = "/v2/shorten"
+                  urlComponents.percentEncodedQuery = queryParams.map {
                     
-                    inputFieldError = .noError
-                  }
-                }
-              }
-              
-              
-              /// 2nd row
-              Button {
-                
-                //TODO: incomplete. progress bar should appear.
-                guard inputFieldError == .noError && url_string.isEmpty == false else {
-                  
-                  return
-                }
-                
-                /// Check if it is .duplicated
-                if dataStore.doesContain(url_string: url_string) {
-                  
-                  inputFieldError = .duplicated
-                  
-                  url_string = ""
-                  
-                  return
-                }
-                
-       
-                print("entered URLSession.")
-                
-                let queryParams = ["url":url_string]
-                var urlComponents = URLComponents()
-
-                var cs = CharacterSet.urlQueryAllowed
-                cs.remove("+")
-
-                urlComponents.scheme = "https"
-                urlComponents.host = "api.shrtco.de"
-                urlComponents.path = "/v2/shorten"
-                urlComponents.percentEncodedQuery = queryParams.map {
-                  
                     $0.addingPercentEncoding(withAllowedCharacters: cs)!
                     + "=" + $1.addingPercentEncoding(withAllowedCharacters: cs)!
-                }.joined(separator: "&")
-                
-                print("urlString = \(String(describing: urlComponents.string))")
-                
-                
-                
-                guard let url = urlComponents.url else {
+                    
+                  }.joined(separator: "&")
                   
-                  fatalError("wrong url")
-                }
-                
-                // MARK: URLSessionConfiguration.default
-                let URLSessionConfig = URLSessionConfiguration.default
-                URLSessionConfig.allowsConstrainedNetworkAccess = true
-                URLSessionConfig.allowsCellularAccess = true
-                URLSessionConfig.waitsForConnectivity = true
-                
-                
-                // MARK: URLSession(configuration: URLSessionConfig).dataTask(with: url) { data, response, error in }
-                let urlSessionDataTask = URLSession(configuration: URLSessionConfig).dataTask(with: url) { web_raw_data, response, error in
+                  print("urlString = \(String(describing: urlComponents.string))")
                   
                   
-                  // MARK: - This closure should be a sub-thread.
-                  if let response = response {
+                  
+                  guard let url = urlComponents.url else {
+                    
+                    fatalError("wrong url")
+                  }
+                  
+                  // MARK: URLSessionConfiguration.default
+                  let URLSessionConfig = URLSessionConfiguration.default
+                  URLSessionConfig.allowsConstrainedNetworkAccess = true
+                  URLSessionConfig.allowsCellularAccess = true
+                  URLSessionConfig.waitsForConnectivity = true
+                  
+                  
+                  // MARK: URLSession(configuration: URLSessionConfig).dataTask(with: url) { data, response, error in }
+                  let urlSessionDataTask = URLSession(configuration: URLSessionConfig).dataTask(with: url) { web_raw_data, response, error in
                     
                     
-                    guard let statusCode = (response as? HTTPURLResponse)?.statusCode else {
+                    // MARK: - This closure should be a sub-thread.
+                    if let response = response {
                       
-                      fatalError()
+                      
+                      guard let statusCode = (response as? HTTPURLResponse)?.statusCode else {
+                        
+                        fatalError()
+                      }
+                      
+                      guard  statusCode == 200 || statusCode == 201 else {
+                        
+                        print("statusCode = \(statusCode)")
+                        print("An unknown error")
+                        
+                        // TODO: incomplete. returns a message
+                        return
+                      }
                     }
                     
-                    guard  statusCode == 200 || statusCode == 201 else {
+                    guard let web_raw_data_NonOptional = web_raw_data else {
                       
-                      print("statusCode = \(statusCode)")
-                      print("An unknown error")
+                      fatalError("no data received")
+                    }
+                    
+                    guard let received_JSONObject = try? JSONSerialization.jsonObject(with: web_raw_data_NonOptional, options: [.mutableContainers]) else {
+                      
+                      fatalError("the error in jasonObject catch")
+                    }
+                    
+                    
+                    if TheGlobalUIParameter.is_debugging_mode {
+                      
+                      sneakPeak_JSONObject(received_JSONObject)
+                    }
+                    
+                    guard let dic = received_JSONObject as? Dictionary<String, Any> else {
+                      
+                      fatalError("Dictionary<String, Any>")
+                    }
+                    
+                    
+                    if let error_code = dic["error_code"] as? Int {
+                      
+                      print("error code = \(error_code)")
+                      print("\((dic["error"] as? String) ?? "no error message")")
                       
                       // TODO: incomplete. returns a message
                       return
+                      
                     }
-                  }
-                  
-                  guard let web_raw_data_NonOptional = web_raw_data else {
                     
-                    fatalError("no data received")
-                  }
-                  
-                  guard let received_JSONObject = try? JSONSerialization.jsonObject(with: web_raw_data_NonOptional, options: [.mutableContainers]) else {
                     
-                    fatalError("the error in jasonObject catch")
-                  }
-                  
-                  
-                  if TheGlobalUIParameter.is_debugging_mode {
+                    guard let result = dic["result"] as? [String : String] else {
+                      
+                      fatalError("result format error")
+                    }
                     
-                    sneakPeak_JSONObject(received_JSONObject)
-                  }
-                  
-                  guard let dic = received_JSONObject as? Dictionary<String, Any> else {
                     
-                    fatalError("Dictionary<String, Any>")
-                  }
-                  
-                  
-                  if let error_code = dic["error_code"] as? Int {
+                    guard let shortCode = result["full_short_link"] else {
+                      
+                      fatalError("full_short_link not found")
+                    }
                     
-                    print("error code = \(error_code)")
-                    print("\((dic["error"] as? String) ?? "no error message")")
+                    print("\(shortCode)")
                     
-                    // TODO: incomplete. returns a message
-                    return
+                    DispatchQueue.main.async {
+                      
+                      is_URLSessionAnimation_Running = false
+                      
+                      withAnimation(.easeIn(duration: TheGlobalUIParameter.animation_duration)) {
+                        
+                        dataStore.urlPairs.append(UrlAndShortened_Pair(url_string: url_string, shortened_url: shortCode))
+                      }
+                    }
+                    
                     
                   }
                   
                   
-                  guard let result = dic["result"] as? [String : String] else {
-                    
-                    fatalError("result format error")
-                  }
+                  urlSessionDataTask.resume()
                   
-
-                  guard let shortCode = result["full_short_link"] else {
-                    
-                    fatalError("full_short_link not found")
-                  }
                   
-                  print("\(shortCode)")
                   
-                  DispatchQueue.main.async {
-                    
-                    dataStore.urlPairs.append(UrlAndShortened_Pair(url_string: url_string, shortened_url: shortCode))
-                  }
+                } label: {
                   
-                
+                  Text("Shorten It")
+                    .font(Font.custom("Poppins-Bold", size: FontSize_Enum.bodyCopy.rawValue*TheGlobalUIParameter.shorten_it_ratio))
+                    .foregroundColor(Color(hex_string: ColorEnum.background_white.rawValue))
+                  
                 }
+                .frame(width: lower_cell_size.width * TheGlobalUIParameter.row_width_ratio_of_lower_cell, height: TheGlobalUIParameter.row_height_of_lower_cell, alignment: .center)
+                .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.primary_cyan.rawValue)))
                 
-                
-                urlSessionDataTask.resume()
-                
-                
-                
-              } label: {
-                
-                Text("Shorten It")
-                  .font(Font.custom("Poppins-Bold", size: FontSize_Enum.bodyCopy.rawValue*TheGlobalUIParameter.shorten_it_ratio))
-                  .foregroundColor(Color(hex_string: ColorEnum.background_white.rawValue))
-                
-              }
-              .frame(width: lower_cell_size.width * TheGlobalUIParameter.row_width_ratio_of_lower_cell, height: TheGlobalUIParameter.row_height_of_lower_cell, alignment: .center)
-              .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.primary_cyan.rawValue)))
+              }  /// THE END OF VStack {}
+              //            .debuggingBorder()
+              //            .offset(x: 0, y: hasNotch ? 0:-lower_cell_size.height*0.12)
               
-            }  /// THE END OF VStack {}
-            //            .debuggingBorder()
-            .offset(x: 0, y: hasNotch ? 0:-lower_cell_size.height*0.12)
-
+              
+            } /// THE END OF HStack
+            .frame(width: lower_cell_size.width, height: lower_cell_size.height, alignment: .center)
+            //          .debuggingBorder()
             
-          } /// THE END OF HStack
+            
+            
+            
+          } /// THE END OF Lower Celll ZStack {}
           .frame(width: lower_cell_size.width, height: lower_cell_size.height, alignment: .center)
-          //          .debuggingBorder()
+          .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.neutral_veryDarkViolet.rawValue))
+          )
           
           
           
+        } /// THE END OF Top Stack {}
+        .ignoresSafeArea()
+        
+        
+        if is_URLSessionAnimation_Running {
           
-        } /// THE END OF Lower Celll ZStack {}
-        .frame(width: lower_cell_size.width, height: lower_cell_size.height, alignment: .center)
-        .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.neutral_veryDarkViolet.rawValue))
-        )
+          
+          AnimatingTextView(is_URLSessionAnimation_Running: $is_URLSessionAnimation_Running)
+        }
         
         
-        
-      } /// THE END OF Top Stack {}
-      .ignoresSafeArea()
-      .background(
-        
-        BackgroundUIView(upper_cell_size: upper_cell_size, lower_cell_size: lower_cell_size)
-        
-      )
+      } /// THE END OF ZStack for displaying URLSessionAniumation
+      
       
     }
     
   }
-
   
+  
+
+  func isValidString() -> Bool {
+    
+    /// input string == empty string
+    if url_string.isEmpty {
+      
+      inputFieldError = .emptyString
+      
+    } else if url_string.validateUrl() == false {
+      
+      inputFieldError = .invalidUrl
+      
+      url_string = ""
+      
+    } else if dataStore.doesContain(url_string: url_string) {
+      
+      inputFieldError = .duplicated
+      
+      url_string = ""
+      
+    } else {
+      
+      inputFieldError = .noError
+    }
+    
+    return inputFieldError == .noError ? true:false
+  }
   
 }
 

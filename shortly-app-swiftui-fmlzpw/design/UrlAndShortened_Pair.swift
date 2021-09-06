@@ -8,7 +8,7 @@
 import Foundation
 
 
-struct UrlAndShortened_Pair: Identifiable {
+class UrlAndShortened_Pair: Identifiable, Equatable, ObservableObject {
   
   let id = UUID()
   let url_string: String /// use this as key value
@@ -16,8 +16,22 @@ struct UrlAndShortened_Pair: Identifiable {
   
   /// I make isCopied chagible and persistent.
   /// it is pertain to onCopyCommand(perform:)
-  var isCopied = false
+  @Published var isCopied = false
+  
+  init(url_string: String, shortened_url: String) {
+    
+    self.url_string = url_string
+    self.shortened_url = shortened_url
+  }
+  
+  /// I use `url_string` as the key so that all equality should conform the same way.
+  static func ==(left: UrlAndShortened_Pair, right: UrlAndShortened_Pair) -> Bool {
+    
+    left.url_string == right.url_string
+  }
+  
 }
+
 
 
 class DataStore: ObservableObject {
@@ -40,6 +54,16 @@ class DataStore: ObservableObject {
       return false
     }
   }
+  
+  func remove(urlPair: UrlAndShortened_Pair) {
+    
+    urlPairs.removeAll {
+      
+      $0 == urlPair
+    }
+    
+  }
+  
   
   init(urlPairs: [UrlAndShortened_Pair]) {
     
