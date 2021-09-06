@@ -41,8 +41,7 @@ If you created the project on Xcode 13, it won't happen.  However, in order to m
   
   - Orientation is fixed at Portrate mode.
   
-  - I can not clearly determine the design decision for the color scheme of Dark mode.
-      But I'll advance a bit the color scheme arbitrarily even if I am not sure that it would be suitable for this project so far.
+  - I tried to add dark mode to the app but based on the specifications, there is no room to do that: therefore, I cancelled the previous plan.
       
   - TheGlobalUIParameter.is_debugging_mode controls whether it is in debugging mode or not.
   

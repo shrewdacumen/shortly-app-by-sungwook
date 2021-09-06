@@ -110,8 +110,11 @@ struct CopyButtonView: View {
 
 
 
-//struct CopyButtonView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CopyButtonView()
-//    }
-//}
+struct CopyButtonView_Previews: PreviewProvider {
+  
+    static var previews: some View {
+      
+      CopyButtonView(upper_cell_size: CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * TheGlobalUIParameter.the_percenage_of_upper_cell), urlPair: UrlAndShortened_Pair(url_string: "sungw.net", shortened_url: "https://shrtco.de/vjP1hj"))
+      
+    }
+}
