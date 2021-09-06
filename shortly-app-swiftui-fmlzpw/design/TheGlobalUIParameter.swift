@@ -20,9 +20,9 @@ struct TheGlobalUIParameter {
   
   static let animation_duration = TimeInterval(1.3)
   
-  static let message_font_size = CGFloat(40)
+  static let message_font_size = CGFloat(50)
   
-  static let message_animation_duration = 700
+  static let message_animation_duration = 1_000
   
   static let delay_before_clearing_the_error_message = 800
   

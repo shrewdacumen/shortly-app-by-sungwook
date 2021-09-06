@@ -48,9 +48,9 @@ If you created the project on Xcode 13, it won't happen.  However, in order to m
   
   - Entering the same `url-string` will be discarded, not being added as a row but showing its error message on the TextEdit Field again as the same way as others. 
   
-  - Added 'Fetch Data' animation while waiting for getting the short code from SHRTCODE.
+  - Added 'Fetching Data' animation while waiting for getting the short code from SHRTCODE.
   
-  - And when the shortcode is copied to clipboard, there is a short 700ms animation that notify the user to confirm it as well.
+  - And when the shortcode is copied to clipboard, there is a short 1_000ms animation (yellow color on the black button) that notify the user to confirm it as well.
     
   
 

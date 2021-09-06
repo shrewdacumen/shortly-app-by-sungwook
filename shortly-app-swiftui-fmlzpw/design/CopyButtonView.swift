@@ -13,8 +13,6 @@ struct CopyButtonView: View {
   
   @ObservedObject var urlPair: UrlAndShortened_Pair
   
-  
-  
   @State var is_Copied_Alive = false
   
   
@@ -58,7 +56,7 @@ struct CopyButtonView: View {
           
           Text("COPIED")
             .font(Font.custom("Poppins-Bold", size: TheGlobalUIParameter.message_font_size))
-            .foregroundColor(Color(hex_string: ColorEnum.secondary_red.rawValue))
+            .foregroundColor(Color.yellow)
         }
         
       }
@@ -98,7 +96,7 @@ struct CopyButtonView: View {
           
           Text("COPIED")
             .font(Font.custom("Poppins-Bold", size: TheGlobalUIParameter.message_font_size))
-            .foregroundColor(Color(hex_string: ColorEnum.secondary_red.rawValue))
+            .foregroundColor(Color.yellow)
         }
         
       }
