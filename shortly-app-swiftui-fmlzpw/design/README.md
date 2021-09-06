@@ -52,13 +52,6 @@ If you created the project on Xcode 13, it won't happen.  However, in order to m
   - And when the shortcode is copied to clipboard, there is a short 1_000ms animation (yellow color on the black button) that notify the user to confirm it as well.
     
   
-
-Your users should be able to:
-
--   View the optimal layout for the mobile app depending on their device's screen size
--   Shorten any valid URL
--   See a list of their shortened links ("Link History"). Link History should be persisted ideally.
--   Copy the shortened link to their clipboard in a single click
--   Delete a shortened link from their Link History
--   Receive an error message when the `form` is submitted if:
-    -   The `input` field is empty
+## What I have postponed:
+  - I found some performance issue on `LowerCellInputView` but I just postponed it: I got a 2nd jab of Corona vaccine these days. I feel so tired.
+  However, the performance of the current version is relatively good.  I tried to improve readibility which I may postpone.
