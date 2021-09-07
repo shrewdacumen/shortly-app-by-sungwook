@@ -79,7 +79,7 @@ struct ContentView: View {
   // MARK: - properties
   let the_percenage_of_upper_cell = TheGlobalUIParameter.the_percenage_of_upper_cell
   
-
+  
   
   /// URLSession animation
   @State var  is_URLSessionAnimation_Running = false
@@ -219,8 +219,11 @@ struct ContentView: View {
                   }
                   
                   
+#if DEBUG
                   /// Animation + log started here.
                   print("Just entered URLSession.")
+#endif
+                  
                   is_URLSessionAnimation_Running = true
                   
                   let osSignpostID = OSSignpostID(log: TheGlobalUIParameter.urlSession_of_Button, object: url_string as AnyObject)
@@ -229,30 +232,8 @@ struct ContentView: View {
                   os_signpost(.event, log: TheGlobalUIParameter.pointsOfInterest, name: "Button URLSession", signpostID: osSignpostID, "Start")
                   
                   
-                  let queryParams = ["url" : url_string]
-                  var urlComponents = URLComponents()
+                  let url = urlByURLComponents(from_url_string: url_string)
                   
-                  var cs = CharacterSet.urlQueryAllowed
-                  cs.remove("+")
-                  
-                  urlComponents.scheme = "https"
-                  urlComponents.host = "api.shrtco.de"
-                  urlComponents.path = "/v2/shorten"
-                  urlComponents.percentEncodedQuery = queryParams.map {
-                    
-                    $0.addingPercentEncoding(withAllowedCharacters: cs)!
-                    + "=" + $1.addingPercentEncoding(withAllowedCharacters: cs)!
-                    
-                  }.joined(separator: "&")
-                  
-                  print("urlString = \(String(describing: urlComponents.string))")
-                  
-                  
-                  
-                  guard let url = urlComponents.url else {
-                    
-                    fatalError("wrong url")
-                  }
                   
                   // MARK: URLSessionConfiguration.default
                   let URLSessionConfig = URLSessionConfiguration.default
@@ -312,26 +293,34 @@ struct ContentView: View {
                       print("\((dic["error"] as? String) ?? "no error message")")
                       
                       // TODO: incomplete. returns a message
+                      // TODO: where should I display this??? which is not specified in the code challenge!!!
                       return
                       
                     }
                     
-                    
+#if DEBUG
+                    /// If this happens, it is caused by the programming logic.
+                    /// Therefore, it is safe to fatalError()
                     guard let result = dic["result"] as? [String : String] else {
                       
                       fatalError("result format error")
                     }
                     
-                    
+                    /// If this happens, it is caused by the programming logic.
+                    /// Therefore, it is safe to fatalError()
                     guard let shortCode = result["full_short_link"] else {
                       
                       fatalError("full_short_link not found")
                     }
                     
-                    print("\(shortCode)")
                     
+                    print("\(shortCode)")
+#endif
+                    
+                    ///  this should be on main thread, for updating the source of truth.
                     DispatchQueue.main.async {
                       
+                      /// stop the animation
                       is_URLSessionAnimation_Running = false
                       
                       /// Testing the performance of the remote web endpoint, SHRTCODE/
@@ -340,15 +329,17 @@ struct ContentView: View {
                       withAnimation(.easeIn(duration: TheGlobalUIParameter.animation_duration)) {
                         
                         dataStore.urlPairs.append(UrlAndShortened_Pair(url_string: url_string, shortened_url: shortCode))
+                        
+                        /// reset the url_string after the use.
+                        url_string = ""
                       }
                     }
                     
                     
-                  }
+                  } /// THE END OF URLSessionConfig).dataTask(with: url)  {}
                   
                   
                   urlSessionDataTask.resume()
-                  
                   
                   
                 } label: {
@@ -360,6 +351,7 @@ struct ContentView: View {
                 }
                 .frame(width: lower_cell_size.width * TheGlobalUIParameter.row_width_ratio_of_lower_cell, height: TheGlobalUIParameter.row_height_of_lower_cell, alignment: .center)
                 .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.primary_cyan.rawValue)))
+                
                 
               }  /// THE END OF VStack {}
               //            .debuggingBorder()
@@ -436,7 +428,7 @@ struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
     
     ContentView(dataStore: sampleDataStore_ForPreviews)
-      
+    
     ContentView(dataStore: sampleDataStore_ForPreviews)
       .preferredColorScheme(.dark)
   }
