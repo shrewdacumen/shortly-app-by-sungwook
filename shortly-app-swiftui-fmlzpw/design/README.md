@@ -91,6 +91,8 @@ If you created the project on Xcode 13, it won't happen.  However, in order to m
   
   - many debugging features like `sneakPeak_JSONObject()`
   
+  - App Icon was added.
+  
   
   
 ## Further improvements conceived in the design but not being attempted: 
