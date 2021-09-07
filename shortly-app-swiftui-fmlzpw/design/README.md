@@ -113,6 +113,14 @@ If you created the project on Xcode 13, it won't happen.  However, in order to m
   I commented out all of them. (Because I had UI-tested already.)
   
   
+## Thread Sanitizer
+In this project, it does NOT need to include this, but I added it to test for the thread-safe.
+And when I figured out that it is from another reason, I disregarded it.
+
+I usually add TS to the project only when I use Combine and Dispatch extensively.
+But this project contains scarcely Dispatch. So, it is not necessary. 
+  
+  
 ## Further improvements conceived in the design but not being attempted: 
   1. I didn’t make multiple URLSessions for multi-threaded inputs.  Even if this will improve user experience but I thought that the code challenge does not want such things.  It is over-engineering for code challenge.  If this is an actual work I may have to add the feature.
      I am sure that my expertise in Combine and Dispatch (GCD) or multi-threaded design/programming will help improve the user experience.
