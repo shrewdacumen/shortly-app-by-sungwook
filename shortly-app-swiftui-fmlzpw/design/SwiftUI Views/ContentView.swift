@@ -7,8 +7,9 @@
 
 import SwiftUI
 
-// MARK: - from Here, manual parameter to control testings
-let isTesting_CustomFont = false
+
+
+
 
 /// According to the following guide line, I created `enum ColorEnum`
 ///  ### Primary
@@ -87,7 +88,9 @@ struct ContentView: View {
   
   var body: some View {
     
-    if isTesting_CustomFont {
+    /// A feature was designed for Testing only.
+    ///  To test, set `isTesting_CustomFont` to `true`
+    if TheGlobalUIParameter.isTesting_CustomFont {
       
       FontTestView()
         .padding()
@@ -96,7 +99,9 @@ struct ContentView: View {
     
     GeometryReader { proxy in
       
-      
+      /// ** CAVEAT over various iOS devices **
+      /// iOS devices that have a notch have safeAreaInsets.top != 0,
+      /// but iOS devices that have a notch have safeAreaInsets.top == 0,
       let hasNotch = proxy.safeAreaInsets.bottom > 0
       
       let max_displayable_size = hasNotch == false ? CGSize(width: proxy.size.width, height: proxy.size.height - proxy.safeAreaInsets.top) : UIScreen.main.bounds.size
@@ -121,7 +126,7 @@ struct ContentView: View {
             
             
             // MARK: - Upper cell 1st, FacadeView
-            FacadeView(the_percenage_of_the_cell: the_percenage_of_upper_cell)
+            FacadeView(hasNotch: hasNotch, the_percenage_of_the_cell: the_percenage_of_upper_cell)
               .frame(width: upper_cell_size.width, height: upper_cell_size.height, alignment: .top)
               .padding(.top, hasNotch ? 0.0:proxy.safeAreaInsets.top)
               .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.background_offWhite.rawValue))
@@ -171,9 +176,13 @@ struct ContentView: View {
                   _ = isValidString()
                   
                 }
+                .font(Font.custom("Poppins-Regular", size: 20))
                 .foregroundColor(Color(hex_string: ColorEnum.neutral_veryDarkViolet.rawValue))
                 .frame(width: first_row_width_of_lower_cell, height: first_row_height_of_lower_cell, alignment: .center)
                 .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.background_offWhite.rawValue)))
+                ///
+                /// `conditionalOverlay`
+                /// This is designed for displaying the error message over the text field/
                 .conditionalOverlay(condition: inputFieldError)
                 .onAppear {
                   
@@ -182,7 +191,10 @@ struct ContentView: View {
                     
                     DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(TheGlobalUIParameter.delay_before_clearing_the_error_message)) {
                       
-                      inputFieldError = .noError
+                      withAnimation(.easeIn(duration: TheGlobalUIParameter.snap_animation_duration)) {
+                        
+                        inputFieldError = .noError
+                      }
                     }
                   }
                 }
@@ -197,7 +209,7 @@ struct ContentView: View {
                   }
                   
                   
-                  //TODO: incomplete. progress bar should appear.
+                  /// Animation + log started here.
                   print("Just entered URLSession.")
                   is_URLSessionAnimation_Running = true
                   
@@ -333,7 +345,6 @@ struct ContentView: View {
                 
               }  /// THE END OF VStack {}
               //            .debuggingBorder()
-              //            .offset(x: 0, y: hasNotch ? 0:-lower_cell_size.height*0.12)
               
               
             } /// THE END OF HStack
@@ -372,26 +383,29 @@ struct ContentView: View {
   
   func isValidString() -> Bool {
     
-    /// input string == empty string
-    if url_string.isEmpty {
+    withAnimation(.easeIn(duration: TheGlobalUIParameter.snap_animation_duration)) {
       
-      inputFieldError = .emptyString
-      
-    } else if url_string.validateUrl() == false {
-      
-      inputFieldError = .invalidUrl
-      
-      url_string = ""
-      
-    } else if dataStore.doesContain(url_string: url_string) {
-      
-      inputFieldError = .duplicated
-      
-      url_string = ""
-      
-    } else {
-      
-      inputFieldError = .noError
+      /// input string == empty string
+      if url_string.isEmpty {
+        
+        inputFieldError = .emptyString
+        
+      } else if url_string.validateUrl() == false {
+        
+        inputFieldError = .invalidUrl
+        
+        url_string = ""
+        
+      } else if dataStore.doesContain(url_string: url_string) {
+        
+        inputFieldError = .duplicated
+        
+        url_string = ""
+        
+      } else {
+        
+        inputFieldError = .noError
+      }
     }
     
     return inputFieldError == .noError ? true:false

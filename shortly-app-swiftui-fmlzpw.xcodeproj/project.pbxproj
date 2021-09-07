@@ -21,6 +21,7 @@
 		0962BF2B26E6614A00AC7CB1 /* UpperCellDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0962BF2A26E6614A00AC7CB1 /* UpperCellDataView.swift */; };
 		0962BF2D26E6630200AC7CB1 /* LowerCellInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0962BF2C26E6630200AC7CB1 /* LowerCellInputView.swift */; };
 		0994293426E511C600B9298B /* ConditionalTextFieldOverlayModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0994293326E511C600B9298B /* ConditionalTextFieldOverlayModifier.swift */; };
+		09A5E03226E7129A00C0854D /* AdaptivePaddingOverAllDevices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A5E03126E7129A00C0854D /* AdaptivePaddingOverAllDevices.swift */; };
 		09B366B226E5BCEA003E2BDE /* DebuggingBorderModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B366B126E5BCEA003E2BDE /* DebuggingBorderModifier.swift */; };
 		09D259D826E0E46400E78369 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09D259D726E0E46400E78369 /* Assets.xcassets */; };
 		09D259DB26E0E46400E78369 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09D259DA26E0E46400E78369 /* Preview Assets.xcassets */; };
@@ -98,6 +99,7 @@
 		0962BF2A26E6614A00AC7CB1 /* UpperCellDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpperCellDataView.swift; sourceTree = "<group>"; };
 		0962BF2C26E6630200AC7CB1 /* LowerCellInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowerCellInputView.swift; sourceTree = "<group>"; };
 		0994293326E511C600B9298B /* ConditionalTextFieldOverlayModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalTextFieldOverlayModifier.swift; sourceTree = "<group>"; };
+		09A5E03126E7129A00C0854D /* AdaptivePaddingOverAllDevices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptivePaddingOverAllDevices.swift; sourceTree = "<group>"; };
 		09B366B126E5BCEA003E2BDE /* DebuggingBorderModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebuggingBorderModifier.swift; sourceTree = "<group>"; };
 		09D259D026E0E46200E78369 /* shortly-app-swiftui-fmlzpw.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "shortly-app-swiftui-fmlzpw.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		09D259D726E0E46400E78369 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -204,6 +206,42 @@
 			path = "Network glitch, ownership problem, etc";
 			sourceTree = SOURCE_ROOT;
 		};
+		09A5E02E26E7060500C0854D /* SwiftUI Views */ = {
+			isa = PBXGroup;
+			children = (
+				09D25A0226E0E5BF00E78369 /* ContentView.swift */,
+				09341BFC26E4E9DB00C212E1 /* FacadeView.swift */,
+				0962BF2A26E6614A00AC7CB1 /* UpperCellDataView.swift */,
+				0962BF2C26E6630200AC7CB1 /* LowerCellInputView.swift */,
+				091DC9B026E10D5E00C4F2CF /* FontTestView.swift */,
+				092B308E26E5E91200B2222B /* BackgroundUIView.swift */,
+				0962BF2626E6440100AC7CB1 /* AnimatingTextView.swift */,
+				09341BFE26E5053500C212E1 /* TheShapeImageView.swift */,
+				0962BF2826E6492500AC7CB1 /* CopyButtonView.swift */,
+			);
+			path = "SwiftUI Views";
+			sourceTree = "<group>";
+		};
+		09A5E02F26E7064A00C0854D /* View Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				0994293326E511C600B9298B /* ConditionalTextFieldOverlayModifier.swift */,
+				09B366B126E5BCEA003E2BDE /* DebuggingBorderModifier.swift */,
+				09A5E03126E7129A00C0854D /* AdaptivePaddingOverAllDevices.swift */,
+			);
+			path = "View Modifiers";
+			sourceTree = "<group>";
+		};
+		09A5E03026E7066600C0854D /* extensions */ = {
+			isa = PBXGroup;
+			children = (
+				091DC9B226E1105A00C4F2CF /* Color extension.swift */,
+				09E3D65126E1E9FA00B79222 /* Array extension.swift */,
+				09E3D65326E214F700B79222 /* String extension.swift */,
+			);
+			path = extensions;
+			sourceTree = "<group>";
+		};
 		09D259C726E0E46200E78369 = {
 			isa = PBXGroup;
 			children = (
@@ -267,26 +305,15 @@
 			isa = PBXGroup;
 			children = (
 				09D25A0126E0E5BF00E78369 /* README.md */,
+				09A5E02E26E7060500C0854D /* SwiftUI Views */,
+				09A5E02F26E7064A00C0854D /* View Modifiers */,
+				09A5E03026E7066600C0854D /* extensions */,
 				09341C0026E505C900C212E1 /* TheGlobalUIParameter.swift */,
-				09D259FF26E0E5BF00E78369 /* shortly_app_swiftui_fmlzpwApp.swift */,
 				09D25A0026E0E5BF00E78369 /* UrlAndShortened_Pair.swift */,
-				09D25A0226E0E5BF00E78369 /* ContentView.swift */,
-				09341BFC26E4E9DB00C212E1 /* FacadeView.swift */,
-				0962BF2A26E6614A00AC7CB1 /* UpperCellDataView.swift */,
-				091DC9B026E10D5E00C4F2CF /* FontTestView.swift */,
-				0962BF2C26E6630200AC7CB1 /* LowerCellInputView.swift */,
-				092B308E26E5E91200B2222B /* BackgroundUIView.swift */,
-				0962BF2626E6440100AC7CB1 /* AnimatingTextView.swift */,
-				09341BFE26E5053500C212E1 /* TheShapeImageView.swift */,
-				0962BF2826E6492500AC7CB1 /* CopyButtonView.swift */,
+				09D259FF26E0E5BF00E78369 /* shortly_app_swiftui_fmlzpwApp.swift */,
 				092B309026E5F93C00B2222B /* errorReason.swift */,
-				0994293326E511C600B9298B /* ConditionalTextFieldOverlayModifier.swift */,
 				092B309226E5FE0C00B2222B /* sneakPeak_JSONObject.swift */,
 				092B308C26E5DE9200B2222B /* IgnoreSafeArea_Unversal.swift */,
-				09B366B126E5BCEA003E2BDE /* DebuggingBorderModifier.swift */,
-				091DC9B226E1105A00C4F2CF /* Color extension.swift */,
-				09E3D65126E1E9FA00B79222 /* Array extension.swift */,
-				09E3D65326E214F700B79222 /* String extension.swift */,
 				09D25A0326E0E5BF00E78369 /* Poppins */,
 			);
 			path = design;
@@ -479,6 +506,7 @@
 				092B309326E5FE0C00B2222B /* sneakPeak_JSONObject.swift in Sources */,
 				09341BFF26E5053500C212E1 /* TheShapeImageView.swift in Sources */,
 				0962BF2926E6492500AC7CB1 /* CopyButtonView.swift in Sources */,
+				09A5E03226E7129A00C0854D /* AdaptivePaddingOverAllDevices.swift in Sources */,
 				092B309126E5F93C00B2222B /* errorReason.swift in Sources */,
 				09E3D65226E1E9FA00B79222 /* Array extension.swift in Sources */,
 				0962BF2B26E6614A00AC7CB1 /* UpperCellDataView.swift in Sources */,

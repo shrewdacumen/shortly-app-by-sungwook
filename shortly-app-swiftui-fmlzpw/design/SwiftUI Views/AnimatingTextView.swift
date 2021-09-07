@@ -12,12 +12,16 @@ struct AnimatingTextView: View {
   @Binding var is_URLSessionAnimation_Running: Bool
   
   @State var rotationDegree = 0.0
+  
+  
+  /// static func timingCurve(_ c0x: Double, _ c0y: Double, _ c1x: Double, _ c1y: Double, duration: Double = 0.35) -> Animation
   var timeCurveAnimation: Animation {
     
-    Animation.timingCurve(0.5, 0.8, 0.8, 0.3, duration: 6).repeatForever()
+    Animation.timingCurve(0.1, 0.2, 0.6, 0.9, duration: 16).repeatForever()
   }
   
   var body: some View {
+    
     /// URLSession animation
     if is_URLSessionAnimation_Running {
       
@@ -42,6 +46,7 @@ struct AnimatingTextView: View {
 }
 
 struct AnimatingTextView_Previews: PreviewProvider {
+  
     static var previews: some View {
       
         AnimatingTextView(is_URLSessionAnimation_Running: Binding(get: { true}, set: {_ in }))

@@ -11,6 +11,13 @@ import SwiftUI
 
 struct TheGlobalUIParameter {
   
+  
+  // MARK: - from Here, manually valued parameter to control testings only
+  /// A feature was designed for Testing only.
+  ///  To test, set `isTesting_CustomFont` to `true`
+  static let isTesting_CustomFont = false
+  
+  
   /// This controls if it is in debugging mode or not.
   /// I can use the compiler's DEBUG label intead of this
   /// Or I can consolidate both ways to a single way.
@@ -24,7 +31,11 @@ struct TheGlobalUIParameter {
   
   static let message_animation_duration = 1_000
   
-  static let delay_before_clearing_the_error_message = 800
+  /// This is related to the animation as well.
+  ///  If this value (in milliseconds) is too high, the user may hate it.
+  static let delay_before_clearing_the_error_message = 850
+  
+  static let snap_animation_duration = TimeInterval(0.2)
   
   static let the_percenage_of_upper_cell = 0.70 /// 70%
   

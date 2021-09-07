@@ -50,8 +50,33 @@ If you created the project on Xcode 13, it won't happen.  However, in order to m
   - Added 'Fetching Data' animation while waiting for getting the short code from SHRTCODE.
   
   - And when the shortcode is copied to clipboard, there is a short 1_000ms animation (yellow color on the black button) that notify the user to confirm it as well.
-    
   
-## What I have postponed:
-  - I found some performance issue on `LowerCellInputView` but I just postponed it: I got a 2nd jab of Corona vaccine these days. I feel so tired.
+  - hasNotch property was introduced to adapt the UI interfaces and elements over various iOS devices.
+    What I found was as the followings:
+      - iOS devices that have a notch have safeAreaInsets.top != 0,
+      -  but iOS devices that have a notch have safeAreaInsets.top == 0,
+      Therefore, the behavior of each UI element and animation to it will be affected accordingly.
+      
+  - Some features are designed only for testings - stability, performance, visibility like `isTesting_CustomFont`
+  
+  - All control parameters are consolidated in `struct TheGlobalUIParameter`.
+  
+  - `conditionalOverlay`: This is designed for displaying the error message over the text field. ( the input text field )
+     and its feature is also combined with the source of truth and animation.
+  
+  
+## Further improvements conceived in the design but not being attempted: 
+  1. I didn’t make multiple URLSessions for multi-threaded inputs.  Even if this will improve user experience but I thought that the code challenge does not want such things.  It is over-engineering for code challenge.  If this is an actual work I may have to add the feature.
+     I am sure that my expertise in Combine and Dispatch (GCD) or multi-threaded design/programming will help improve the user experience.
+   
+    - What functions of the app will change by this improvement: 
+    instant typings of multiple urls without having to wait for getting the shortcode from the slow SHRTCODE server. 
+  
+  2. I found some performance issue on `LowerCellInputView` but I just postponed it: I got a 2nd jab of Corona vaccine these days. I feel so tired.
   However, the performance of the current version is relatively good.  I tried to improve readibility which I may postpone.
+  
+  
+  ## Tested iOS devices:
+  iPhone 12, 12 max -> Simulator
+  iPhoneSE2, iPhone6S plus -> real devices
+  iPad Pro 11.5'
