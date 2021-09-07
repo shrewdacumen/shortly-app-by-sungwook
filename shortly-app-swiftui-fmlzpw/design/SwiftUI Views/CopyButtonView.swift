@@ -33,7 +33,12 @@ struct CopyButtonView: View {
           .foregroundColor(Color(hex_string: ColorEnum.background_white.rawValue))
           .onTapGesture {
             
-            UIPasteboard.general.string = urlPair.shortened_url
+            DispatchQueue.main.async {
+              
+              /// Is this the only one resource in the system?
+              /// so that it should be shared?
+              UIPasteboard.general.string = urlPair.shortened_url
+            }
             
             urlPair.isCopied = true
             

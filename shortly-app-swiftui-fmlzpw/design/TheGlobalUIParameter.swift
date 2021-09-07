@@ -6,17 +6,24 @@
 //
 
 import SwiftUI
-
+import os.signpost
 
 
 struct TheGlobalUIParameter {
   
+  
+  static let pointsOfInterest = OSLog(subsystem: "net.sungw.utility.experimental.shortly-app-swiftui-fmlzpw", category: .pointsOfInterest)
+  static let urlSession_of_Button = OSLog(subsystem: "net.sungw.utility.experimental.shortly-app-swiftui-fmlzpw", category: "urlSession_of_Button")
   
   // MARK: - from Here, manually valued parameter to control testings only
   /// A feature was designed for Testing only.
   ///  To test, set `isTesting_CustomFont` to `true`
   static let isTesting_CustomFont = false
   
+  
+  static let padding_to_avoid_notch = CGFloat(40)
+  
+  static let padding_to_avoid_statusBar = CGFloat(20)
   
   /// This controls if it is in debugging mode or not.
   /// I can use the compiler's DEBUG label intead of this

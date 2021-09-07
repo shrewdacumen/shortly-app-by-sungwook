@@ -16,11 +16,21 @@ struct FacadeView: View {
   
   var body: some View {
     
+    let illustration_padding_to_eclipse_logo = CGFloat(20)
+    
     ZStack {
       
       VStack(alignment: .center, spacing: 0) {
         
         Image("logo")
+        
+        Spacer()
+      }
+      /// protect `logo`
+      .adaptivePaddingOverAllDevices(hasNotch: hasNotch, padding_for_notched_device: TheGlobalUIParameter.padding_to_avoid_notch, padding_for_device_without_notch: TheGlobalUIParameter.padding_to_avoid_statusBar)
+      
+      
+      VStack(alignment: .center, spacing: 0) {
         
         Image("illustration")
           .resizable()
@@ -28,8 +38,7 @@ struct FacadeView: View {
         
         Spacer()
       }
-      /// protect `logo`
-      .adaptivePaddingOverAllDevices(hasNotch: hasNotch)
+      .adaptivePaddingOverAllDevices(hasNotch: hasNotch, padding_for_notched_device: TheGlobalUIParameter.padding_to_avoid_notch + illustration_padding_to_eclipse_logo, padding_for_device_without_notch: TheGlobalUIParameter.padding_to_avoid_statusBar + illustration_padding_to_eclipse_logo)
       
 
       VStack(alignment: .center, spacing: 0) {

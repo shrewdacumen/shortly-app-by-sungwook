@@ -8,6 +8,7 @@
 import SwiftUI
 
 
+// TODO: incomplete. not being used yet. it requires performance tuning in the future.
 
 /// Because I have no time to improve the performane in this challenge.
 /// I put it unused for a while.

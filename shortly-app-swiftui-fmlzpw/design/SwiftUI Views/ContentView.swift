@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import os.signpost
 
 
 
@@ -78,6 +79,8 @@ struct ContentView: View {
   // MARK: - properties
   let the_percenage_of_upper_cell = TheGlobalUIParameter.the_percenage_of_upper_cell
   
+
+  
   /// URLSession animation
   @State var  is_URLSessionAnimation_Running = false
   
@@ -103,6 +106,8 @@ struct ContentView: View {
       /// iOS devices that have a notch have safeAreaInsets.top != 0,
       /// but iOS devices that have a notch have safeAreaInsets.top == 0,
       let hasNotch = proxy.safeAreaInsets.bottom > 0
+      
+      let statusbar_size_foriOSDevicesWithoutANotch = proxy.safeAreaInsets.top
       
       let max_displayable_size = hasNotch == false ? CGSize(width: proxy.size.width, height: proxy.size.height - proxy.safeAreaInsets.top) : UIScreen.main.bounds.size
       
@@ -141,6 +146,11 @@ struct ContentView: View {
             
             
           } /// THE END OF if dataStore.urlPairs.isEmpty {}
+          
+          
+          
+          /// This is effective only for iOS devices without a notch.
+          SpacerOnlyForOnlyDevicesWithoutANotch(hasNotch: hasNotch, statusbar_size_foriOSDevicesWithoutANotch: statusbar_size_foriOSDevicesWithoutANotch, width_of_the_device: upper_cell_size.width)
           
           
           
@@ -212,6 +222,11 @@ struct ContentView: View {
                   /// Animation + log started here.
                   print("Just entered URLSession.")
                   is_URLSessionAnimation_Running = true
+                  
+                  let osSignpostID = OSSignpostID(log: TheGlobalUIParameter.urlSession_of_Button, object: url_string as AnyObject)
+                  
+                  /// Testing the performance of the remote web endpoint, SHRTCODE/
+                  os_signpost(.event, log: TheGlobalUIParameter.pointsOfInterest, name: "Button URLSession", signpostID: osSignpostID, "Start")
                   
                   
                   let queryParams = ["url" : url_string]
@@ -319,6 +334,9 @@ struct ContentView: View {
                       
                       is_URLSessionAnimation_Running = false
                       
+                      /// Testing the performance of the remote web endpoint, SHRTCODE/
+                      os_signpost(.event, log: TheGlobalUIParameter.pointsOfInterest, name: "Button URLSession", signpostID: osSignpostID, "End")
+                      
                       withAnimation(.easeIn(duration: TheGlobalUIParameter.animation_duration)) {
                         
                         dataStore.urlPairs.append(UrlAndShortened_Pair(url_string: url_string, shortened_url: shortCode))
@@ -355,14 +373,12 @@ struct ContentView: View {
             
             
           } /// THE END OF Lower Celll ZStack {}
-          .frame(width: lower_cell_size.width, height: lower_cell_size.height, alignment: .center)
+          .frame(width: lower_cell_size.width, height: lower_cell_size.height, alignment: .bottom)
           .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.neutral_veryDarkViolet.rawValue))
           )
           
           
-          
-        } /// THE END OF Top Stack {}
-        .ignoresSafeArea()
+        } /// THE END OF VStack {}
         
         
         if is_URLSessionAnimation_Running {
@@ -372,8 +388,8 @@ struct ContentView: View {
         }
         
         
-      } /// THE END OF ZStack for displaying URLSessionAniumation
-      
+      } /// THE END OF Top ZStack for displaying URLSessionAniumation
+      .ignoresSafeArea()
       
     }
     
