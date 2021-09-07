@@ -1,6 +1,6 @@
 #  ReadMe for the Code Challenge
 
-## refer to the folder `Network glitch, ownership problem, etc` for the trouble I've faced
+## please note the folder `Network glitch, ownership problem, etc` for the trouble I've faced
 
 
 ## My Environment Xcode 13 beta 5 (Not Xcode 12): SwiftUI3 capable.
@@ -102,7 +102,7 @@ If you created the project on Xcode 13, it won't happen.  However, in order to m
   (and you should uncomment the block marked XCT_UITEST on `ContentView` as well: strangely #define emulation does not work properly on Xcode 13 Beta 5.
   It maybe a bug due to being a beta version.)
   
-  The example of marking:
+  The example of marking in the sources.
                   // MARK: XCT_UITEST "textField url_string"
   
   : currently XCT_UITEST is turned off.
@@ -140,8 +140,12 @@ But this project contains scarcely Dispatch. So, it is not necessary.
       or see animating SwiftUI element poping up to notify when the situation of SHRTCODE server is down or the url entered by the user violate the policy of SHRTCODE.  
   
   
-## Tested iOS devices:
+## iOS devices and virtual devices/tools - unit-test, UI-test, performance test, profiling, thread sanitizing.
   - iPhone 12, 12 Pro Max -> Simulator
   - iPhoneSE2, iPhone6S plus -> real devices
   - iPad Pro 11.5'
-  - Instruments
+  - Instruments ->Network
+                ->Logging
+                ->SwiftUI
+  - Xcode -> Thread Sanitizer, Main Thread Checker.
+                
