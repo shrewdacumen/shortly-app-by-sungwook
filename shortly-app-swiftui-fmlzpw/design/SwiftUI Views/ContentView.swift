@@ -186,6 +186,8 @@ struct ContentView: View {
                   _ = isValidString()
                   
                 }
+                /// center the placeholder text.
+                .multilineTextAlignment(TextAlignment.center)
                 .font(Font.custom("Poppins-Regular", size: 20))
                 .foregroundColor(Color(hex_string: ColorEnum.neutral_veryDarkViolet.rawValue))
                 .frame(width: first_row_width_of_lower_cell, height: first_row_height_of_lower_cell, alignment: .center)
