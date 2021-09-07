@@ -9,7 +9,7 @@ import SwiftUI
 import os.signpost
 
 
-
+//#define XCT_UITEST -> compiler flag -D XCT_UITEST
 
 
 /// According to the following guide line, I created `enum ColorEnum`
@@ -89,6 +89,17 @@ struct ContentView: View {
   @State var inputFieldError = InputFieldError_Enum.noError
   @State var isTextFieldEditing = false
   
+  
+  // MARK: XCT_UITEST "textField url_string"
+  /// Because I use XCT_UITEST symbol in order to save computing loading and memory.
+//  #if XCT_UITEST
+//
+//  @State var uitest__url_string = [String]()
+//
+//  #endif
+  
+  
+  
   var body: some View {
     
     /// A feature was designed for Testing only.
@@ -98,6 +109,8 @@ struct ContentView: View {
       FontTestView()
         .padding()
     }
+
+    
     
     
     GeometryReader { proxy in
@@ -163,6 +176,17 @@ struct ContentView: View {
           
           ZStack(alignment: .center) {
             
+            // MARK: XCT_UITEST "textField url_string"
+//#if XCT_UITEST
+//
+//List(uitest__url_string, id: \.self) {
+//
+//  Text("\($0)")
+//    .foregroundColor(Color.yellow)
+//}
+//
+//#endif
+            
             
             TheShapeImageView()
             
@@ -186,12 +210,20 @@ struct ContentView: View {
                   _ = isValidString()
                   
                 }
+                // MARK: XCT_UITEST "textField url_string"
+//                .accessibility(identifier: "textField url_string")
                 /// center the placeholder text.
                 .multilineTextAlignment(TextAlignment.center)
                 .font(Font.custom("Poppins-Regular", size: 20))
                 .foregroundColor(Color(hex_string: ColorEnum.neutral_veryDarkViolet.rawValue))
                 .frame(width: first_row_width_of_lower_cell, height: first_row_height_of_lower_cell, alignment: .center)
                 .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.background_offWhite.rawValue)))
+                ///
+                /// instead of `.textFieldStyle(RoundedBorderTextFieldStyle())`
+                .overlay(
+                  RoundedRectangle(cornerRadius: 5)
+                          .stroke(Color(hex_string: ColorEnum.background_offWhite.rawValue)!, lineWidth: TheGlobalUIParameter.overlay_width_for_rounded_border)
+                  )
                 ///
                 /// `conditionalOverlay`
                 /// This is designed for displaying the error message over the text field/
@@ -300,7 +332,7 @@ struct ContentView: View {
                       
                     }
                     
-#if DEBUG
+
                     /// If this happens, it is caused by the programming logic.
                     /// Therefore, it is safe to fatalError()
                     guard let result = dic["result"] as? [String : String] else {
@@ -317,7 +349,7 @@ struct ContentView: View {
                     
                     
                     print("\(shortCode)")
-#endif
+
                     
                     ///  this should be on main thread, for updating the source of truth.
                     DispatchQueue.main.async {
@@ -351,8 +383,16 @@ struct ContentView: View {
                     .foregroundColor(Color(hex_string: ColorEnum.background_white.rawValue))
                   
                 }
+                // MARK: XCT_UITEST "button url_string"
+//                .accessibility(identifier: "button url_string")
                 .frame(width: lower_cell_size.width * TheGlobalUIParameter.row_width_ratio_of_lower_cell, height: TheGlobalUIParameter.row_height_of_lower_cell, alignment: .center)
                 .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.primary_cyan.rawValue)))
+                ///
+                /// instead of `.buttonStyle(<#T##S#>)`
+                .overlay(
+                  RoundedRectangle(cornerRadius: 5)
+                          .stroke(Color(hex_string: ColorEnum.primary_cyan.rawValue)!, lineWidth: TheGlobalUIParameter.overlay_width_for_rounded_border)
+                         )
                 
                 
               }  /// THE END OF VStack {}
@@ -415,6 +455,12 @@ struct ContentView: View {
       } else {
         
         inputFieldError = .noError
+        
+        // MARK: XCT_UITEST "textField url_string"
+//        #if XCT_UITEST
+//        uitest__url_string.append(url_string)
+//        #endif
+        
       }
     }
     

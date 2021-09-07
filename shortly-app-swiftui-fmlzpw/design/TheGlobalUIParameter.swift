@@ -20,6 +20,7 @@ struct TheGlobalUIParameter {
   ///  To test, set `isTesting_CustomFont` to `true`
   static let isTesting_CustomFont = false
   
+  static let overlay_width_for_rounded_border = CGFloat(3)
   
   static let padding_to_avoid_notch = CGFloat(40)
   
@@ -56,7 +57,7 @@ struct TheGlobalUIParameter {
   
   static let row_width_ratio_of_lower_cell = CGFloat(0.70)
   static let row_height_of_lower_cell = CGFloat(40)
-  static let row_spacing_of_lower_cell = CGFloat(5)
+  static let row_spacing_of_lower_cell = CGFloat(8)
   
   
   static let shorten_it_ratio = CGFloat(1.5)

@@ -6,9 +6,12 @@
 //
 
 import SwiftUI
+import os.signpost
 
 
 // TODO: incomplete. not being used yet. it requires performance tuning in the future.
+
+// MARK: Not in use
 
 /// Because I have no time to improve the performane in this challenge.
 /// I put it unused for a while.
@@ -55,9 +58,23 @@ struct LowerCellInputView: View {
             _ = isValidString()
             
           }
+          // MARK: UI TESTING "textField url_string"
+          .accessibility(identifier: "textField url_string")
+          /// center the placeholder text.
+          .multilineTextAlignment(TextAlignment.center)
+          .font(Font.custom("Poppins-Regular", size: 20))
           .foregroundColor(Color(hex_string: ColorEnum.neutral_veryDarkViolet.rawValue))
           .frame(width: first_row_width_of_lower_cell, height: first_row_height_of_lower_cell, alignment: .center)
           .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.background_offWhite.rawValue)))
+          ///
+          /// instead of `.textFieldStyle(RoundedBorderTextFieldStyle())`
+          .overlay(
+            RoundedRectangle(cornerRadius: 5)
+                    .stroke(Color(hex_string: ColorEnum.background_offWhite.rawValue)!, lineWidth: TheGlobalUIParameter.overlay_width_for_rounded_border)
+            )
+          ///
+          /// `conditionalOverlay`
+          /// This is designed for displaying the error message over the text field/
           .conditionalOverlay(condition: inputFieldError)
           .onAppear {
             
@@ -66,7 +83,10 @@ struct LowerCellInputView: View {
               
               DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(TheGlobalUIParameter.delay_before_clearing_the_error_message)) {
                 
-                inputFieldError = .noError
+                withAnimation(.easeIn(duration: TheGlobalUIParameter.snap_animation_duration)) {
+                  
+                  inputFieldError = .noError
+                }
               }
             }
           }
@@ -81,35 +101,21 @@ struct LowerCellInputView: View {
             }
             
             
-            //TODO: incomplete. progress bar should appear.
+#if DEBUG
+            /// Animation + log started here.
             print("Just entered URLSession.")
+#endif
+            
             is_URLSessionAnimation_Running = true
             
+            let osSignpostID = OSSignpostID(log: TheGlobalUIParameter.urlSession_of_Button, object: url_string as AnyObject)
             
-            let queryParams = ["url" : url_string]
-            var urlComponents = URLComponents()
-            
-            var cs = CharacterSet.urlQueryAllowed
-            cs.remove("+")
-            
-            urlComponents.scheme = "https"
-            urlComponents.host = "api.shrtco.de"
-            urlComponents.path = "/v2/shorten"
-            urlComponents.percentEncodedQuery = queryParams.map {
-              
-              $0.addingPercentEncoding(withAllowedCharacters: cs)!
-              + "=" + $1.addingPercentEncoding(withAllowedCharacters: cs)!
-              
-            }.joined(separator: "&")
-            
-            print("urlString = \(String(describing: urlComponents.string))")
+            /// Testing the performance of the remote web endpoint, SHRTCODE/
+            os_signpost(.event, log: TheGlobalUIParameter.pointsOfInterest, name: "Button URLSession", signpostID: osSignpostID, "Start")
             
             
+            let url = urlByURLComponents(from_url_string: url_string)
             
-            guard let url = urlComponents.url else {
-              
-              fatalError("wrong url")
-            }
             
             // MARK: URLSessionConfiguration.default
             let URLSessionConfig = URLSessionConfiguration.default
@@ -169,40 +175,53 @@ struct LowerCellInputView: View {
                 print("\((dic["error"] as? String) ?? "no error message")")
                 
                 // TODO: incomplete. returns a message
+                // TODO: where should I display this??? which is not specified in the code challenge!!!
                 return
                 
               }
               
-              
+
+              /// If this happens, it is caused by the programming logic.
+              /// Therefore, it is safe to fatalError()
               guard let result = dic["result"] as? [String : String] else {
                 
                 fatalError("result format error")
               }
               
-              
+              /// If this happens, it is caused by the programming logic.
+              /// Therefore, it is safe to fatalError()
               guard let shortCode = result["full_short_link"] else {
                 
                 fatalError("full_short_link not found")
               }
               
-              print("\(shortCode)")
               
+              print("\(shortCode)")
+
+              
+              ///  this should be on main thread, for updating the source of truth.
               DispatchQueue.main.async {
                 
+                /// stop the animation
                 is_URLSessionAnimation_Running = false
+                
+                /// Testing the performance of the remote web endpoint, SHRTCODE/
+                os_signpost(.event, log: TheGlobalUIParameter.pointsOfInterest, name: "Button URLSession", signpostID: osSignpostID, "End")
                 
                 withAnimation(.easeIn(duration: TheGlobalUIParameter.animation_duration)) {
                   
                   dataStore.urlPairs.append(UrlAndShortened_Pair(url_string: url_string, shortened_url: shortCode))
+                  
+                  /// reset the url_string after the use.
+                  url_string = ""
                 }
               }
               
               
-            }
+            } /// THE END OF URLSessionConfig).dataTask(with: url)  {}
             
             
             urlSessionDataTask.resume()
-            
             
             
           } label: {
@@ -212,12 +231,30 @@ struct LowerCellInputView: View {
               .foregroundColor(Color(hex_string: ColorEnum.background_white.rawValue))
             
           }
+          // MARK: UI Testing "button url_string"
+          .accessibility(identifier: "button url_string")
           .frame(width: lower_cell_size.width * TheGlobalUIParameter.row_width_ratio_of_lower_cell, height: TheGlobalUIParameter.row_height_of_lower_cell, alignment: .center)
           .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.primary_cyan.rawValue)))
+          ///
+          /// instead of `.buttonStyle(T##S)`
+          .overlay(
+            RoundedRectangle(cornerRadius: 5)
+                    .stroke(Color(hex_string: ColorEnum.primary_cyan.rawValue)!, lineWidth: TheGlobalUIParameter.overlay_width_for_rounded_border)
+                   )
+          
+          
+//          #if XCT_UITEST
+//
+//          List(uitest__url_string) {
+//
+//            Text("\($0)")
+//          }
+//
+//          #endif
+          
           
         }  /// THE END OF VStack {}
         //            .debuggingBorder()
-        //            .offset(x: 0, y: hasNotch ? 0:-lower_cell_size.height*0.12)
         
         
       } /// THE END OF HStack
@@ -228,40 +265,45 @@ struct LowerCellInputView: View {
       
       
     } /// THE END OF Lower Celll ZStack {}
-    .frame(width: lower_cell_size.width, height: lower_cell_size.height, alignment: .center)
+    .frame(width: lower_cell_size.width, height: lower_cell_size.height, alignment: .bottom)
     .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.neutral_veryDarkViolet.rawValue))
     )
-    
+
   }
+  
   
   
   
   func isValidString() -> Bool {
     
-    /// input string == empty string
-    if url_string.isEmpty {
+    withAnimation(.easeIn(duration: TheGlobalUIParameter.snap_animation_duration)) {
       
-      inputFieldError = .emptyString
-      
-    } else if url_string.validateUrl() == false {
-      
-      inputFieldError = .invalidUrl
-      
-      url_string = ""
-      
-    } else if dataStore.doesContain(url_string: url_string) {
-      
-      inputFieldError = .duplicated
-      
-      url_string = ""
-      
-    } else {
-      
-      inputFieldError = .noError
+      /// input string == empty string
+      if url_string.isEmpty {
+        
+        inputFieldError = .emptyString
+        
+      } else if url_string.validateUrl() == false {
+        
+        inputFieldError = .invalidUrl
+        
+        url_string = ""
+        
+      } else if dataStore.doesContain(url_string: url_string) {
+        
+        inputFieldError = .duplicated
+        
+        url_string = ""
+        
+      } else {
+        
+        inputFieldError = .noError
+      }
     }
     
     return inputFieldError == .noError ? true:false
   }
+  
   
 }
 

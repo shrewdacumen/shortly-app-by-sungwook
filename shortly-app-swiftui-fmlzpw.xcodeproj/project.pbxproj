@@ -22,6 +22,7 @@
 		0962BF2926E6492500AC7CB1 /* CopyButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0962BF2826E6492500AC7CB1 /* CopyButtonView.swift */; };
 		0962BF2B26E6614A00AC7CB1 /* UpperCellDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0962BF2A26E6614A00AC7CB1 /* UpperCellDataView.swift */; };
 		0962BF2D26E6630200AC7CB1 /* LowerCellInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0962BF2C26E6630200AC7CB1 /* LowerCellInputView.swift */; };
+		09664EA426E784D3000DF64C /* RoundedRectangkeOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09664EA326E784D3000DF64C /* RoundedRectangkeOverlay.swift */; };
 		0994293426E511C600B9298B /* ConditionalTextFieldOverlayModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0994293326E511C600B9298B /* ConditionalTextFieldOverlayModifier.swift */; };
 		09A5E03226E7129A00C0854D /* AdaptivePaddingOverAllDevices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A5E03126E7129A00C0854D /* AdaptivePaddingOverAllDevices.swift */; };
 		09B366B226E5BCEA003E2BDE /* DebuggingBorderModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B366B126E5BCEA003E2BDE /* DebuggingBorderModifier.swift */; };
@@ -102,6 +103,7 @@
 		0962BF2826E6492500AC7CB1 /* CopyButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyButtonView.swift; sourceTree = "<group>"; };
 		0962BF2A26E6614A00AC7CB1 /* UpperCellDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpperCellDataView.swift; sourceTree = "<group>"; };
 		0962BF2C26E6630200AC7CB1 /* LowerCellInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowerCellInputView.swift; sourceTree = "<group>"; };
+		09664EA326E784D3000DF64C /* RoundedRectangkeOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectangkeOverlay.swift; sourceTree = "<group>"; };
 		0994293326E511C600B9298B /* ConditionalTextFieldOverlayModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalTextFieldOverlayModifier.swift; sourceTree = "<group>"; };
 		09A5E03126E7129A00C0854D /* AdaptivePaddingOverAllDevices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptivePaddingOverAllDevices.swift; sourceTree = "<group>"; };
 		09A5E03426E7303F00C0854D /* OS.log Test - URLSession 18 seconds.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "OS.log Test - URLSession 18 seconds.png"; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 				0994293326E511C600B9298B /* ConditionalTextFieldOverlayModifier.swift */,
 				09B366B126E5BCEA003E2BDE /* DebuggingBorderModifier.swift */,
 				09A5E03126E7129A00C0854D /* AdaptivePaddingOverAllDevices.swift */,
+				09664EA326E784D3000DF64C /* RoundedRectangkeOverlay.swift */,
 			);
 			path = "View Modifiers";
 			sourceTree = "<group>";
@@ -535,6 +538,7 @@
 				09E3D65426E214F700B79222 /* String extension.swift in Sources */,
 				092B308D26E5DE9200B2222B /* IgnoreSafeArea_Unversal.swift in Sources */,
 				0906301126E7477A00EA1B43 /* SpacerOnlyForOnlyDevicesWithoutANotch.swift in Sources */,
+				09664EA426E784D3000DF64C /* RoundedRectangkeOverlay.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

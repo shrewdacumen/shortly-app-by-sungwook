@@ -94,6 +94,24 @@ If you created the project on Xcode 13, it won't happen.  However, in order to m
   - App Icon was added.
   
   
+## Unit Testing & UI Testing
+- shortly_app_swiftui_fmlzpwTests.swift: Unit Testing
+- shortly_app_swiftui_fmlzpwUITests: UI Testing
+  
+  For Automatic UI Testing, compiler flag `XCT_UITEST` should be turned on, otherwise it does NOT work.
+  (and you should uncomment the block marked XCT_UITEST on `ContentView` as well: strangely #define emulation does not work properly on Xcode 13 Beta 5.
+  It maybe a bug due to being a beta version.)
+  
+  The example of marking:
+                  // MARK: XCT_UITEST "textField url_string"
+  
+  : currently XCT_UITEST is turned off.
+  
+  And due to 18 sec of running to fetch the JSON data from SHRTCODE endpoint, manual UI Testing is prefered here.
+  
+  These @State and modifier .accessibility(identifier: "textField url_string") may cause slow down the app that
+  I commented out all of them. (Because I had UI-tested already.)
+  
   
 ## Further improvements conceived in the design but not being attempted: 
   1. I didn’t make multiple URLSessions for multi-threaded inputs.  Even if this will improve user experience but I thought that the code challenge does not want such things.  It is over-engineering for code challenge.  If this is an actual work I may have to add the feature.
