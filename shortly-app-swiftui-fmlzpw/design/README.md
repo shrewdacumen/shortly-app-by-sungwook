@@ -1,6 +1,20 @@
 #  ReadMe for the Code Challenge
 
-## please note the folder `Network glitch, ownership problem, etc` for the trouble I've faced
+        Written Sep 09, 2021 by Sungwook Kim.
+
+
+
+
+
+## I typed all the followings in chronological order, not considering the integrity of ReadMe file.
+
+
+## The `DEMO` movie file was included: 
+  the file name: `shortly demo by sungwook.mov`
+  I forgot to demonstrate when the user enters the same url again.
+  for example, the user entered "sungw.net"  and then the app got a short code for it.
+  when the user enters again "sungw.net"  and then it won't access the SHRTCODE end point but
+    give off an error message on the overlay of text field "It is a duplicate".
 
 
 ## My Environment Xcode 13 beta 5 (Not Xcode 12): SwiftUI3 capable.
@@ -25,6 +39,7 @@ Because I'm downgrade the project to Xcode12 project format, there are some bugs
 If you created the project on Xcode 13, it won't happen.  However, in order to maintain compatibility with Xcode 12, I intentionally created the project in Xcode 12 format.  (Xcode 13, Info.plist disappear and are consolidated to project settings.) 
 
 
+--------------------------------------------------------------------------------------------------------
 
 ## `Additional Features` that were NOT included in the code challenge and that were added:
 ## or Over-Engineered Parts:
@@ -35,18 +50,32 @@ If you created the project on Xcode 13, it won't happen.  However, in order to m
       Because it wasn't a part of the code challenge, I'll add it with Alert view when it could not validate. 
       And please note that **[Alert](https://developer.apple.com/documentation/swiftui/alert)** is deprecated again in **SwiftUI3 (Xcode13)**, being replaced by the modifier  **alert(_:isPresented:presenting:actions:message:)**.
       As I had misunderstood the way of presenting the error message, I interpreted wrongly it to be an Alert view.
+      (version 1 can be viewable when you roll back through git history by checking out.)
       
       - The Error Handling version 2 (tag: The_Error_Handling_Version_2__ConditionalTextFieldOverlayModifier )
       According to the picture '1.2_main_screen_empty_missing_link.png', I converted the corresponding view of the Lower Cell of ContentView by `ConditionalTextFieldOverlayModifier`.
       
-  - The returned state of 'input' field empty shall be treated in the same way. And then I added more features of
-    input error handling by URL validity checking.
+      - `InputFieldError_Enum`, `func isValidString()` of `ContentView`, and  `ConditionalTextFieldOverlayModifier` deals with error handling of the input text on the text field:
+        The reason I added feature is saving from unnecessary calling to the endpoint of SHRTCODE.
+        
+        For example, let say the user enter the input text "my-website/com" or "my-website_com" which are not valid url.
+        instead of waiting for the result, this error handling immediately returns an error "Please enter a correct URL" on the text field without delay.
+        This will surely  improve the user experience that I had to add this feature, even if there is no specification about this in the code challenge.
+        
+      - `ConditionalTextFieldOverlayModifier`: This is designed for displaying the error message over the text field. ( the input text field )
+         and its feature is also combined with the source of truth and animation.   
+  
+      ### `InputFieldError_Enum` related to the above:
+        1. case `.emptyString`: when the user hit the `shorten it button` without giving the text field any text. -> returns "Please add a link here" message on the overlay of text field
+        2. case `invalidUrl`: when the user entered an invalid string. -> returns "Please enter a correct URL" message on the overlay of text field
+        3. case `.duplicated`: when the user entered the same string again -> returns "It is a duplicate" message on the overlay of text field 
+
   
   - Orientation is fixed at Portrate mode.
   
   - I tried to add dark mode to the app but based on the specifications, there is no room to do that: therefore, I cancelled the previous plan.
       
-  - TheGlobalUIParameter.is_debugging_mode controls whether it is in debugging mode or not: currently it is limited to FontTestView.
+  - `TheGlobalUIParameter.is_debugging_mode` controls whether it is in debugging mode or not: currently it is limited to FontTestView.
     because the project is relatively simple.
   
   - Avoided the duplicates in the text field input:
@@ -83,15 +112,15 @@ If you created the project on Xcode 13, it won't happen.  However, in order to m
   - Some features are designed only for testings - stability, performance, visibility like `isTesting_CustomFont`
   
   - All control parameters are consolidated in `struct TheGlobalUIParameter`.
-  
-  - `conditionalOverlay`: This is designed for displaying the error message over the text field. ( the input text field )
-     and its feature is also combined with the source of truth and animation.
      
   - os framework was imported and tested in logging for tracking the performance in remote web access and the corresponding sources of truth.
   
   - many debugging features like `sneakPeak_JSONObject()`
   
   - App Icon was added.
+  
+  --------------------------------------------------------------------------------------------------------
+  
   
   
 ## Unit Testing & UI Testing
@@ -111,6 +140,11 @@ If you created the project on Xcode 13, it won't happen.  However, in order to m
   
   These @State and modifier .accessibility(identifier: "textField url_string") may cause slow down the app that
   I commented out all of them. (Because I had UI-tested already.)
+  
+  ### A glitch from Xcode12 is that unit testing is still working but UI testing gives off a weird result.
+  However, all testings were done chronologically that while I was working on this project step by step on Xcode 13 beta 5,
+    there was no glitch.  And I also manually tested unit-testing and ui-testing as well on both the real devices and virtual devices.
+    
   
   
 ## Thread Sanitizer
@@ -149,3 +183,8 @@ But this project contains scarcely Dispatch. So, it is not necessary.
                 ->SwiftUI
   - Xcode -> Thread Sanitizer, Main Thread Checker.
                 
+
+
+## please note the folder `Network glitch, ownership problem, etc` for the trouble I've faced
+
+## The simulator may give off some glitch on Xcode12.  Please test this project on real devices if possible.
