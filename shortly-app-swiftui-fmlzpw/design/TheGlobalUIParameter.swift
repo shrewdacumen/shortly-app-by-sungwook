@@ -45,7 +45,7 @@ struct TheGlobalUIParameter {
   
   static let snap_animation_duration = TimeInterval(0.2)
   
-  static let the_percenage_of_upper_cell = 0.70 /// 70%
+  static let the_percenage_of_upper_cell = CGFloat(0.70) /// 70%
   
   /// rows of upper cell
   static let row_width_ratio_of_upper_cell = CGFloat(0.85)

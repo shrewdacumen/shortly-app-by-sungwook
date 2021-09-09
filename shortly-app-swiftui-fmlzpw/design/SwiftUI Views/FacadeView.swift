@@ -11,7 +11,7 @@ struct FacadeView: View {
   
   let hasNotch: Bool
   
-  let the_percenage_of_the_cell: Double
+  let the_percenage_of_the_cell: CGFloat
   
   
   var body: some View {

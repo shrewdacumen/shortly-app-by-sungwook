@@ -121,7 +121,7 @@
 		09D259F226E0E46400E78369 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		09D259FF26E0E5BF00E78369 /* shortly_app_swiftui_fmlzpwApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = shortly_app_swiftui_fmlzpwApp.swift; sourceTree = "<group>"; };
 		09D25A0026E0E5BF00E78369 /* UrlAndShortened_Pair.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UrlAndShortened_Pair.swift; sourceTree = "<group>"; };
-		09D25A0126E0E5BF00E78369 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		09D25A0126E0E5BF00E78369 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = "shortly-app-swiftui-fmlzpw/design/README.md"; sourceTree = "<group>"; };
 		09D25A0226E0E5BF00E78369 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		09D25A0426E0E5BF00E78369 /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
 		09D25A0526E0E5BF00E78369 /* Poppins-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ThinItalic.ttf"; sourceTree = "<group>"; };
@@ -264,6 +264,7 @@
 		09D259C726E0E46200E78369 = {
 			isa = PBXGroup;
 			children = (
+				09D25A0126E0E5BF00E78369 /* README.md */,
 				09D259D226E0E46200E78369 /* shortly-app-swiftui-fmlzpw */,
 				09D259E426E0E46400E78369 /* shortly-app-swiftui-fmlzpwTests */,
 				09D259EF26E0E46400E78369 /* shortly-app-swiftui-fmlzpwUITests */,
@@ -323,7 +324,6 @@
 		09D259FE26E0E5BF00E78369 /* design */ = {
 			isa = PBXGroup;
 			children = (
-				09D25A0126E0E5BF00E78369 /* README.md */,
 				09A5E03426E7303F00C0854D /* OS.log Test - URLSession 18 seconds.png */,
 				09A5E03526E7343C00C0854D /* HTTP Traffic not enabled for iPhoneSE2.png */,
 				09A5E02E26E7060500C0854D /* SwiftUI Views */,
