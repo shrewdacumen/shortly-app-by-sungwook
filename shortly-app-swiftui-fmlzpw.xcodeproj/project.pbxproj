@@ -211,8 +211,18 @@
 				091DC9AD26E1090F00C4F2CF /* bug due to starbucks.png */,
 				091DC9AE26E1090F00C4F2CF /* the screen I saw.png */,
 			);
-			path = "Network glitch, ownership problem, etc";
+			name = "Network glitch, ownership problem, etc";
+			path = "shortly-app-swiftui-fmlzpw/design/Network glitch, ownership problem, etc";
 			sourceTree = SOURCE_ROOT;
+		};
+		0931040726E9D9B500699409 /* OS logging test and HTTP Traffic test on Instruments */ = {
+			isa = PBXGroup;
+			children = (
+				09A5E03426E7303F00C0854D /* OS.log Test - URLSession 18 seconds.png */,
+				09A5E03526E7343C00C0854D /* HTTP Traffic not enabled for iPhoneSE2.png */,
+			);
+			path = "OS logging test and HTTP Traffic test on Instruments";
+			sourceTree = "<group>";
 		};
 		09A5E02E26E7060500C0854D /* SwiftUI Views */ = {
 			isa = PBXGroup;
@@ -286,7 +296,6 @@
 			isa = PBXGroup;
 			children = (
 				091DC99F26E108AC00C4F2CF /* Documents for The Code Challenge */,
-				091DC9AB26E1090F00C4F2CF /* Network glitch, ownership problem, etc */,
 				09D259FE26E0E5BF00E78369 /* design */,
 				09D259D726E0E46400E78369 /* Assets.xcassets */,
 				09D259DC26E0E46400E78369 /* Info.plist */,
@@ -324,8 +333,8 @@
 		09D259FE26E0E5BF00E78369 /* design */ = {
 			isa = PBXGroup;
 			children = (
-				09A5E03426E7303F00C0854D /* OS.log Test - URLSession 18 seconds.png */,
-				09A5E03526E7343C00C0854D /* HTTP Traffic not enabled for iPhoneSE2.png */,
+				091DC9AB26E1090F00C4F2CF /* Network glitch, ownership problem, etc */,
+				0931040726E9D9B500699409 /* OS logging test and HTTP Traffic test on Instruments */,
 				09A5E02E26E7060500C0854D /* SwiftUI Views */,
 				09A5E02F26E7064A00C0854D /* View Modifiers */,
 				09A5E03026E7066600C0854D /* extensions */,
