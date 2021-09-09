@@ -88,7 +88,10 @@ If you created the project on Xcode 13, it won't happen.  However, in order to m
     
     Initially, I had been mulling over if I make multiple URLSessions to speed up the connections to the SHRTCODE endpoint. (See the Further Improvements conceived below for more.)
   
-  - And when the shortcode is copied to clipboard, there is a short 1_000ms animation (yellow color on the black button) that notify the user to confirm that it is being processed as well.  `message_animation_duration of TheGlobalUIParameter`
+  - And when the shortcode is copied to clipboard, there is `a short 1_000ms animation` (`yellow color on the black button`) that notify the user to confirm that it is being processed as well.  `message_animation_duration of TheGlobalUIParameter`
+      Because sometimes, the user may want to copy the short code again from the black button which was already copied.
+      This is why I thought that such an animation (yellow text popping up) is necessary. 
+  
   
   - `hasNotch` property, the view modifier `AdaptivePaddingOverAllDevices`, the view `SpacerOnlyForOnlyDevicesWithoutANotch_Previews`:
     - `hasNotch` property, the view modifier `AdaptivePaddingOverAllDevices`, and `SpacerOnlyForOnlyDevicesWithoutANotch_Previews` were
