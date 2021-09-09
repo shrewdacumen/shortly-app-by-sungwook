@@ -32,7 +32,6 @@
 		09D259F126E0E46400E78369 /* shortly_app_swiftui_fmlzpwUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D259F026E0E46400E78369 /* shortly_app_swiftui_fmlzpwUITests.swift */; };
 		09D25A1726E0E5BF00E78369 /* shortly_app_swiftui_fmlzpwApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D259FF26E0E5BF00E78369 /* shortly_app_swiftui_fmlzpwApp.swift */; };
 		09D25A1826E0E5BF00E78369 /* UrlAndShortened_Pair.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D25A0026E0E5BF00E78369 /* UrlAndShortened_Pair.swift */; };
-		09D25A1926E0E5BF00E78369 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 09D25A0126E0E5BF00E78369 /* README.md */; };
 		09D25A1A26E0E5BF00E78369 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09D25A0226E0E5BF00E78369 /* ContentView.swift */; };
 		09D25A1B26E0E5BF00E78369 /* Poppins-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 09D25A0426E0E5BF00E78369 /* Poppins-ExtraLight.ttf */; };
 		09D25A1C26E0E5BF00E78369 /* Poppins-ThinItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 09D25A0526E0E5BF00E78369 /* Poppins-ThinItalic.ttf */; };
@@ -97,6 +96,8 @@
 		092B309026E5F93C00B2222B /* errorReason.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = errorReason.swift; sourceTree = "<group>"; };
 		092B309226E5FE0C00B2222B /* sneakPeak_JSONObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sneakPeak_JSONObject.swift; sourceTree = "<group>"; };
 		0931040926E9E60600699409 /* shortly demo by sungwook.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "shortly demo by sungwook.mov"; sourceTree = "<group>"; };
+		0931040C26E9EA5000699409 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		0931040D26E9EAC100699409 /* README duplicated.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "README duplicated.md"; sourceTree = SOURCE_ROOT; };
 		09341BFC26E4E9DB00C212E1 /* FacadeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacadeView.swift; sourceTree = "<group>"; };
 		09341BFE26E5053500C212E1 /* TheShapeImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheShapeImageView.swift; sourceTree = "<group>"; };
 		09341C0026E505C900C212E1 /* TheGlobalUIParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheGlobalUIParameter.swift; sourceTree = "<group>"; };
@@ -122,7 +123,6 @@
 		09D259F226E0E46400E78369 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		09D259FF26E0E5BF00E78369 /* shortly_app_swiftui_fmlzpwApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = shortly_app_swiftui_fmlzpwApp.swift; sourceTree = "<group>"; };
 		09D25A0026E0E5BF00E78369 /* UrlAndShortened_Pair.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UrlAndShortened_Pair.swift; sourceTree = "<group>"; };
-		09D25A0126E0E5BF00E78369 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = "shortly-app-swiftui-fmlzpw/design/README.md"; sourceTree = "<group>"; };
 		09D25A0226E0E5BF00E78369 /* ContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		09D25A0426E0E5BF00E78369 /* Poppins-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ExtraLight.ttf"; sourceTree = "<group>"; };
 		09D25A0526E0E5BF00E78369 /* Poppins-ThinItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-ThinItalic.ttf"; sourceTree = "<group>"; };
@@ -275,7 +275,7 @@
 		09D259C726E0E46200E78369 = {
 			isa = PBXGroup;
 			children = (
-				09D25A0126E0E5BF00E78369 /* README.md */,
+				0931040C26E9EA5000699409 /* README.md */,
 				09D259D226E0E46200E78369 /* shortly-app-swiftui-fmlzpw */,
 				09D259E426E0E46400E78369 /* shortly-app-swiftui-fmlzpwTests */,
 				09D259EF26E0E46400E78369 /* shortly-app-swiftui-fmlzpwUITests */,
@@ -334,6 +334,7 @@
 		09D259FE26E0E5BF00E78369 /* design */ = {
 			isa = PBXGroup;
 			children = (
+				0931040D26E9EAC100699409 /* README duplicated.md */,
 				0931040926E9E60600699409 /* shortly demo by sungwook.mov */,
 				091DC9AB26E1090F00C4F2CF /* Network glitch, ownership problem, etc */,
 				0931040726E9D9B500699409 /* OS logging test and HTTP Traffic test on Instruments */,
@@ -493,7 +494,6 @@
 				09D25A2C26E0E5BF00E78369 /* Poppins-Italic.ttf in Resources */,
 				09D25A2326E0E5BF00E78369 /* Poppins-ExtraBold.ttf in Resources */,
 				09D25A2726E0E5BF00E78369 /* Poppins-LightItalic.ttf in Resources */,
-				09D25A1926E0E5BF00E78369 /* README.md in Resources */,
 				09D25A2126E0E5BF00E78369 /* Poppins-SemiBoldItalic.ttf in Resources */,
 				09D25A2626E0E5BF00E78369 /* Poppins-Regular.ttf in Resources */,
 				09D25A2226E0E5BF00E78369 /* Poppins-ExtraBoldItalic.ttf in Resources */,
