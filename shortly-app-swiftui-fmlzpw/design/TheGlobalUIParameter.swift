@@ -37,7 +37,9 @@ struct TheGlobalUIParameter {
   
   static let animation_duration = TimeInterval(1.3)
   
-  static let message_font_size = CGFloat(50)
+  static let adding_a_new_message_duration = 1_000
+  static let message_font_size_smaller = CGFloat(30)
+  static let message_font_size_larger = CGFloat(50)
   
   static let message_animation_duration = 1_000
   

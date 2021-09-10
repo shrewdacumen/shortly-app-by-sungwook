@@ -60,7 +60,7 @@ struct CopyButtonView: View {
         if is_Copied_Alive {
           
           Text("COPIED")
-            .font(Font.custom("Poppins-Bold", size: TheGlobalUIParameter.message_font_size))
+            .font(Font.custom("Poppins-Bold", size: TheGlobalUIParameter.message_font_size_larger))
             .foregroundColor(Color.yellow)
         }
         
@@ -100,7 +100,7 @@ struct CopyButtonView: View {
         if is_Copied_Alive {
           
           Text("COPIED")
-            .font(Font.custom("Poppins-Bold", size: TheGlobalUIParameter.message_font_size))
+            .font(Font.custom("Poppins-Bold", size: TheGlobalUIParameter.message_font_size_larger))
             .foregroundColor(Color.yellow)
         }
         

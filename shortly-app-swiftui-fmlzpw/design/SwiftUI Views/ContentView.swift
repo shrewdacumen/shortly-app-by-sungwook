@@ -89,6 +89,8 @@ struct ContentView: View {
   @State var inputFieldError = InputFieldError_Enum.noError
   @State var isTextFieldEditing = false
   
+  @State var willAddNewTask_to_create_new_URLSession = false
+  
   
   // MARK: XCT_UITEST "textField url_string"
   /// Because I use XCT_UITEST symbol in order to save computing loading and memory.
@@ -257,6 +259,9 @@ struct ContentView: View {
                   /// Animation + log started here.
                   print("Just entered URLSession.")
 #endif
+                  
+                  willAddNewTask_to_create_new_URLSession = true
+                  
                   
                   is_URLSessionAnimation_Running = true
                   
@@ -433,7 +438,7 @@ struct ContentView: View {
         if is_URLSessionAnimation_Running {
           
           
-          AnimatingTextView(is_URLSessionAnimation_Running: $is_URLSessionAnimation_Running)
+          AnimatingTextView(willAddNewTask_to_create_new_URLSession: $willAddNewTask_to_create_new_URLSession, is_URLSessionAnimation_Running: $is_URLSessionAnimation_Running)
         }
         
         
