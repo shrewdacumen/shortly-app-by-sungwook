@@ -265,6 +265,9 @@ struct ContentView: View {
                   /// Testing the performance of the remote web endpoint, SHRTCODE/
                   os_signpost(.event, log: TheGlobalUIParameter.pointsOfInterest, name: "Button URLSession", signpostID: osSignpostID, "Start")
                   
+                  
+                  /// `url_string_for_URLSession` is introduced due to the following reasion.
+                  /// The feature of multiple input field attempts while waiting for getting previous short-code from the remote endpoint.
                   let url_string_for_URLSession = url_string
                   
                   
@@ -357,6 +360,8 @@ struct ContentView: View {
                     DispatchQueue.main.async {
                       
                       /// if there aren't another URLSession is running
+                      /// Only when the URLSession is the latest, it can see that
+                      ///  `url_string == url_string_for_URLSession `
                       if url_string == url_string_for_URLSession {
                         
                         /// stop the animation
