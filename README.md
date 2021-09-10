@@ -128,7 +128,7 @@ If you created the project on Xcode 13, it won't happen.  However, in order to m
      This could be done by introducing simplying a private property to each URLSession that is called `url_string_private_for_this_URLSession`.
      By the principle, this is actually multiple URLSessions because the URLSessions are being created on multi-threading. 
      
-  - And all the waiting message for URLSession shall be done by `AnimatingTextView`.
+  - And all the waiting message for URLSession shall be done by `TextMessageWhileWaitingView`.
   
   
   --------------------------------------------------------------------------------------------------------

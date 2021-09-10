@@ -19,7 +19,7 @@
 		09341BFD26E4E9DB00C212E1 /* FacadeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09341BFC26E4E9DB00C212E1 /* FacadeView.swift */; };
 		09341BFF26E5053500C212E1 /* TheShapeImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09341BFE26E5053500C212E1 /* TheShapeImageView.swift */; };
 		09341C0126E505CA00C212E1 /* TheGlobalUIParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09341C0026E505C900C212E1 /* TheGlobalUIParameter.swift */; };
-		0962BF2726E6440100AC7CB1 /* AnimatingTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0962BF2626E6440100AC7CB1 /* AnimatingTextView.swift */; };
+		0962BF2726E6440100AC7CB1 /* TextMessageWhileWaitingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0962BF2626E6440100AC7CB1 /* TextMessageWhileWaitingView.swift */; };
 		0962BF2926E6492500AC7CB1 /* CopyButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0962BF2826E6492500AC7CB1 /* CopyButtonView.swift */; };
 		0962BF2B26E6614A00AC7CB1 /* UpperCellDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0962BF2A26E6614A00AC7CB1 /* UpperCellDataView.swift */; };
 		0962BF2D26E6630200AC7CB1 /* LowerCellInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0962BF2C26E6630200AC7CB1 /* LowerCellInputView.swift */; };
@@ -102,7 +102,7 @@
 		09341BFC26E4E9DB00C212E1 /* FacadeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacadeView.swift; sourceTree = "<group>"; };
 		09341BFE26E5053500C212E1 /* TheShapeImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheShapeImageView.swift; sourceTree = "<group>"; };
 		09341C0026E505C900C212E1 /* TheGlobalUIParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheGlobalUIParameter.swift; sourceTree = "<group>"; };
-		0962BF2626E6440100AC7CB1 /* AnimatingTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatingTextView.swift; sourceTree = "<group>"; };
+		0962BF2626E6440100AC7CB1 /* TextMessageWhileWaitingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextMessageWhileWaitingView.swift; sourceTree = "<group>"; };
 		0962BF2826E6492500AC7CB1 /* CopyButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyButtonView.swift; sourceTree = "<group>"; };
 		0962BF2A26E6614A00AC7CB1 /* UpperCellDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpperCellDataView.swift; sourceTree = "<group>"; };
 		0962BF2C26E6630200AC7CB1 /* LowerCellInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowerCellInputView.swift; sourceTree = "<group>"; };
@@ -235,7 +235,7 @@
 				0962BF2C26E6630200AC7CB1 /* LowerCellInputView.swift */,
 				091DC9B026E10D5E00C4F2CF /* FontTestView.swift */,
 				092B308E26E5E91200B2222B /* BackgroundUIView.swift */,
-				0962BF2626E6440100AC7CB1 /* AnimatingTextView.swift */,
+				0962BF2626E6440100AC7CB1 /* TextMessageWhileWaitingView.swift */,
 				09341BFE26E5053500C212E1 /* TheShapeImageView.swift */,
 				0962BF2826E6492500AC7CB1 /* CopyButtonView.swift */,
 				0906301026E7477A00EA1B43 /* SpacerOnlyForOnlyDevicesWithoutANotch.swift */,
@@ -529,7 +529,7 @@
 			files = (
 				091DC9B326E1105A00C4F2CF /* Color extension.swift in Sources */,
 				091DDCA426EB49DF004F2F31 /* OnAppearOrTaskViewModifier.swift in Sources */,
-				0962BF2726E6440100AC7CB1 /* AnimatingTextView.swift in Sources */,
+				0962BF2726E6440100AC7CB1 /* TextMessageWhileWaitingView.swift in Sources */,
 				09D25A1726E0E5BF00E78369 /* shortly_app_swiftui_fmlzpwApp.swift in Sources */,
 				09341BFD26E4E9DB00C212E1 /* FacadeView.swift in Sources */,
 				09D25A1A26E0E5BF00E78369 /* ContentView.swift in Sources */,

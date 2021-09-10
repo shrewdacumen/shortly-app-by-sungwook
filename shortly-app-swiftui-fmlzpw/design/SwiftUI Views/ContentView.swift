@@ -438,7 +438,7 @@ struct ContentView: View {
         if is_URLSessionAnimation_Running {
           
           
-          AnimatingTextView(willAddNewTask_to_create_new_URLSession: $willAddNewTask_to_create_new_URLSession, is_URLSessionAnimation_Running: $is_URLSessionAnimation_Running)
+          TextMessageWhileWaitingView(willAddNewTask_to_create_new_URLSession: $willAddNewTask_to_create_new_URLSession, is_URLSessionAnimation_Running: $is_URLSessionAnimation_Running)
         }
         
         

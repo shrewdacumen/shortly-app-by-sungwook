@@ -1,13 +1,13 @@
 //
-//  AnimatingTextView.swift
-//  AnimatingTextView
+//  TextMessageWhileWaitingView.swift
+//  TextMessageWhileWaitingView
 //
 //  Created by sungwook on 9/6/21.
 //
 
 import SwiftUI
 
-struct AnimatingTextView: View {
+struct TextMessageWhileWaitingView: View {
   
   @Binding var willAddNewTask_to_create_new_URLSession: Bool
   
@@ -82,10 +82,10 @@ struct AnimatingTextView: View {
   }
 }
 
-struct AnimatingTextView_Previews: PreviewProvider {
+struct TextMessageWhileWaitingView_Previews: PreviewProvider {
   
     static var previews: some View {
       
-      AnimatingTextView(willAddNewTask_to_create_new_URLSession: Binding(get: { true}, set: {_ in }),  is_URLSessionAnimation_Running: Binding(get: { true}, set: {_ in }))
+      TextMessageWhileWaitingView(willAddNewTask_to_create_new_URLSession: Binding(get: { true}, set: {_ in }),  is_URLSessionAnimation_Running: Binding(get: { true}, set: {_ in }))
     }
 }
