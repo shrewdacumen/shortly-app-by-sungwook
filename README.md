@@ -125,6 +125,8 @@ If you created the project on Xcode 13, it won't happen.  However, in order to m
   - **The new feature of multiple input field attempts** while waiting for getting previous short-code from the remote endpoint: 
     I have enabled the app to type a new input text field to fetch another short-code from the SHRTCODE endpoint even 
      during when the user is waiting for getting previous shortcoder url ( In other words, the user can type again a new url while the Fetching Data animation is still running).
+     This could be done by introducing simplying a private property to each URLSession that is called `url_string_private_for_this_URLSession`.
+  
   
   --------------------------------------------------------------------------------------------------------
   

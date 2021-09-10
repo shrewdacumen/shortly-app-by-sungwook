@@ -268,10 +268,10 @@ struct ContentView: View {
                   
                   /// `url_string_for_URLSession` is introduced due to the following reasion.
                   /// The feature of multiple input field attempts while waiting for getting previous short-code from the remote endpoint.
-                  let url_string_for_URLSession = url_string
+                  let url_string_private_for_this_URLSession = url_string
                   
                   
-                  let url = urlByURLComponents(from_url_string: url_string_for_URLSession)
+                  let url = urlByURLComponents(from_url_string: url_string_private_for_this_URLSession)
                   
                   
                   // MARK: URLSessionConfiguration.default
@@ -362,7 +362,7 @@ struct ContentView: View {
                       /// if there aren't another URLSession is running
                       /// Only when the URLSession is the latest, it can see that
                       ///  `url_string == url_string_for_URLSession `
-                      if url_string == url_string_for_URLSession {
+                      if url_string == url_string_private_for_this_URLSession {
                         
                         /// stop the animation
                         is_URLSessionAnimation_Running = false
@@ -373,10 +373,10 @@ struct ContentView: View {
                       
                       withAnimation(.easeIn(duration: TheGlobalUIParameter.animation_duration)) {
                         
-                        dataStore.urlPairs.append(UrlAndShortened_Pair(url_string: url_string_for_URLSession, shortened_url: shortCode))
+                        dataStore.urlPairs.append(UrlAndShortened_Pair(url_string: url_string_private_for_this_URLSession, shortened_url: shortCode))
                         
                         /// if there aren't another URLSession is running
-                        if url_string == url_string_for_URLSession {
+                        if url_string == url_string_private_for_this_URLSession {
                         
                           /// reset the url_string after the use.
                           url_string = ""
