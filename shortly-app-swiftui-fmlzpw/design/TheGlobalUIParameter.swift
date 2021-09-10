@@ -11,6 +11,8 @@ import os.signpost
 
 struct TheGlobalUIParameter {
   
+  static var hasNotch = true  /// iPhone12 is the default device.
+  
   
   static let pointsOfInterest = OSLog(subsystem: "net.sungw.utility.experimental.shortly-app-swiftui-fmlzpw", category: .pointsOfInterest)
   static let urlSession_of_Button = OSLog(subsystem: "net.sungw.utility.experimental.shortly-app-swiftui-fmlzpw", category: "urlSession_of_Button")

@@ -108,4 +108,16 @@ class shortly_app_swiftui_fmlzpwTests: XCTestCase {
     XCTAssertTrue("https://sungw.net/".validateUrl())
     XCTAssertTrue("https://sungw.net/my-portfolio/".validateUrl())
   }
+  
+  func test_Only_On_Devices_Without_A_Notch() throws {
+    
+    //    try XCTSkipUnless(UIDevice.current.userInterfaceIdiom == .pad, "Only supported on iPad")
+    try XCTSkipUnless(TheGlobalUIParameter.hasNotch == false, "Only supported on iPhone without a notch")
+    
+    print("This phone does not has a notch")
+    
+
+    
+  }
+  
 }

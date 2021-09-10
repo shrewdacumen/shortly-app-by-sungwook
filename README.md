@@ -122,6 +122,9 @@ If you created the project on Xcode 13, it won't happen.  However, in order to m
   
   - App Icon was added.
   
+  - I have enabled the app to type a new input text field to fetch another short-code from the SHRTCODE endpoint even 
+     during when the user is waiting for getting previous shortcoder url ( In other words, the user can type again a new url while the Fetching Data animation is still running).
+  
   --------------------------------------------------------------------------------------------------------
   
   

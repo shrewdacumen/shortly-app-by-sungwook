@@ -265,8 +265,10 @@ struct ContentView: View {
                   /// Testing the performance of the remote web endpoint, SHRTCODE/
                   os_signpost(.event, log: TheGlobalUIParameter.pointsOfInterest, name: "Button URLSession", signpostID: osSignpostID, "Start")
                   
+                  let url_string_for_URLSession = url_string
                   
-                  let url = urlByURLComponents(from_url_string: url_string)
+                  
+                  let url = urlByURLComponents(from_url_string: url_string_for_URLSession)
                   
                   
                   // MARK: URLSessionConfiguration.default
@@ -354,18 +356,26 @@ struct ContentView: View {
                     ///  this should be on main thread, for updating the source of truth.
                     DispatchQueue.main.async {
                       
-                      /// stop the animation
-                      is_URLSessionAnimation_Running = false
+                      /// if there aren't another URLSession is running
+                      if url_string == url_string_for_URLSession {
+                        
+                        /// stop the animation
+                        is_URLSessionAnimation_Running = false
+                      }
                       
                       /// Testing the performance of the remote web endpoint, SHRTCODE/
                       os_signpost(.event, log: TheGlobalUIParameter.pointsOfInterest, name: "Button URLSession", signpostID: osSignpostID, "End")
                       
                       withAnimation(.easeIn(duration: TheGlobalUIParameter.animation_duration)) {
                         
-                        dataStore.urlPairs.append(UrlAndShortened_Pair(url_string: url_string, shortened_url: shortCode))
+                        dataStore.urlPairs.append(UrlAndShortened_Pair(url_string: url_string_for_URLSession, shortened_url: shortCode))
                         
-                        /// reset the url_string after the use.
-                        url_string = ""
+                        /// if there aren't another URLSession is running
+                        if url_string == url_string_for_URLSession {
+                        
+                          /// reset the url_string after the use.
+                          url_string = ""
+                        }
                       }
                     }
                     
@@ -424,6 +434,10 @@ struct ContentView: View {
         
       } /// THE END OF Top ZStack for displaying URLSessionAniumation
       .ignoresSafeArea()
+      .onAppearOrTask {
+        
+        TheGlobalUIParameter.hasNotch = hasNotch
+      }
       
     }
     

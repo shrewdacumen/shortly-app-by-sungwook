@@ -11,6 +11,7 @@
 		0906301326E755C800EA1B43 /* urlByURLComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0906301226E755C800EA1B43 /* urlByURLComponents.swift */; };
 		091DC9B126E10D5E00C4F2CF /* FontTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091DC9B026E10D5E00C4F2CF /* FontTestView.swift */; };
 		091DC9B326E1105A00C4F2CF /* Color extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091DC9B226E1105A00C4F2CF /* Color extension.swift */; };
+		091DDCA426EB49DF004F2F31 /* OnAppearOrTaskViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091DDCA326EB49DF004F2F31 /* OnAppearOrTaskViewModifier.swift */; };
 		092B308D26E5DE9200B2222B /* IgnoreSafeArea_Unversal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092B308C26E5DE9200B2222B /* IgnoreSafeArea_Unversal.swift */; };
 		092B308F26E5E91200B2222B /* BackgroundUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092B308E26E5E91200B2222B /* BackgroundUIView.swift */; };
 		092B309126E5F93C00B2222B /* errorReason.swift in Sources */ = {isa = PBXBuildFile; fileRef = 092B309026E5F93C00B2222B /* errorReason.swift */; };
@@ -91,13 +92,13 @@
 		091DC9AF26E1093100C4F2CF /* The Problem I faced.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "The Problem I faced.md"; sourceTree = "<group>"; };
 		091DC9B026E10D5E00C4F2CF /* FontTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontTestView.swift; sourceTree = "<group>"; };
 		091DC9B226E1105A00C4F2CF /* Color extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color extension.swift"; sourceTree = "<group>"; };
+		091DDCA326EB49DF004F2F31 /* OnAppearOrTaskViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnAppearOrTaskViewModifier.swift; sourceTree = "<group>"; };
 		092B308C26E5DE9200B2222B /* IgnoreSafeArea_Unversal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IgnoreSafeArea_Unversal.swift; sourceTree = "<group>"; };
 		092B308E26E5E91200B2222B /* BackgroundUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundUIView.swift; sourceTree = "<group>"; };
 		092B309026E5F93C00B2222B /* errorReason.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = errorReason.swift; sourceTree = "<group>"; };
 		092B309226E5FE0C00B2222B /* sneakPeak_JSONObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sneakPeak_JSONObject.swift; sourceTree = "<group>"; };
 		0931040926E9E60600699409 /* shortly demo by sungwook.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "shortly demo by sungwook.mov"; sourceTree = "<group>"; };
 		0931040C26E9EA5000699409 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		0931040D26E9EAC100699409 /* README duplicated.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "README duplicated.md"; sourceTree = SOURCE_ROOT; };
 		09341BFC26E4E9DB00C212E1 /* FacadeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacadeView.swift; sourceTree = "<group>"; };
 		09341BFE26E5053500C212E1 /* TheShapeImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheShapeImageView.swift; sourceTree = "<group>"; };
 		09341C0026E505C900C212E1 /* TheGlobalUIParameter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheGlobalUIParameter.swift; sourceTree = "<group>"; };
@@ -250,6 +251,7 @@
 				09B366B126E5BCEA003E2BDE /* DebuggingBorderModifier.swift */,
 				09A5E03126E7129A00C0854D /* AdaptivePaddingOverAllDevices.swift */,
 				09664EA326E784D3000DF64C /* RoundedRectangkeOverlay.swift */,
+				091DDCA326EB49DF004F2F31 /* OnAppearOrTaskViewModifier.swift */,
 			);
 			path = "View Modifiers";
 			sourceTree = "<group>";
@@ -334,7 +336,6 @@
 		09D259FE26E0E5BF00E78369 /* design */ = {
 			isa = PBXGroup;
 			children = (
-				0931040D26E9EAC100699409 /* README duplicated.md */,
 				0931040926E9E60600699409 /* shortly demo by sungwook.mov */,
 				091DC9AB26E1090F00C4F2CF /* Network glitch, ownership problem, etc */,
 				0931040726E9D9B500699409 /* OS logging test and HTTP Traffic test on Instruments */,
@@ -527,6 +528,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				091DC9B326E1105A00C4F2CF /* Color extension.swift in Sources */,
+				091DDCA426EB49DF004F2F31 /* OnAppearOrTaskViewModifier.swift in Sources */,
 				0962BF2726E6440100AC7CB1 /* AnimatingTextView.swift in Sources */,
 				09D25A1726E0E5BF00E78369 /* shortly_app_swiftui_fmlzpwApp.swift in Sources */,
 				09341BFD26E4E9DB00C212E1 /* FacadeView.swift in Sources */,
