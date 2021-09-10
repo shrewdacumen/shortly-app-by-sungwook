@@ -122,7 +122,8 @@ If you created the project on Xcode 13, it won't happen.  However, in order to m
   
   - App Icon was added.
   
-  - I have enabled the app to type a new input text field to fetch another short-code from the SHRTCODE endpoint even 
+  - **The new feature of multiple input field attempts** while waiting for getting previous short-code from the remote endpoint: 
+    I have enabled the app to type a new input text field to fetch another short-code from the SHRTCODE endpoint even 
      during when the user is waiting for getting previous shortcoder url ( In other words, the user can type again a new url while the Fetching Data animation is still running).
   
   --------------------------------------------------------------------------------------------------------
@@ -162,16 +163,11 @@ But this project contains scarcely Dispatch. So, it is not necessary.
   
   
 ## Further improvements conceived in the design but not being attempted: 
-  1. I didn’t make multiple URLSessions for multi-threaded inputs.  Even if this will improve user experience but I thought that the code challenge does not want such things.  It is over-engineering for code challenge.  If this is an actual work I may have to add the feature.
-     I am sure that my expertise in Combine and Dispatch (GCD) or multi-threaded design/programming will help improve the user experience.
-   
-    - What you will see by this improvement: 
-    instant typings of multiple urls without having to wait for getting the shortcode from the slow SHRTCODE server. 
   
-  2. I found some performance issue on `LowerCellInputView` but I just postponed it: I got a 2nd jab of Corona vaccine these days. I feel so tired.
+  1. I found some performance issue on `LowerCellInputView` but I just postponed it: I got a 2nd jab of Corona vaccine these days. I feel so tired.
   However, the performance of the current version is relatively good.  I tried to improve readibility which I may postpone.
   
-  3. Additional error code handling and improve the performance URLSession and SwiftUI elements:
+  2. Additional error code handling and improve the performance URLSession and SwiftUI elements:
     I programmed the fundamentals in `Enum_SHRTCODE_ErrorCode`, `errorReasonREST`, `Enum_HttpStatusCode` but not utilized them all.
     Because both that SHRTCODE doesn't follow REST dissertation standard and that I don't want to add arbitrarily again add new SwiftUI element to display all 10 error codes from SHRTCODE.  Partly because I internally check the validity of the URL by validateUrl() of String extension. 
   
