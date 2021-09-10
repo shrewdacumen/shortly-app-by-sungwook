@@ -69,13 +69,19 @@ class shortly_app_swiftui_fmlzpwUITests: XCTestCase {
   }
   
   /// This test taking too long time -> better to test this in manual.
-  func test_tap_button_to_test() {
+  func test_tap_the_button_activate_those_URLSessions() {
     
     let the_button_for_processing_url_string = self.app.buttons["button url_string"]
     
-    /// 18 sec waiting.
+    /// I have to wait
+    /// 18 sec more before the testing
+    /// according to os.signpost logging test.
+    ///    see ReadMe.md for more information.
     
-    XCTExpectFailure("This test can not be done automatically but manually.")
+    print("""
+This test can not be done automatically but manually.
+Therefore, it is why I stopped utilizing this function.
+""")
   }
   
 
