@@ -333,10 +333,13 @@ struct ContentView: View {
                     
                     if let error_code = dic["error_code"] as? Int {
                       
+                      
+                      reset_for_URLSession(With_url_string_private_for_this_URLSession: url_string_private_for_this_URLSession)
+                      
                       print("error code = \(error_code)")
                       print("\((dic["error"] as? String) ?? "no error message")")
                       
-                      // TODO: incomplete. returns a message
+                      // TODO: incomplete. returns a message on `TextMessageWhileWaitingView`
                       // TODO: where should I display this??? which is not specified in the code challenge!!!
                       return
                       
@@ -364,14 +367,7 @@ struct ContentView: View {
                     ///  this should be on main thread, for updating the source of truth.
                     DispatchQueue.main.async {
                       
-                      /// if there aren't another URLSession is running
-                      /// Only when the URLSession is the latest, it can see that
-                      ///  `url_string == url_string_for_URLSession `
-                      if url_string == url_string_private_for_this_URLSession {
-                        
-                        /// stop the animation
-                        is_URLSessionAnimation_Running = false
-                      }
+                      reset_for_URLSession(With_url_string_private_for_this_URLSession: url_string_private_for_this_URLSession)
                       
                       /// Testing the performance of the remote web endpoint, SHRTCODE/
                       os_signpost(.event, log: TheGlobalUIParameter.pointsOfInterest, name: "Button URLSession", signpostID: osSignpostID, "End")
@@ -489,6 +485,21 @@ struct ContentView: View {
     }
     
     return inputFieldError == .noError ? true:false
+  }
+  
+  
+  /// `reset_for_URLSession`
+  /// if there aren't another URLSession is running
+  /// Only when the URLSession is the latest, it can see that
+  ///  `url_string == url_string_for_URLSession `
+  func reset_for_URLSession(With_url_string_private_for_this_URLSession url_string_private_for_this_URLSession: String) {
+    
+
+    if url_string == url_string_private_for_this_URLSession {
+      
+      /// stop the animation
+      is_URLSessionAnimation_Running = false
+    }
   }
   
   
