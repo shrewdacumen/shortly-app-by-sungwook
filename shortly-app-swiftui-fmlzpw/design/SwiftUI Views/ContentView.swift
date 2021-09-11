@@ -390,11 +390,12 @@ struct ContentView: View {
                         
                         dataStore.urlPairs.append(UrlAndShortened_Pair(url_string: url_string_private_for_this_URLSession, shortened_url: shortCode))
                         
-                        /// if there aren't another URLSession is running
+                        /// if there aren't another URLSession is running,
+                        /// Or, to paraphrase this, if this is the last URLSession that the user asked for,
                         if url_string == url_string_private_for_this_URLSession {
                         
                           /// reset the url_string after the use.
-                          url_string = ""
+                          url_string = "Shorten a link here"
                         }
                       }
                     }
@@ -445,7 +446,7 @@ struct ContentView: View {
         } /// THE END OF VStack {}
         
         
-        if is_URLSessionAnimation_Running {
+        if is_URLSessionAnimation_Running || error_message_from_the_web_endpoint != nil {
           
           /// The `url_string` added shall be used immediately that
           ///   It won't block the next message any soon.
