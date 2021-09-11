@@ -157,7 +157,14 @@ If you created the project on Xcode 13, it won't happen.  However, in order to m
                 }
 ```
   
+  - The default behavior "Shorten a link here" on the TextField has been improved.
+```  
+  struct TheGlobalUIParameter {
   
+    static let the_default_string_for_url_string_placeholder = "Shorten a link here"
+  }
+```
+
   --------------------------------------------------------------------------------------------------------
   
   
