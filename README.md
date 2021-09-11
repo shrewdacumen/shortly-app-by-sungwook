@@ -144,11 +144,12 @@ If you created the project on Xcode 13, it won't happen.  However, in order to m
       
   - Upon tapping the textField, the `url_string` should be nil, in order for the user to feel comfortable.
     By this, I could improve the user experience.
+```
                 the_TextFeild_Object.onTapGesture {  /// Upon tap, url_string should be "" for the convenience of the user.
                   
                   url_string = ""
                 }
-  
+```
   
   
   --------------------------------------------------------------------------------------------------------
