@@ -77,7 +77,7 @@ struct LowerCellInputView: View {
           
           
           /// 1st row
-          TextField("Shorten a link here", text: $url_string) { isEditing in
+          TextField(TheGlobalUIParameter.the_default_string_for_url_string_placeholder, text: $url_string) { isEditing in
             
             self.isTextFieldEditing = isEditing
             
@@ -147,11 +147,12 @@ struct LowerCellInputView: View {
             os_signpost(.event, log: TheGlobalUIParameter.pointsOfInterest, name: "Button URLSession", signpostID: osSignpostID, "Start")
             
             
-            /// `url_string_for_URLSession` is introduced due to the following reasion.
+            /// `url_string_private_for_this_URLSession` is introduced due to the following reasion.
             /// The feature of multiple input field attempts while waiting for getting previous short-code from the remote endpoint.
             ///
-            /// ** CAVEAT **
-            /// Do NOT use url_string from here on.
+            /// url_string shall be "" just before typeing any url by onTapGesture()
+            /// And then be validated again by `func isValidString()`.
+            /// Therefore, do NOT worry about invalid url string
             let url_string_private_for_this_URLSession = url_string
             
             
@@ -254,11 +255,10 @@ struct LowerCellInputView: View {
                   
                   /// if there aren't another URLSession is running,
                   /// Or, to paraphrase this, if this is the last URLSession that the user asked for,
-                  //                        if url_string == url_string_private_for_this_URLSession {
                   if self.the_total_number_of_URLSessions == 1 {
                     
                     /// reset the url_string after the use.
-                    url_string = "Shorten a link here"
+                    url_string = TheGlobalUIParameter.the_default_string_for_url_string_placeholder
                   }
                   
                   /// this URLSession is done

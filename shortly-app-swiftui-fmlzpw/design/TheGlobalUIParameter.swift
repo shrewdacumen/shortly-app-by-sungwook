@@ -11,6 +11,8 @@ import os.signpost
 
 struct TheGlobalUIParameter {
   
+  static let the_default_string_for_url_string_placeholder = "Shorten a link here"
+  
   static var hasNotch = true  /// iPhone12 is the default device.
   
   

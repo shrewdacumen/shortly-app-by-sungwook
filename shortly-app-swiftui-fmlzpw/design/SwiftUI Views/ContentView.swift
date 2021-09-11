@@ -82,7 +82,7 @@ struct ContentView: View {
   let the_percenage_of_upper_cell = TheGlobalUIParameter.the_percenage_of_upper_cell
   
   
-  @State var url_string = "Shorten a link here"
+  @State var url_string = TheGlobalUIParameter.the_default_string_for_url_string_placeholder
   
   /// URLSession animation is being controlled by `the_total_number_of_URLSessions`
   @State var the_total_number_of_URLSessions = 0
@@ -155,7 +155,7 @@ struct ContentView: View {
               /// When dataStore.urlPairs.isEmpty, url_string should be as the following.
               .onAppear {
                 
-                url_string = "Shorten a link here"
+                url_string = TheGlobalUIParameter.the_default_string_for_url_string_placeholder
               }
             
           } else {
@@ -181,6 +181,13 @@ struct ContentView: View {
                              the_total_number_of_URLSessions: $the_total_number_of_URLSessions,
                              willAddNewTask_to_create_new_URLSession: $willAddNewTask_to_create_new_URLSession, error_message_from_the_web_endpoint: $error_message_from_the_web_endpoint,
                              dataStore: dataStore)
+            .onAppear {
+              
+              if the_total_number_of_URLSessions == 0 {
+                
+                url_string = TheGlobalUIParameter.the_default_string_for_url_string_placeholder
+              }
+            }
           
           
           
