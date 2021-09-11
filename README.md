@@ -210,16 +210,18 @@ But this project contains scarcely Dispatch. So, it is not necessary.
 ## Further improvements conceived in the design but not being attempted: 
   
   1. I found some performance issue on `LowerCellInputView` but I just postponed it: I got a 2nd jab of Corona vaccine these days. I feel so tired.
-  However, the performance of the current version is relatively good.  I tried to improve readibility which I may postpone.
+  However, the performance of the current version is relatively good.  I tried to improve readibility which I may postpone.  --> DONE.
+  --> I had already solved this. 
   
-  2. Additional error code handling and improve the performance URLSession and SwiftUI elements:
+  2. Additional error code handling and improve the performance URLSession and SwiftUI elements:  --> DONE
     I programmed the fundamentals in `Enum_SHRTCODE_ErrorCode`, `errorReasonREST`, `Enum_HttpStatusCode` but not utilized them all.
     Because both that SHRTCODE doesn't follow REST dissertation standard and that I don't want to add arbitrarily again add new SwiftUI element to display all 10 error codes from SHRTCODE.  Partly because I internally check the validity of the URL by validateUrl() of String extension. 
   
     - What you will see by this improvement:
       Alert (deprecated in SwiftUI3.0) or view modifier .alert can show the message when the url entered by the user violate the policy of SHRTCODE.
-      or see animating SwiftUI element poping up to notify when the situation of SHRTCODE server is down or the url entered by the user violate the policy of SHRTCODE.  
-  
+      or see animating SwiftUI element poping up to notify when the situation of SHRTCODE server is down or the url entered by the user violate the policy of SHRTCODE.
+      
+  --> I think that I had already solved this: because this does not look necessary at the current result of the development.
   
 ## iOS devices and virtual devices/tools - unit-test, UI-test, performance test, profiling, thread sanitizing.
   - iPhone 12, 12 Pro Max -> Simulator
