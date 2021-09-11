@@ -21,8 +21,6 @@ struct TextMessageWhileWaitingView: View {
   /// Transient Error Message from the web endpoint
   @Binding var error_message_from_the_web_endpoint: String?
   
-  @Binding var is_URLSessionAnimation_Running: Bool
-  
   @Binding var the_total_number_of_URLSessions: Int
   
   @State var rotationDegree = 0.0
@@ -42,7 +40,7 @@ struct TextMessageWhileWaitingView: View {
       
       ZStack {
         
-        //MARK: - The Transient Task Message for adding `url_string`
+        // MARK: - The Transient Task Message for adding `url_string`
         VStack {
           
           if willAddNewTask_to_create_new_URLSession {
@@ -71,7 +69,7 @@ struct TextMessageWhileWaitingView: View {
         }
         
         
-        //MARK: - The Transient Error Message from the web endpoint
+        // MARK: - The Transient Error Message from the web endpoint
         VStack {
           
           if let error_message_from_the_web_endpoint = error_message_from_the_web_endpoint {
@@ -104,8 +102,8 @@ struct TextMessageWhileWaitingView: View {
       }
       
       
-      //MARK: - The animating text that is running until the last URLSession finishes.
-      if is_URLSessionAnimation_Running {
+      // MARK: - The animating text that is running until the last URLSession finishes.
+      if the_total_number_of_URLSessions > 0 {
         
         Text("Fetching Data\n(\(the_total_number_of_URLSessions) tasks)")
           .lineLimit(nil)
@@ -137,7 +135,6 @@ struct TextMessageWhileWaitingView_Previews: PreviewProvider {
       TextMessageWhileWaitingView(url_string: Binding(get: { "sungw.net" }, set: {_ in }),
                                   willAddNewTask_to_create_new_URLSession: Binding(get: { true}, set: {_ in }),
                                   error_message_from_the_web_endpoint: Binding(get: { nil}, set: {_ in }),
-                                   is_URLSessionAnimation_Running: Binding(get: { true}, set: {_ in }),
                                    the_total_number_of_URLSessions: Binding(get: { 1}, set: {_ in }))
     }
 }

@@ -80,19 +80,15 @@ struct ContentView: View {
   let the_percenage_of_upper_cell = TheGlobalUIParameter.the_percenage_of_upper_cell
   
   
-  
-  /// URLSession animation
-  @State var is_URLSessionAnimation_Running = false
-  @State var the_total_number_of_URLSessions = 0
-  
-  /// confined for the lower_cell
   @State var url_string = "Shorten a link here"
-  @State var inputFieldError = InputFieldError_Enum.noError
-  @State var isTextFieldEditing = false
+  
+  /// URLSession animation is being controlled by `the_total_number_of_URLSessions`
+  @State var the_total_number_of_URLSessions = 0
   
   @State var willAddNewTask_to_create_new_URLSession = false
   
   @State var error_message_from_the_web_endpoint: String?
+
   
   
   // MARK: XCT_UITEST "textField url_string", uncomment the following when UI Testing
@@ -114,7 +110,7 @@ struct ContentView: View {
       FontTestView()
         .padding()
     }
-
+    
     
     
     
@@ -130,10 +126,10 @@ struct ContentView: View {
       let max_displayable_size = hasNotch == false ? CGSize(width: proxy.size.width, height: proxy.size.height - proxy.safeAreaInsets.top) : UIScreen.main.bounds.size
       
       let upper_cell_size =
-      CGSize(width: max_displayable_size.width, height: max_displayable_size.height * TheGlobalUIParameter.the_percenage_of_upper_cell)
+        CGSize(width: max_displayable_size.width, height: max_displayable_size.height * TheGlobalUIParameter.the_percenage_of_upper_cell)
       
       let lower_cell_size =
-      CGSize(width: max_displayable_size.width, height: max_displayable_size.height - upper_cell_size.height)
+        CGSize(width: max_displayable_size.width, height: max_displayable_size.height - upper_cell_size.height)
       
       
       
@@ -178,289 +174,25 @@ struct ContentView: View {
           
           
           // MARK: - Lower Cell, ZStack
+          LowerCellInputView(hasNotch: hasNotch, upper_cell_size: upper_cell_size, lower_cell_size: lower_cell_size,
+                             url_string: $url_string,
+                             the_total_number_of_URLSessions: $the_total_number_of_URLSessions,
+                             willAddNewTask_to_create_new_URLSession: $willAddNewTask_to_create_new_URLSession, error_message_from_the_web_endpoint: $error_message_from_the_web_endpoint,
+                             dataStore: dataStore)
           
-          /// ** NOTE **
-          /// Because I have no time to improve the performane in this challenge.
-          /// I put it unused for a while.
-          //          LowerCellInputView(hasNotch: hasNotch, upper_cell_size: upper_cell_size, lower_cell_size: lower_cell_size, dataStore: dataStore, is_URLSessionAnimation_Running: $is_URLSessionAnimation_Running)
-          
-          ZStack(alignment: .center) {
-            
-            // MARK: XCT_UITEST "textField url_string", uncomment the following when UI Testing
-//#if XCT_UITEST
-//
-//List(uitest__url_string, id: \.self) {
-//
-//  Text("\($0)")
-//    .foregroundColor(Color.yellow)
-//}
-//
-//#endif
-            
-            
-            TheShapeImageView()
-            
-            let first_row_width_of_lower_cell = lower_cell_size.width * TheGlobalUIParameter.row_width_ratio_of_lower_cell
-            let first_row_height_of_lower_cell = TheGlobalUIParameter.row_height_of_lower_cell
-            
-            HStack { /// THE BEGINING OF Top Stack {}
-              
-              /// ** CAVEAT **
-              /// spacing of the VStack below: the spacing between the input field and the button
-              VStack(alignment: .center, spacing: TheGlobalUIParameter.row_spacing_of_lower_cell) { /// THE BEGINNING OF Lower Celll Stack {}
-                
-                
-                /// 1st row
-                TextField("Shorten a link here", text: $url_string) { isEditing in
-                  
-                  self.isTextFieldEditing = isEditing
-                  
-                } onCommit: {
-                  
-                  _ = isValidString()
-                  
-                }
-                .onTapGesture {  /// Upon tap, url_string should be "" for the convenience of the user.
-                  
-                  url_string = ""
-                }
-                // MARK: XCT_UITEST "textField url_string", uncomment the following when UI Testing
-//                .accessibility(identifier: "textField url_string")
-                /// center the placeholder text.
-                .multilineTextAlignment(TextAlignment.center)
-                .font(Font.custom("Poppins-Regular", size: 20))
-                .foregroundColor(Color(hex_string: ColorEnum.neutral_veryDarkViolet.rawValue))
-                .frame(width: first_row_width_of_lower_cell, height: first_row_height_of_lower_cell, alignment: .center)
-                .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.background_offWhite.rawValue)))
-                ///
-                /// instead of `.textFieldStyle(RoundedBorderTextFieldStyle())`
-                .overlay(
-                  RoundedRectangle(cornerRadius: 5)
-                          .stroke(Color(hex_string: ColorEnum.background_offWhite.rawValue)!, lineWidth: TheGlobalUIParameter.overlay_width_for_rounded_border)
-                  )
-                ///
-                /// `conditionalOverlay`
-                /// This is designed for displaying the error message over the text field/
-                .conditionalOverlay(condition: inputFieldError)
-                .onAppear {
-                  
-                  /// inputFieldError should be reset after 2_000 milliseconds to make the textField usable.
-                  if inputFieldError != .noError {
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(TheGlobalUIParameter.delay_before_clearing_the_error_message)) {
-                      
-                      withAnimation(.easeIn(duration: TheGlobalUIParameter.snap_animation_duration)) {
-                        
-                        inputFieldError = .noError
-                      }
-                    }
-                  }
-                }
-                
-                
-                /// 2nd row
-                Button {
-                  
-                  guard isValidString() else {
-                    
-                    return
-                  }
-                  
-                  
-#if DEBUG
-                  /// Animation + log started here.
-                  print("Just entered URLSession.")
-#endif
-                  
-                  self.initialization_of_this_URLSession()
-                  
-                  is_URLSessionAnimation_Running = true
-                  
-                  
-                  let osSignpostID = OSSignpostID(log: TheGlobalUIParameter.urlSession_of_Button, object: url_string as AnyObject)
-                  
-                  /// Testing the performance of the remote web endpoint, SHRTCODE/
-                  os_signpost(.event, log: TheGlobalUIParameter.pointsOfInterest, name: "Button URLSession", signpostID: osSignpostID, "Start")
-                  
-                  
-                  /// `url_string_for_URLSession` is introduced due to the following reasion.
-                  /// The feature of multiple input field attempts while waiting for getting previous short-code from the remote endpoint.
-                  ///
-                  /// ** CAVEAT **
-                  /// Do NOT use url_string from here on.
-                  let url_string_private_for_this_URLSession = url_string
-                  
-                  
-                  let url = urlByURLComponents(from_url_string: url_string_private_for_this_URLSession)
-                  
-                  
-                  // MARK: URLSessionConfiguration.default
-                  let URLSessionConfig = URLSessionConfiguration.default
-                  URLSessionConfig.allowsConstrainedNetworkAccess = true
-                  URLSessionConfig.allowsCellularAccess = true
-                  URLSessionConfig.waitsForConnectivity = true
-                  
-                  
-                  // MARK: URLSession(configuration: URLSessionConfig).dataTask(with: url) { data, response, error in }
-                  let urlSessionDataTask = URLSession(configuration: URLSessionConfig).dataTask(with: url) { web_raw_data, response, error in
-                    
-                    
-                    // MARK: - This closure should be a sub-thread.
-                    if let response = response {
-                      
-                      
-                      guard let statusCode = (response as? HTTPURLResponse)?.statusCode else {
-                        
-                        fatalError()
-                      }
-                      
-                      guard  statusCode == 200 || statusCode == 201 else {
-                        
-                        print("statusCode = \(statusCode)")
-                        print("An unknown error")
-                        
-                        //MARK: The Transient Error Message from the web endpoint
-                        set_error_message_from_the_web_endpoint(with_url_string: url_string_private_for_this_URLSession)
-                        
-                        return
-                      }
-                    }
-                    
-                    guard let web_raw_data_NonOptional = web_raw_data else {
-                      
-                      fatalError("no data received")
-                    }
-                    
-                    guard let received_JSONObject = try? JSONSerialization.jsonObject(with: web_raw_data_NonOptional, options: [.mutableContainers]) else {
-                      
-                      fatalError("the error in jasonObject catch")
-                    }
-                    
-                    
-                    if TheGlobalUIParameter.is_debugging_mode {
-                      
-                      sneakPeak_JSONObject(received_JSONObject)
-                    }
-                    
-                    guard let dic = received_JSONObject as? Dictionary<String, Any> else {
-                      
-                      fatalError("Wrong JSon Format! (should be Dictionary<String, Any>)")
-                    }
-                    
-                    
-                    if let error_code = dic["error_code"] as? Int {
-                      
-                      stop_animation_when_this_URLSession_is_the_last()
-                      
-                      print("error code = \(error_code)")
-                      print("\((dic["error"] as? String) ?? "no error message")")
-                      
-                      //MARK: The Transient Error Message from the web endpoint
-                      set_error_message_from_the_web_endpoint(with_url_string: url_string_private_for_this_URLSession)
-
-                      return
-                    }
-                    
-
-                    /// If this happens, it is caused by the programming logic.
-                    /// Therefore, it is safe to fatalError()
-                    guard let result = dic["result"] as? [String : String] else {
-                      
-                      fatalError("result format error")
-                    }
-                    
-                    /// If this happens, it is caused by the programming logic.
-                    /// Therefore, it is safe to fatalError()
-                    guard let shortCode = result["full_short_link"] else {
-                      
-                      fatalError("full_short_link not found")
-                    }
-                    
-                    
-                    print("\(shortCode)")
-
-                    
-                    ///  this should be on main thread, for updating the source of truth.
-                    DispatchQueue.main.async {
-                      
-                      stop_animation_when_this_URLSession_is_the_last()
-                      
-                      /// Testing the performance of the remote web endpoint, SHRTCODE/
-                      os_signpost(.event, log: TheGlobalUIParameter.pointsOfInterest, name: "Button URLSession", signpostID: osSignpostID, "End")
-                      
-                      withAnimation(.easeIn(duration: TheGlobalUIParameter.animation_duration)) {
-                        
-                        dataStore.urlPairs.append(UrlAndShortened_Pair(url_string: url_string_private_for_this_URLSession, shortened_url: shortCode))
-                        
-                        /// if there aren't another URLSession is running,
-                        /// Or, to paraphrase this, if this is the last URLSession that the user asked for,
-                        //                        if url_string == url_string_private_for_this_URLSession {
-                        if self.the_total_number_of_URLSessions == 1 {
-                        
-                          /// reset the url_string after the use.
-                          url_string = "Shorten a link here"
-                        }
-                        
-                        /// this URLSession is done
-                        self.the_total_number_of_URLSessions -= 1
-                      }
-                      
-                    }
-                    
-                    
-                  } /// THE END OF URLSessionConfig).dataTask(with: url)  {}
-                  
-                  
-                  urlSessionDataTask.resume()
-                  
-                  
-                } label: {
-                  
-                  Text("Shorten It")
-                    .font(Font.custom("Poppins-Bold", size: FontSize_Enum.bodyCopy.rawValue*TheGlobalUIParameter.shorten_it_ratio))
-                    .foregroundColor(Color(hex_string: ColorEnum.background_white.rawValue))
-                  
-                }
-                // MARK: XCT_UITEST "textField url_string", uncomment the following when UI Testing
-//                .accessibility(identifier: "button url_string")
-                .frame(width: lower_cell_size.width * TheGlobalUIParameter.row_width_ratio_of_lower_cell, height: TheGlobalUIParameter.row_height_of_lower_cell, alignment: .center)
-                .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.primary_cyan.rawValue)))
-                ///
-                /// instead of `.buttonStyle(<#T##S#>)`
-                .overlay(
-                  RoundedRectangle(cornerRadius: 5)
-                          .stroke(Color(hex_string: ColorEnum.primary_cyan.rawValue)!, lineWidth: TheGlobalUIParameter.overlay_width_for_rounded_border)
-                         )
-                
-                
-              }  /// THE END OF VStack {}
-              //            .debuggingBorder()
-              
-              
-            } /// THE END OF HStack
-            .frame(width: lower_cell_size.width, height: lower_cell_size.height, alignment: .center)
-            //          .debuggingBorder()
-            
-            
-            
-            
-          } /// THE END OF Lower Celll ZStack {}
-          .frame(width: lower_cell_size.width, height: lower_cell_size.height, alignment: .bottom)
-          .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.neutral_veryDarkViolet.rawValue))
-          )
           
           
         } /// THE END OF VStack {}
         
         
-        if is_URLSessionAnimation_Running || error_message_from_the_web_endpoint != nil {
+        if the_total_number_of_URLSessions > 0 || error_message_from_the_web_endpoint != nil {
           
           /// The `url_string` added shall be used immediately that
           ///   It won't block the next message any soon.
           TextMessageWhileWaitingView(url_string: $url_string,
                                       willAddNewTask_to_create_new_URLSession: $willAddNewTask_to_create_new_URLSession,
                                       error_message_from_the_web_endpoint: $error_message_from_the_web_endpoint,
-                                      is_URLSessionAnimation_Running: $is_URLSessionAnimation_Running, the_total_number_of_URLSessions: $the_total_number_of_URLSessions)
+                                      the_total_number_of_URLSessions: $the_total_number_of_URLSessions)
         }
         
         
@@ -471,87 +203,11 @@ struct ContentView: View {
         TheGlobalUIParameter.hasNotch = hasNotch
       }
       
-    }
-    
-  }
-  
-  
-  
-  func isValidString() -> Bool {
-    
-    withAnimation(.easeIn(duration: TheGlobalUIParameter.snap_animation_duration)) {
       
-      /// input string == empty string
-      if url_string.isEmpty {
-        
-        inputFieldError = .emptyString
-        
-      } else if url_string.validateUrl() == false {
-        
-        inputFieldError = .invalidUrl
-        
-        url_string = ""
-        
-      } else if dataStore.doesContain(url_string: url_string) {
-        
-        inputFieldError = .duplicated
-        
-        url_string = ""
-        
-      } else {
-        
-        inputFieldError = .noError
-        
-        // MARK: XCT_UITEST "textField url_string", uncomment the following when UI Testing
-//        #if XCT_UITEST
-//        uitest__url_string.append(url_string)
-//        #endif
-        
-      }
-    }
+    }  /// THE END OF GeometryReader {}
     
-    return inputFieldError == .noError ? true:false
   }
-  
-  
-  /// `stop_animation_when_this_URLSession_is_the_last`
-  /// if there aren't another URLSession is running
-  /// Only when the URLSession is the latest, it can see that
-  ///  `url_string == url_string_for_URLSession `
-  func stop_animation_when_this_URLSession_is_the_last() {
-    
-    /// The following `if` can NOT be used any more, since url_string keeps changing
-    ///  on the tapping of TextFeild.
-    //    if url_string == url_string_private_for_this_URLSession {
-    
-    
-    if self.the_total_number_of_URLSessions == 1 {
-      
-      /// stop the animation
-      is_URLSessionAnimation_Running = false
-    }
-  }
-  
-  
-  func initialization_of_this_URLSession() {
-    
-    /// initialization of this URLSession
-    self.willAddNewTask_to_create_new_URLSession = true
-    
-    self.the_total_number_of_URLSessions += 1
-    
-    
-    /// This will be set by the `TextMessageWhileWaitingView`.
-    //    self.error_message_from_the_web_endpoint = nil
-  }
-  
-  
-  func set_error_message_from_the_web_endpoint(with_url_string url_string: String) {
-    
-    self.error_message_from_the_web_endpoint = "Task \(url_string):\n An Error from the SHRTCODE endpoint"
-    
-    self.the_total_number_of_URLSessions -= 1
-  }
+
   
 }
 

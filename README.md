@@ -170,10 +170,10 @@ If you created the project on Xcode 13, it won't happen.  However, in order to m
   (and you should uncomment the block marked XCT_UITEST on `ContentView` as well: strangely #define emulation does not work properly on Xcode 13 Beta 5.
   It maybe a bug due to being a beta version.)
   
-  The example of marking in the sources.
-                  // MARK: XCT_UITEST "textField url_string"
+  The example of marking in the sources. And you should uncomment the following comment to test this.
+                  // MARK: XCT_UITEST "textField url_string", uncomment the following when UI Testing
   
-  : currently XCT_UITEST is turned off.
+  : currently the compiler symbol XCT_UITEST is turned off.
   
   And due to 18 sec of running to fetch the JSON data from SHRTCODE endpoint, manual UI Testing is prefered here.
   

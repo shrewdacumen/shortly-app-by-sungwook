@@ -9,12 +9,7 @@ import SwiftUI
 import os.signpost
 
 
-// TODO: incomplete. not being used yet. it requires performance tuning in the future.
 
-// MARK: Not in use
-
-/// Because I have no time to improve the performane in this challenge.
-/// I put it unused for a while.
 struct LowerCellInputView: View {
   
   let hasNotch: Bool
@@ -23,17 +18,44 @@ struct LowerCellInputView: View {
   
   let lower_cell_size: CGSize
   
-  @State var url_string = ""
+  
+  // MARK: - Binding properties
+  @Binding var url_string: String
+  
+  /// URLSession animation is being controlled by `the_total_number_of_URLSessions`
+  @Binding var the_total_number_of_URLSessions: Int
+  
+  @Binding var willAddNewTask_to_create_new_URLSession: Bool
+  
+  @Binding var error_message_from_the_web_endpoint: String?
+  
+  
+  // MARK: - confined for the lower_cell
   @State var inputFieldError = InputFieldError_Enum.noError
+  
   @State var isTextFieldEditing = false
   
+  
+  // MARK: - ObservedObject
   @ObservedObject var dataStore: DataStore
   
-  @Binding var is_URLSessionAnimation_Running:Bool
+  
   
   var body: some View {
     
+    
     ZStack(alignment: .center) {
+      
+      // MARK: XCT_UITEST "textField url_string", uncomment the following when UI Testing
+//      #if XCT_UITEST
+//
+//      List(uitest__url_string, id: \.self) {
+//
+//        Text("\($0)")
+//          .foregroundColor(Color.yellow)
+//      }
+//
+//      #endif
       
       
       TheShapeImageView()
@@ -58,8 +80,12 @@ struct LowerCellInputView: View {
             _ = isValidString()
             
           }
-          // MARK: UI TESTING "textField url_string"
-          .accessibility(identifier: "textField url_string")
+          .onTapGesture {  /// Upon tap, url_string should be "" for the convenience of the user.
+            
+            url_string = ""
+          }
+          // MARK: XCT_UITEST "textField url_string", uncomment the following when UI Testing
+//          .accessibility(identifier: "textField url_string")
           /// center the placeholder text.
           .multilineTextAlignment(TextAlignment.center)
           .font(Font.custom("Poppins-Regular", size: 20))
@@ -70,8 +96,8 @@ struct LowerCellInputView: View {
           /// instead of `.textFieldStyle(RoundedBorderTextFieldStyle())`
           .overlay(
             RoundedRectangle(cornerRadius: 5)
-                    .stroke(Color(hex_string: ColorEnum.background_offWhite.rawValue)!, lineWidth: TheGlobalUIParameter.overlay_width_for_rounded_border)
-            )
+              .stroke(Color(hex_string: ColorEnum.background_offWhite.rawValue)!, lineWidth: TheGlobalUIParameter.overlay_width_for_rounded_border)
+          )
           ///
           /// `conditionalOverlay`
           /// This is designed for displaying the error message over the text field/
@@ -101,12 +127,13 @@ struct LowerCellInputView: View {
             }
             
             
-#if DEBUG
+            #if DEBUG
             /// Animation + log started here.
             print("Just entered URLSession.")
-#endif
+            #endif
             
-            is_URLSessionAnimation_Running = true
+            self.initialization_of_this_URLSession()
+            
             
             let osSignpostID = OSSignpostID(log: TheGlobalUIParameter.urlSession_of_Button, object: url_string as AnyObject)
             
@@ -114,7 +141,15 @@ struct LowerCellInputView: View {
             os_signpost(.event, log: TheGlobalUIParameter.pointsOfInterest, name: "Button URLSession", signpostID: osSignpostID, "Start")
             
             
-            let url = urlByURLComponents(from_url_string: url_string)
+            /// `url_string_for_URLSession` is introduced due to the following reasion.
+            /// The feature of multiple input field attempts while waiting for getting previous short-code from the remote endpoint.
+            ///
+            /// ** CAVEAT **
+            /// Do NOT use url_string from here on.
+            let url_string_private_for_this_URLSession = url_string
+            
+            
+            let url = urlByURLComponents(from_url_string: url_string_private_for_this_URLSession)
             
             
             // MARK: URLSessionConfiguration.default
@@ -142,7 +177,9 @@ struct LowerCellInputView: View {
                   print("statusCode = \(statusCode)")
                   print("An unknown error")
                   
-                  // TODO: incomplete. returns a message
+                  //MARK: The Transient Error Message from the web endpoint
+                  set_error_message_from_the_web_endpoint(with_url_string: url_string_private_for_this_URLSession)
+                  
                   return
                 }
               }
@@ -165,7 +202,7 @@ struct LowerCellInputView: View {
               
               guard let dic = received_JSONObject as? Dictionary<String, Any> else {
                 
-                fatalError("Dictionary<String, Any>")
+                fatalError("Wrong JSon Format! (should be Dictionary<String, Any>)")
               }
               
               
@@ -174,13 +211,13 @@ struct LowerCellInputView: View {
                 print("error code = \(error_code)")
                 print("\((dic["error"] as? String) ?? "no error message")")
                 
-                // TODO: incomplete. returns a message
-                // TODO: where should I display this??? which is not specified in the code challenge!!!
-                return
+                //MARK: The Transient Error Message from the web endpoint
+                set_error_message_from_the_web_endpoint(with_url_string: url_string_private_for_this_URLSession)
                 
+                return
               }
               
-
+              
               /// If this happens, it is caused by the programming logic.
               /// Therefore, it is safe to fatalError()
               guard let result = dic["result"] as? [String : String] else {
@@ -197,24 +234,31 @@ struct LowerCellInputView: View {
               
               
               print("\(shortCode)")
-
+              
               
               ///  this should be on main thread, for updating the source of truth.
               DispatchQueue.main.async {
-                
-                /// stop the animation
-                is_URLSessionAnimation_Running = false
                 
                 /// Testing the performance of the remote web endpoint, SHRTCODE/
                 os_signpost(.event, log: TheGlobalUIParameter.pointsOfInterest, name: "Button URLSession", signpostID: osSignpostID, "End")
                 
                 withAnimation(.easeIn(duration: TheGlobalUIParameter.animation_duration)) {
                   
-                  dataStore.urlPairs.append(UrlAndShortened_Pair(url_string: url_string, shortened_url: shortCode))
+                  dataStore.urlPairs.append(UrlAndShortened_Pair(url_string: url_string_private_for_this_URLSession, shortened_url: shortCode))
                   
-                  /// reset the url_string after the use.
-                  url_string = ""
+                  /// if there aren't another URLSession is running,
+                  /// Or, to paraphrase this, if this is the last URLSession that the user asked for,
+                  //                        if url_string == url_string_private_for_this_URLSession {
+                  if self.the_total_number_of_URLSessions == 1 {
+                    
+                    /// reset the url_string after the use.
+                    url_string = "Shorten a link here"
+                  }
+                  
+                  /// this URLSession is done
+                  self.the_total_number_of_URLSessions -= 1
                 }
+                
               }
               
               
@@ -231,26 +275,16 @@ struct LowerCellInputView: View {
               .foregroundColor(Color(hex_string: ColorEnum.background_white.rawValue))
             
           }
-          // MARK: UI Testing "button url_string"
-          .accessibility(identifier: "button url_string")
+          // MARK: XCT_UITEST "textField url_string", uncomment the following when UI Testing
+//          .accessibility(identifier: "button url_string")
           .frame(width: lower_cell_size.width * TheGlobalUIParameter.row_width_ratio_of_lower_cell, height: TheGlobalUIParameter.row_height_of_lower_cell, alignment: .center)
           .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.primary_cyan.rawValue)))
           ///
-          /// instead of `.buttonStyle(T##S)`
+          /// instead of `.buttonStyle(<#T##S#>)`
           .overlay(
             RoundedRectangle(cornerRadius: 5)
-                    .stroke(Color(hex_string: ColorEnum.primary_cyan.rawValue)!, lineWidth: TheGlobalUIParameter.overlay_width_for_rounded_border)
-                   )
-          
-          
-//          #if XCT_UITEST
-//
-//          List(uitest__url_string) {
-//
-//            Text("\($0)")
-//          }
-//
-//          #endif
+              .stroke(Color(hex_string: ColorEnum.primary_cyan.rawValue)!, lineWidth: TheGlobalUIParameter.overlay_width_for_rounded_border)
+          )
           
           
         }  /// THE END OF VStack {}
@@ -268,8 +302,10 @@ struct LowerCellInputView: View {
     .frame(width: lower_cell_size.width, height: lower_cell_size.height, alignment: .bottom)
     .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.neutral_veryDarkViolet.rawValue))
     )
-
+    
+    
   }
+  
   
   
   
@@ -298,10 +334,38 @@ struct LowerCellInputView: View {
       } else {
         
         inputFieldError = .noError
+        
+        // MARK: XCT_UITEST "textField url_string", uncomment the following when UI Testing
+//        #if XCT_UITEST
+//        uitest__url_string.append(url_string)
+//        #endif
+        
       }
     }
     
     return inputFieldError == .noError ? true:false
+  }
+  
+  
+  
+  func initialization_of_this_URLSession() {
+    
+    /// initialization of this URLSession
+    self.willAddNewTask_to_create_new_URLSession = true
+    
+    self.the_total_number_of_URLSessions += 1
+    
+    
+    /// This will be set by the `TextMessageWhileWaitingView`.
+    //    self.error_message_from_the_web_endpoint = nil
+  }
+  
+  
+  func set_error_message_from_the_web_endpoint(with_url_string url_string: String) {
+    
+    self.error_message_from_the_web_endpoint = "Task \(url_string):\n An Error from the SHRTCODE endpoint"
+    
+    self.the_total_number_of_URLSessions -= 1
   }
   
   
@@ -311,8 +375,14 @@ struct LowerCellInputView: View {
 
 struct LowerCellInputView_Previews: PreviewProvider {
   
-    static var previews: some View {
-      
-      LowerCellInputView(hasNotch: true, upper_cell_size: CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * TheGlobalUIParameter.the_percenage_of_upper_cell), lower_cell_size: CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * (1.0-TheGlobalUIParameter.the_percenage_of_upper_cell)), dataStore: sampleDataStore_ForPreviews, is_URLSessionAnimation_Running: Binding(get: { false}, set: {_ in}))
-    }
+  static var previews: some View {
+    
+    LowerCellInputView(hasNotch: true, upper_cell_size: CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * TheGlobalUIParameter.the_percenage_of_upper_cell), lower_cell_size: CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * (1.0-TheGlobalUIParameter.the_percenage_of_upper_cell)),
+                       url_string: Binding(get: { "SungW.net" }, set: {_ in }),
+                       the_total_number_of_URLSessions: Binding(get: { 0 }, set: {_ in }),
+                       willAddNewTask_to_create_new_URLSession: Binding(get: { true }, set: {_ in }),
+                       error_message_from_the_web_endpoint: Binding(get: {nil}, set: {_ in}),
+                       dataStore: sampleDataStore_ForPreviews
+    )
+  }
 }
