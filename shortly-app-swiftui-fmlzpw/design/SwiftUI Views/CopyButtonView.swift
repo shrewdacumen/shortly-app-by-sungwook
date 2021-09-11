@@ -48,10 +48,10 @@ struct CopyButtonView: View {
             }
             
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(TheGlobalUIParameter.message_animation_duration)) {
-             
+              
               withAnimation(.easeIn(duration: 1.0)) {
                 
-              is_Copied_Alive = false
+                is_Copied_Alive = false
               }
               
             }
@@ -85,14 +85,14 @@ struct CopyButtonView: View {
             
             withAnimation(.easeIn(duration: 1.0)) {
               
-            is_Copied_Alive = true
+              is_Copied_Alive = true
             }
             
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(TheGlobalUIParameter.message_animation_duration)) {
               
               withAnimation(.easeIn(duration: 1.0)) {
                 
-              is_Copied_Alive = false
+                is_Copied_Alive = false
               }
             }
           }
@@ -110,7 +110,7 @@ struct CopyButtonView: View {
     }
     
   }
- 
+  
 }
 
 

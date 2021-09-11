@@ -37,7 +37,14 @@ struct TheGlobalUIParameter {
   
   static let animation_duration = TimeInterval(1.3)
   
-  static let adding_a_new_message_duration = 700 /// in milliseconds.
+  /// The Transient Task Message for adding `url_string`
+  static let the_duration_of_adding_new_task_message = 700 /// in milliseconds.
+  static let the_position_of_new_URLSession_message_in_percent = CGFloat(0.11) /// The below can NOT be the same.
+  
+  /// The Transient Error Message from the web endpoint
+  static let the_duration_of_the_Transient_Error_Message_from_the_web_endpoint = 1_500 /// in milliseconds.
+  static let the_position_of_error_message_from_the_web_endpoint_in_percent = CGFloat(0.13)
+  
   static let message_font_size_smaller = CGFloat(30)
   static let message_font_size_larger = CGFloat(50)
   

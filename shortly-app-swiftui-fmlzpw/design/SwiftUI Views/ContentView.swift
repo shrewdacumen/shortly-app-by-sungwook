@@ -85,7 +85,7 @@ struct ContentView: View {
   @State var  is_URLSessionAnimation_Running = false
   
   /// confined for the lower_cell
-  @State var url_string = ""
+  @State var url_string = "Shorten a link here"
   @State var inputFieldError = InputFieldError_Enum.noError
   @State var isTextFieldEditing = false
   
@@ -213,6 +213,10 @@ struct ContentView: View {
                   
                   _ = isValidString()
                   
+                }
+                .onTapGesture {  /// Upon tap, url_string should be "" for the convenience of the user.
+                  
+                  url_string = ""
                 }
                 // MARK: XCT_UITEST "textField url_string"
 //                .accessibility(identifier: "textField url_string")

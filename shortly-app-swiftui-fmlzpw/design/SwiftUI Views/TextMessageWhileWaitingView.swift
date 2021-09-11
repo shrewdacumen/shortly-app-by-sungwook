@@ -50,7 +50,7 @@ struct TextMessageWhileWaitingView: View {
               .foregroundColor(Color(hex_string: ColorEnum.secondary_red.rawValue))
               .onAppear {
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(TheGlobalUIParameter.adding_a_new_message_duration)) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(TheGlobalUIParameter.the_duration_of_adding_new_task_message)) {
                   
                   withAnimation(.easeIn(duration: 0.5)) {
                     
@@ -59,7 +59,7 @@ struct TextMessageWhileWaitingView: View {
                 }
                 
               }
-              .padding(.top, UIScreen.main.bounds.height*CGFloat(0.14))
+              .padding(.top, UIScreen.main.bounds.height*TheGlobalUIParameter.the_position_of_new_URLSession_message_in_percent)
             
             
             Spacer()
@@ -79,7 +79,7 @@ struct TextMessageWhileWaitingView: View {
               .foregroundColor(Color(hex_string: ColorEnum.secondary_red.rawValue))
               .onAppear {
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(TheGlobalUIParameter.adding_a_new_message_duration)) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(TheGlobalUIParameter.the_duration_of_the_Transient_Error_Message_from_the_web_endpoint)) {
                   
                   withAnimation(.easeIn(duration: 0.5)) {
                     
@@ -88,7 +88,7 @@ struct TextMessageWhileWaitingView: View {
                 }
                 
               }
-              .padding(.top, UIScreen.main.bounds.height*CGFloat(0.16))
+              .padding(.top, UIScreen.main.bounds.height*TheGlobalUIParameter.the_position_of_error_message_from_the_web_endpoint_in_percent)
             
             
             Spacer()
@@ -129,7 +129,7 @@ struct TextMessageWhileWaitingView_Previews: PreviewProvider {
     static var previews: some View {
       
       TextMessageWhileWaitingView(url_string: Binding(get: { "sungw.net" }, set: {_ in }),
-                                  willAddNewTask_to_create_new_URLSession: Binding(get: { true}, set: {_ in }), 
+                                  willAddNewTask_to_create_new_URLSession: Binding(get: { true}, set: {_ in }),
                                   error_message_from_the_web_endpoint: Binding(get: { nil}, set: {_ in }),
                                    is_URLSessionAnimation_Running: Binding(get: { true}, set: {_ in }))
     }

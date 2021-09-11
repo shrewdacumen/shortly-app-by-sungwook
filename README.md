@@ -91,7 +91,12 @@ If you created the project on Xcode 13, it won't happen.  However, in order to m
   - And when the shortcode is copied to clipboard, there is `a short 1_000ms animation` (`yellow color on the black button`) that notify the user to confirm that it is being processed as well.  `message_animation_duration of TheGlobalUIParameter`
       Because sometimes, the user may want to copy the short code again from the black button which was already copied.
       This is why I thought that such an animation (yellow text popping up) is necessary. 
-  
+      
+      This is the rare case even after the short-code was copied to the clipboard, the user may want to copy it again for a reason.  
+      For this very case, I added a notification animation with the yellow ‘copied’ even after the button turned already black.
+
+      * The Place for this function: `CopyButtonView`
+      
   
   - `hasNotch` property, the view modifier `AdaptivePaddingOverAllDevices`, the view `SpacerOnlyForOnlyDevicesWithoutANotch_Previews`:
     - `hasNotch` property, the view modifier `AdaptivePaddingOverAllDevices`, and `SpacerOnlyForOnlyDevicesWithoutANotch_Previews` were
@@ -135,6 +140,14 @@ If you created the project on Xcode 13, it won't happen.  However, in order to m
       the error message from the remote (SHRTCODE) end point.
       And previously made func `errorReason_SHRTCODEWAY(fromErrorCode:)` could give the user more detail error message for the end point.
       However, I think that overwhelming the screen with too much information would not be pleasant to the user that I gave up using the func.
+      
+      
+  - Upon tapping the textField, the `url_string` should be nil, in order for the user to feel comfortable.
+    By this, I could improve the user experience.
+                the_TextFeild_Object.onTapGesture {  /// Upon tap, url_string should be "" for the convenience of the user.
+                  
+                  url_string = ""
+                }
   
   
   
