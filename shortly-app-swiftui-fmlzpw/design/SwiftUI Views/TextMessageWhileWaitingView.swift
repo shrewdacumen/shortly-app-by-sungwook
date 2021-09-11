@@ -75,8 +75,10 @@ struct TextMessageWhileWaitingView: View {
           if let error_message_from_the_web_endpoint = error_message_from_the_web_endpoint {
             
             Text("\(error_message_from_the_web_endpoint)")
-              .font(Font.custom("Poppins-Bold", size: TheGlobalUIParameter.message_font_size_smaller))
-              .foregroundColor(Color(hex_string: ColorEnum.secondary_red.rawValue))
+              .font(Font.custom("Poppins-Bold", size: TheGlobalUIParameter.message_font_size_smallest))
+              .lineLimit(nil)
+              .multilineTextAlignment(/*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/)
+              .foregroundColor(Color(hex_string: ColorEnum.primary_violet.rawValue))
               .onAppear {
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(TheGlobalUIParameter.the_duration_of_the_Transient_Error_Message_from_the_web_endpoint)) {

@@ -318,7 +318,9 @@ struct ContentView: View {
                         print("statusCode = \(statusCode)")
                         print("An unknown error")
                         
-                        // TODO: incomplete. returns a message
+                        //MARK: The Transient Error Message from the web endpoint
+                        set_error_message_from_the_web_endpoint(with_url_string: url_string_private_for_this_URLSession)
+                        
                         return
                       }
                     }
@@ -354,7 +356,7 @@ struct ContentView: View {
                       print("\((dic["error"] as? String) ?? "no error message")")
                       
                       //MARK: The Transient Error Message from the web endpoint
-                      error_message_from_the_web_endpoint = "Task \(url_string_private_for_this_URLSession): An Error from the SHRTCODE endpoint"
+                      set_error_message_from_the_web_endpoint(with_url_string: url_string_private_for_this_URLSession)
 
                       return
                     }
@@ -525,10 +527,18 @@ struct ContentView: View {
   func initialization_of_this_URLSession() {
     
     /// initialization of this URLSession
-    willAddNewTask_to_create_new_URLSession = true
-    self.error_message_from_the_web_endpoint = nil
+    self.willAddNewTask_to_create_new_URLSession = true
+    
+    /// This will be set by the `TextMessageWhileWaitingView`.
+    //    self.error_message_from_the_web_endpoint = nil
   }
   
+  
+  func set_error_message_from_the_web_endpoint(with_url_string url_string: String) {
+    
+    self.error_message_from_the_web_endpoint = "Task \(url_string):\n An Error from the SHRTCODE endpoint"
+    
+  }
   
 }
 
