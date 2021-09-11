@@ -23,6 +23,8 @@ struct TextMessageWhileWaitingView: View {
   
   @Binding var is_URLSessionAnimation_Running: Bool
   
+  @Binding var the_total_number_of_URLSessions: Int
+  
   @State var rotationDegree = 0.0
 
   
@@ -105,7 +107,9 @@ struct TextMessageWhileWaitingView: View {
       //MARK: - The animating text that is running until the last URLSession finishes.
       if is_URLSessionAnimation_Running {
         
-        Text("Fetching Data")
+        Text("Fetching Data\n(\(the_total_number_of_URLSessions) tasks)")
+          .lineLimit(nil)
+          .multilineTextAlignment(.center)
           .font(Font.custom("Poppins-Bold", size: TheGlobalUIParameter.message_font_size_larger))
           .foregroundColor(Color(hex_string: ColorEnum.secondary_red.rawValue))
           .rotationEffect(.degrees(rotationDegree))
@@ -133,6 +137,7 @@ struct TextMessageWhileWaitingView_Previews: PreviewProvider {
       TextMessageWhileWaitingView(url_string: Binding(get: { "sungw.net" }, set: {_ in }),
                                   willAddNewTask_to_create_new_URLSession: Binding(get: { true}, set: {_ in }),
                                   error_message_from_the_web_endpoint: Binding(get: { nil}, set: {_ in }),
-                                   is_URLSessionAnimation_Running: Binding(get: { true}, set: {_ in }))
+                                   is_URLSessionAnimation_Running: Binding(get: { true}, set: {_ in }),
+                                   the_total_number_of_URLSessions: Binding(get: { 1}, set: {_ in }))
     }
 }

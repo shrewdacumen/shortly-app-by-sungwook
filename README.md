@@ -81,10 +81,12 @@ If you created the project on Xcode 13, it won't happen.  However, in order to m
   - Avoided the duplicates in the text field input:
     Entering the same `url-string` will be discarded, not being added as a row but showing its error message on the TextEdit Field again as the same way as others. 
   
-  - Added 'Fetching Data' animation while waiting for getting the short code from SHRTCODE.
-    it takes 18 seconds from S. Korea to SHRTCODE germany that I found from os logging performance testing.
+  - Added 'Fetching Data (n tasks)' animation when there are n connections to the remote endpoint while waiting for getting the short code from SHRTCODE.
+      For example, you shall see 'Fetching Data (5 tasks)' task message animation when there are 5 connections to the SHRTCODE endpoint.
+      
+    Because it takes 18 seconds from S. Korea to SHRTCODE germany that I found from os logging performance testing.
     see the file `OS.log Test - URLSession 18 seconds.png` and `HTTP Traffic not enabled for iPhoneSE2.png`
-    I could not test HTTP traffic through Instruments because my iOS devices are limited: iPhoneSE2, not iPhone12 or 11.
+    However, I could not test HTTP traffic through Instruments because my iOS devices are limited: iPhoneSE2, not iPhone12 or 11.
     
     Initially, I had been mulling over if I make multiple URLSessions to speed up the connections to the SHRTCODE endpoint. (See the Further Improvements conceived below for more.)
   
@@ -128,6 +130,10 @@ If you created the project on Xcode 13, it won't happen.  However, in order to m
   - App Icon was added.
   
   - **The new feature of multiple input field attempts** while waiting for getting previous short-code from the remote endpoint: 
+    And, as an example, you shall see 'Fetching Data (5 tasks)' task message animation when there are 5 connections to the SHRTCODE endpoint.
+    
+    And `the_total_number_of_URLSessions` is the total active URLSessions connecting to SHRTCODE endpoint: the number will change dyamically as all the active web tasks progress. 
+  
     I have enabled the app to type a new input text field to fetch another short-code from the SHRTCODE endpoint even 
      during when the user is waiting for getting previous shortcoder url ( In other words, the user can type again a new url while the Fetching Data animation is still running).
      This could be done by introducing simplying a private property to each URLSession that is called `url_string_private_for_this_URLSession`.

@@ -82,7 +82,8 @@ struct ContentView: View {
   
   
   /// URLSession animation
-  @State var  is_URLSessionAnimation_Running = false
+  @State var is_URLSessionAnimation_Running = false
+  @State var the_total_number_of_URLSessions = 0
   
   /// confined for the lower_cell
   @State var url_string = "Shorten a link here"
@@ -343,14 +344,13 @@ struct ContentView: View {
                     
                     guard let dic = received_JSONObject as? Dictionary<String, Any> else {
                       
-                      fatalError("Dictionary<String, Any>")
+                      fatalError("Wrong JSon Format! (should be Dictionary<String, Any>)")
                     }
                     
                     
                     if let error_code = dic["error_code"] as? Int {
                       
-                      
-                      stop_animation_for_this_URLSession(With_url_string_private_for_this_URLSession: url_string_private_for_this_URLSession)
+                      stop_animation_when_this_URLSession_is_the_last()
                       
                       print("error code = \(error_code)")
                       print("\((dic["error"] as? String) ?? "no error message")")
@@ -383,7 +383,7 @@ struct ContentView: View {
                     ///  this should be on main thread, for updating the source of truth.
                     DispatchQueue.main.async {
                       
-                      stop_animation_for_this_URLSession(With_url_string_private_for_this_URLSession: url_string_private_for_this_URLSession)
+                      stop_animation_when_this_URLSession_is_the_last()
                       
                       /// Testing the performance of the remote web endpoint, SHRTCODE/
                       os_signpost(.event, log: TheGlobalUIParameter.pointsOfInterest, name: "Button URLSession", signpostID: osSignpostID, "End")
@@ -394,12 +394,17 @@ struct ContentView: View {
                         
                         /// if there aren't another URLSession is running,
                         /// Or, to paraphrase this, if this is the last URLSession that the user asked for,
-                        if url_string == url_string_private_for_this_URLSession {
+                        //                        if url_string == url_string_private_for_this_URLSession {
+                        if self.the_total_number_of_URLSessions == 1 {
                         
                           /// reset the url_string after the use.
                           url_string = "Shorten a link here"
                         }
+                        
+                        /// this URLSession is done
+                        self.the_total_number_of_URLSessions -= 1
                       }
+                      
                     }
                     
                     
@@ -455,7 +460,7 @@ struct ContentView: View {
           TextMessageWhileWaitingView(url_string: $url_string,
                                       willAddNewTask_to_create_new_URLSession: $willAddNewTask_to_create_new_URLSession,
                                       error_message_from_the_web_endpoint: $error_message_from_the_web_endpoint,
-                                      is_URLSessionAnimation_Running: $is_URLSessionAnimation_Running)
+                                      is_URLSessionAnimation_Running: $is_URLSessionAnimation_Running, the_total_number_of_URLSessions: $the_total_number_of_URLSessions)
         }
         
         
@@ -509,14 +514,18 @@ struct ContentView: View {
   }
   
   
-  /// `stop_animation_for_this_URLSession`
+  /// `stop_animation_when_this_URLSession_is_the_last`
   /// if there aren't another URLSession is running
   /// Only when the URLSession is the latest, it can see that
   ///  `url_string == url_string_for_URLSession `
-  func stop_animation_for_this_URLSession(With_url_string_private_for_this_URLSession url_string_private_for_this_URLSession: String) {
+  func stop_animation_when_this_URLSession_is_the_last() {
     
-
-    if url_string == url_string_private_for_this_URLSession {
+    /// The following `if` can NOT be used any more, since url_string keeps changing
+    ///  on the tapping of TextFeild.
+    //    if url_string == url_string_private_for_this_URLSession {
+    
+    
+    if self.the_total_number_of_URLSessions == 1 {
       
       /// stop the animation
       is_URLSessionAnimation_Running = false
@@ -529,6 +538,9 @@ struct ContentView: View {
     /// initialization of this URLSession
     self.willAddNewTask_to_create_new_URLSession = true
     
+    self.the_total_number_of_URLSessions += 1
+    
+    
     /// This will be set by the `TextMessageWhileWaitingView`.
     //    self.error_message_from_the_web_endpoint = nil
   }
@@ -538,6 +550,7 @@ struct ContentView: View {
     
     self.error_message_from_the_web_endpoint = "Task \(url_string):\n An Error from the SHRTCODE endpoint"
     
+    self.the_total_number_of_URLSessions -= 1
   }
   
 }

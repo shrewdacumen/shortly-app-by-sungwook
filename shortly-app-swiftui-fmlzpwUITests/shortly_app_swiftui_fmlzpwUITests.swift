@@ -82,6 +82,8 @@ class shortly_app_swiftui_fmlzpwUITests: XCTestCase {
 This test can not be done automatically but manually.
 Therefore, it is why I stopped utilizing this function.
 """)
+     
+    _ = the_button_for_processing_url_string
   }
   
 
