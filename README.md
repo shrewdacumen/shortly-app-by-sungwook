@@ -130,6 +130,13 @@ If you created the project on Xcode 13, it won't happen.  However, in order to m
      
   - And all the waiting message for URLSession shall be done by `TextMessageWhileWaitingView`.
   
+  - `TextMessageWhileWaitingView`:  The Transient Error Message from the web endpoint + The Transient Task Message for adding `url_string` + Progress animation
+    This is designed to give not only newly added url task information and progress animation but also 
+      the error message from the remote (SHRTCODE) end point.
+      And previously made func `errorReason_SHRTCODEWAY(fromErrorCode:)` could give the user more detail error message for the end point.
+      However, I think that overwhelming the screen with too much information would not be pleasant to the user that I gave up using the func.
+  
+  
   
   --------------------------------------------------------------------------------------------------------
   

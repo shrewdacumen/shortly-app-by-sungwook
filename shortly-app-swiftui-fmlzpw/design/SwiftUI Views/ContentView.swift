@@ -91,6 +91,8 @@ struct ContentView: View {
   
   @State var willAddNewTask_to_create_new_URLSession = false
   
+  @State var error_message_from_the_web_endpoint: String?
+  
   
   // MARK: XCT_UITEST "textField url_string"
   /// Because I use XCT_UITEST symbol in order to save computing loading and memory.
@@ -260,10 +262,10 @@ struct ContentView: View {
                   print("Just entered URLSession.")
 #endif
                   
-                  willAddNewTask_to_create_new_URLSession = true
-                  
+                  self.initialization_of_this_URLSession()
                   
                   is_URLSessionAnimation_Running = true
+                  
                   
                   let osSignpostID = OSSignpostID(log: TheGlobalUIParameter.urlSession_of_Button, object: url_string as AnyObject)
                   
@@ -273,6 +275,9 @@ struct ContentView: View {
                   
                   /// `url_string_for_URLSession` is introduced due to the following reasion.
                   /// The feature of multiple input field attempts while waiting for getting previous short-code from the remote endpoint.
+                  ///
+                  /// ** CAVEAT **
+                  /// Do NOT use url_string from here on.
                   let url_string_private_for_this_URLSession = url_string
                   
                   
@@ -334,15 +339,15 @@ struct ContentView: View {
                     if let error_code = dic["error_code"] as? Int {
                       
                       
-                      reset_for_URLSession(With_url_string_private_for_this_URLSession: url_string_private_for_this_URLSession)
+                      stop_animation_for_this_URLSession(With_url_string_private_for_this_URLSession: url_string_private_for_this_URLSession)
                       
                       print("error code = \(error_code)")
                       print("\((dic["error"] as? String) ?? "no error message")")
                       
-                      // TODO: incomplete. returns a message on `TextMessageWhileWaitingView`
-                      // TODO: where should I display this??? which is not specified in the code challenge!!!
+                      //MARK: The Transient Error Message from the web endpoint
+                      error_message_from_the_web_endpoint = "Task \(url_string_private_for_this_URLSession): An Error from the SHRTCODE endpoint"
+
                       return
-                      
                     }
                     
 
@@ -367,7 +372,7 @@ struct ContentView: View {
                     ///  this should be on main thread, for updating the source of truth.
                     DispatchQueue.main.async {
                       
-                      reset_for_URLSession(With_url_string_private_for_this_URLSession: url_string_private_for_this_URLSession)
+                      stop_animation_for_this_URLSession(With_url_string_private_for_this_URLSession: url_string_private_for_this_URLSession)
                       
                       /// Testing the performance of the remote web endpoint, SHRTCODE/
                       os_signpost(.event, log: TheGlobalUIParameter.pointsOfInterest, name: "Button URLSession", signpostID: osSignpostID, "End")
@@ -433,8 +438,12 @@ struct ContentView: View {
         
         if is_URLSessionAnimation_Running {
           
-          
-          TextMessageWhileWaitingView(willAddNewTask_to_create_new_URLSession: $willAddNewTask_to_create_new_URLSession, is_URLSessionAnimation_Running: $is_URLSessionAnimation_Running)
+          /// The `url_string` added shall be used immediately that
+          ///   It won't block the next message any soon.
+          TextMessageWhileWaitingView(url_string: $url_string,
+                                      willAddNewTask_to_create_new_URLSession: $willAddNewTask_to_create_new_URLSession,
+                                      error_message_from_the_web_endpoint: $error_message_from_the_web_endpoint,
+                                      is_URLSessionAnimation_Running: $is_URLSessionAnimation_Running)
         }
         
         
@@ -488,11 +497,11 @@ struct ContentView: View {
   }
   
   
-  /// `reset_for_URLSession`
+  /// `stop_animation_for_this_URLSession`
   /// if there aren't another URLSession is running
   /// Only when the URLSession is the latest, it can see that
   ///  `url_string == url_string_for_URLSession `
-  func reset_for_URLSession(With_url_string_private_for_this_URLSession url_string_private_for_this_URLSession: String) {
+  func stop_animation_for_this_URLSession(With_url_string_private_for_this_URLSession url_string_private_for_this_URLSession: String) {
     
 
     if url_string == url_string_private_for_this_URLSession {
@@ -500,6 +509,14 @@ struct ContentView: View {
       /// stop the animation
       is_URLSessionAnimation_Running = false
     }
+  }
+  
+  
+  func initialization_of_this_URLSession() {
+    
+    /// initialization of this URLSession
+    willAddNewTask_to_create_new_URLSession = true
+    self.error_message_from_the_web_endpoint = nil
   }
   
   

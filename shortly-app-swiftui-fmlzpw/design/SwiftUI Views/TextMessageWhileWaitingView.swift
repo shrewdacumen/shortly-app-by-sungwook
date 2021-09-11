@@ -7,9 +7,19 @@
 
 import SwiftUI
 
+
+/// The functions that this struct gives:
+/// 1. The Transient Error Message from the web endpoint +
+/// 2. The Transient Task Message for adding `url_string` +
+/// 3. Progress animation
 struct TextMessageWhileWaitingView: View {
   
+  @Binding var url_string: String
+
   @Binding var willAddNewTask_to_create_new_URLSession: Bool
+  
+  /// Transient Error Message from the web endpoint
+  @Binding var error_message_from_the_web_endpoint: String?
   
   @Binding var is_URLSessionAnimation_Running: Bool
   
@@ -28,37 +38,69 @@ struct TextMessageWhileWaitingView: View {
     
     ZStack {
       
-      
-      VStack {
+      ZStack {
         
-        if willAddNewTask_to_create_new_URLSession {
+        //MARK: - The Transient Task Message for adding `url_string`
+        VStack {
           
-          Text("Adding a new url")
-            .font(Font.custom("Poppins-Bold", size: TheGlobalUIParameter.message_font_size_smaller))
-            .foregroundColor(Color(hex_string: ColorEnum.secondary_red.rawValue))
-            .onAppear {
-              
-              DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(TheGlobalUIParameter.adding_a_new_message_duration)) {
+          if willAddNewTask_to_create_new_URLSession {
+            
+            Text("Adding \(url_string)")
+              .font(Font.custom("Poppins-Bold", size: TheGlobalUIParameter.message_font_size_smaller))
+              .foregroundColor(Color(hex_string: ColorEnum.secondary_red.rawValue))
+              .onAppear {
                 
-                withAnimation(.easeIn(duration: 0.5)) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(TheGlobalUIParameter.adding_a_new_message_duration)) {
                   
-                  willAddNewTask_to_create_new_URLSession = false
+                  withAnimation(.easeIn(duration: 0.5)) {
+                    
+                    willAddNewTask_to_create_new_URLSession = false
+                  }
                 }
+                
               }
-              
-            }
-            .padding(.top, UIScreen.main.bounds.height*CGFloat(0.15))
+              .padding(.top, UIScreen.main.bounds.height*CGFloat(0.14))
+            
+            
+            Spacer()
+            
+          }
           
+        }
+        
+        
+        //MARK: - The Transient Error Message from the web endpoint
+        VStack {
           
-          Spacer()
+          if let error_message_from_the_web_endpoint = error_message_from_the_web_endpoint {
+            
+            Text("\(error_message_from_the_web_endpoint)")
+              .font(Font.custom("Poppins-Bold", size: TheGlobalUIParameter.message_font_size_smaller))
+              .foregroundColor(Color(hex_string: ColorEnum.secondary_red.rawValue))
+              .onAppear {
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(TheGlobalUIParameter.adding_a_new_message_duration)) {
+                  
+                  withAnimation(.easeIn(duration: 0.5)) {
+                    
+                    self.error_message_from_the_web_endpoint = nil
+                  }
+                }
+                
+              }
+              .padding(.top, UIScreen.main.bounds.height*CGFloat(0.16))
+            
+            
+            Spacer()
+            
+          }
           
         }
         
       }
       
       
-      
-      /// URLSession animation
+      //MARK: - The animating text that is running until the last URLSession finishes.
       if is_URLSessionAnimation_Running {
         
         Text("Fetching Data")
@@ -86,6 +128,9 @@ struct TextMessageWhileWaitingView_Previews: PreviewProvider {
   
     static var previews: some View {
       
-      TextMessageWhileWaitingView(willAddNewTask_to_create_new_URLSession: Binding(get: { true}, set: {_ in }),  is_URLSessionAnimation_Running: Binding(get: { true}, set: {_ in }))
+      TextMessageWhileWaitingView(url_string: Binding(get: { "sungw.net" }, set: {_ in }),
+                                  willAddNewTask_to_create_new_URLSession: Binding(get: { true}, set: {_ in }), 
+                                  error_message_from_the_web_endpoint: Binding(get: { nil}, set: {_ in }),
+                                   is_URLSessionAnimation_Running: Binding(get: { true}, set: {_ in }))
     }
 }
