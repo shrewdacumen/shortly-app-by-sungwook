@@ -43,6 +43,9 @@ struct TextMessageWhileWaitingView: View {
         // MARK: - The Transient Task Message for adding `url_string`
         VStack {
           
+          //TODO: incomplete. this approah depends on how fast the user tap on the button.
+          /// However, I have no enough time to mull over another avenue or look at from long distance.
+          /// Even if it works, for the most user can NOT react against machine that fast.
           if willAddNewTask_to_create_new_URLSession {
             
             Text("Adding \(url_string)")
