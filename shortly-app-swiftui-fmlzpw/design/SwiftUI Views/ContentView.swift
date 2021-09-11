@@ -94,7 +94,7 @@ struct ContentView: View {
   @State var error_message_from_the_web_endpoint: String?
   
   
-  // MARK: XCT_UITEST "textField url_string"
+  // MARK: XCT_UITEST "textField url_string", uncomment the following when UI Testing
   /// Because I use XCT_UITEST symbol in order to save computing loading and memory.
 //  #if XCT_UITEST
 //
@@ -153,6 +153,11 @@ struct ContentView: View {
               .padding(.top, hasNotch ? 0.0:proxy.safeAreaInsets.top)
               .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.background_offWhite.rawValue))
               )
+              /// When dataStore.urlPairs.isEmpty, url_string should be as the following.
+              .onAppear {
+                
+                url_string = "Shorten a link here"
+              }
             
           } else {
             
@@ -180,7 +185,7 @@ struct ContentView: View {
           
           ZStack(alignment: .center) {
             
-            // MARK: XCT_UITEST "textField url_string"
+            // MARK: XCT_UITEST "textField url_string", uncomment the following when UI Testing
 //#if XCT_UITEST
 //
 //List(uitest__url_string, id: \.self) {
@@ -218,7 +223,7 @@ struct ContentView: View {
                   
                   url_string = ""
                 }
-                // MARK: XCT_UITEST "textField url_string"
+                // MARK: XCT_UITEST "textField url_string", uncomment the following when UI Testing
 //                .accessibility(identifier: "textField url_string")
                 /// center the placeholder text.
                 .multilineTextAlignment(TextAlignment.center)
@@ -408,7 +413,7 @@ struct ContentView: View {
                     .foregroundColor(Color(hex_string: ColorEnum.background_white.rawValue))
                   
                 }
-                // MARK: XCT_UITEST "button url_string"
+                // MARK: XCT_UITEST "textField url_string", uncomment the following when UI Testing
 //                .accessibility(identifier: "button url_string")
                 .frame(width: lower_cell_size.width * TheGlobalUIParameter.row_width_ratio_of_lower_cell, height: TheGlobalUIParameter.row_height_of_lower_cell, alignment: .center)
                 .background(Rectangle().foregroundColor(Color(hex_string: ColorEnum.primary_cyan.rawValue)))
@@ -489,7 +494,7 @@ struct ContentView: View {
         
         inputFieldError = .noError
         
-        // MARK: XCT_UITEST "textField url_string"
+        // MARK: XCT_UITEST "textField url_string", uncomment the following when UI Testing
 //        #if XCT_UITEST
 //        uitest__url_string.append(url_string)
 //        #endif

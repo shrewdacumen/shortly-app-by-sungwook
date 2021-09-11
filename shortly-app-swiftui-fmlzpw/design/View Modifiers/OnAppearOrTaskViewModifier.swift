@@ -14,6 +14,7 @@ struct OnAppearOrTaskViewModifier: ViewModifier {
   
   func body(content: Content) -> some View {
     
+    #if swift(>=5.5)
     
     if #available(iOS 15.0, *) {
       
@@ -31,6 +32,16 @@ struct OnAppearOrTaskViewModifier: ViewModifier {
       }
       
     }
+    
+    #else
+    
+    content.onAppear { /// putting non-escaping closure into @escaping closure has no issue.
+      
+      action()
+    }
+    
+    #endif
+    
     
   }
   
