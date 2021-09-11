@@ -9,6 +9,8 @@ import SwiftUI
 import os.signpost
 
 
+/// Because I can NOT use C++ style #define pragma
+/// I use the compiler flag in lieu of it.
 //#define XCT_UITEST -> compiler flag -D XCT_UITEST
 
 

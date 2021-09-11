@@ -172,8 +172,14 @@ If you created the project on Xcode 13, it won't happen.  However, in order to m
   
   The example of marking in the sources. And you should uncomment the following comment to test this.
                   // MARK: XCT_UITEST "textField url_string", uncomment the following when UI Testing
-  
-  : currently the compiler symbol XCT_UITEST is turned off.
+
+      -> currently the compiler symbol XCT_UITEST is turned off.
+      And you can see both on ContentView and LowerCellInputView,
+```
+      /// Because I can NOT use C++ style #define pragma
+      /// I use the compiler flag in lieu of it.
+      //#define XCT_UITEST -> compiler flag -D XCT_UITEST
+``` 
   
   And due to 18 sec of running to fetch the JSON data from SHRTCODE endpoint, manual UI Testing is prefered here.
   
