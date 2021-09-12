@@ -31,7 +31,7 @@ struct LowerCellInputView: View {
   /// URLSession animation is being controlled by `the_total_number_of_URLSessions`
   @Binding var the_total_number_of_URLSessions: Int
   
-  @Binding var willAddNewTask_to_create_new_URLSession: Bool
+  @Binding var will_AddNewTaskMessage_for_creating_new_URLSession: Bool
   
   @Binding var error_message_from_the_web_endpoint: String?
   
@@ -357,12 +357,12 @@ struct LowerCellInputView: View {
   func initialization_of_this_URLSession() {
     
     /// initialization of this URLSession
-    self.willAddNewTask_to_create_new_URLSession = true
+    self.will_AddNewTaskMessage_for_creating_new_URLSession = true
     
     self.the_total_number_of_URLSessions += 1
     
     
-    /// This will be set by the `TextMessageWhileWaitingView`.
+    /// This will be set by the `ProgressInformation_Or_ErrorMessageHandling_WhileWaitingForShortCodeView`.
     //    self.error_message_from_the_web_endpoint = nil
   }
   
@@ -386,7 +386,7 @@ struct LowerCellInputView_Previews: PreviewProvider {
     LowerCellInputView(hasNotch: true, upper_cell_size: CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * TheGlobalUIParameter.the_percenage_of_upper_cell), lower_cell_size: CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height * (1.0-TheGlobalUIParameter.the_percenage_of_upper_cell)),
                        url_string: Binding(get: { "SungW.net" }, set: {_ in }),
                        the_total_number_of_URLSessions: Binding(get: { 0 }, set: {_ in }),
-                       willAddNewTask_to_create_new_URLSession: Binding(get: { true }, set: {_ in }),
+                       will_AddNewTaskMessage_for_creating_new_URLSession: Binding(get: { true }, set: {_ in }),
                        error_message_from_the_web_endpoint: Binding(get: {nil}, set: {_ in}),
                        dataStore: sampleDataStore_ForPreviews
     )

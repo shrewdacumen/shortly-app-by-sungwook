@@ -1,6 +1,6 @@
 //
-//  TextMessageWhileWaitingView.swift
-//  TextMessageWhileWaitingView
+//  ProgressInformation_Or_ErrorMessageHandling_WhileWaitingForShortCodeView.swift
+//  ProgressInformation_Or_ErrorMessageHandling_WhileWaitingForShortCodeView
 //
 //  Created by sungwook on 9/6/21.
 //
@@ -12,11 +12,11 @@ import SwiftUI
 /// 1. The Transient Error Message from the web endpoint +
 /// 2. The Transient Task Message for adding `url_string` +
 /// 3. Progress animation
-struct TextMessageWhileWaitingView: View {
+struct ProgressInformation_Or_ErrorMessageHandling_WhileWaitingForShortCodeView: View {
   
   @Binding var url_string: String
 
-  @Binding var willAddNewTask_to_create_new_URLSession: Bool
+  @Binding var will_AddNewTaskMessage_for_creating_new_URLSession: Bool
   
   /// Transient Error Message from the web endpoint
   @Binding var error_message_from_the_web_endpoint: String?
@@ -24,6 +24,8 @@ struct TextMessageWhileWaitingView: View {
   @Binding var the_total_number_of_URLSessions: Int
   
   @State var rotationDegree = 0.0
+  
+  @State var hide_addTaskMessage: DispatchWorkItem?
 
   
   
@@ -34,7 +36,7 @@ struct TextMessageWhileWaitingView: View {
   }
   
   var body: some View {
-    
+        
     
     ZStack {
       
@@ -46,19 +48,35 @@ struct TextMessageWhileWaitingView: View {
           //TODO: incomplete. this approah depends on how fast the user tap on the button.
           /// However, I have no enough time to mull over another avenue or look at from long distance.
           /// Even if it works, for the most user can NOT react against machine that fast.
-          if willAddNewTask_to_create_new_URLSession {
+          if will_AddNewTaskMessage_for_creating_new_URLSession {
             
             Text("Adding \(url_string)")
               .font(Font.custom("Poppins-Bold", size: TheGlobalUIParameter.message_font_size_smaller))
               .foregroundColor(Color(hex_string: ColorEnum.secondary_red.rawValue))
+              ///
+              /// when `the_total_number_of_URLSessions` changes,
+              /// Or when a new `addNewTask` is added again,
+              .onChange(of: the_total_number_of_URLSessions) { newValue in
+                
+                hide_addTaskMessage?.cancel()
+                hide_addTaskMessage = nil
+                will_AddNewTaskMessage_for_creating_new_URLSession = false
+                
+                print("the_total_number_of_URLSessions \(the_total_number_of_URLSessions) \(newValue) cancelled")
+              }
               .onAppear {
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(TheGlobalUIParameter.the_duration_of_adding_new_task_message)) {
+                hide_addTaskMessage = DispatchWorkItem {
                   
                   withAnimation(.easeIn(duration: 0.5)) {
                     
-                    willAddNewTask_to_create_new_URLSession = false
+                    will_AddNewTaskMessage_for_creating_new_URLSession = false
                   }
+                }
+                
+                if let hide_addTaskMessage = hide_addTaskMessage {
+                  
+                  DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(TheGlobalUIParameter.the_duration_of_adding_new_task_message), execute: hide_addTaskMessage)
                 }
                 
               }
@@ -131,12 +149,12 @@ struct TextMessageWhileWaitingView: View {
   }
 }
 
-struct TextMessageWhileWaitingView_Previews: PreviewProvider {
+struct ProgressInformation_Or_ErrorMessageHandling_WhileWaitingForShortCodeView_Previews: PreviewProvider {
   
     static var previews: some View {
       
-      TextMessageWhileWaitingView(url_string: Binding(get: { "sungw.net" }, set: {_ in }),
-                                  willAddNewTask_to_create_new_URLSession: Binding(get: { true}, set: {_ in }),
+      ProgressInformation_Or_ErrorMessageHandling_WhileWaitingForShortCodeView(url_string: Binding(get: { "sungw.net" }, set: {_ in }),
+                                  will_AddNewTaskMessage_for_creating_new_URLSession: Binding(get: { true}, set: {_ in }),
                                   error_message_from_the_web_endpoint: Binding(get: { nil}, set: {_ in }),
                                    the_total_number_of_URLSessions: Binding(get: { 1}, set: {_ in }))
     }

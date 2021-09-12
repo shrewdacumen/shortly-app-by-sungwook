@@ -87,7 +87,7 @@ struct ContentView: View {
   /// URLSession animation is being controlled by `the_total_number_of_URLSessions`
   @State var the_total_number_of_URLSessions = 0
   
-  @State var willAddNewTask_to_create_new_URLSession = false
+  @State var will_AddNewTaskMessage_to_create_new_URLSession = false
   
   @State var error_message_from_the_web_endpoint: String?
 
@@ -179,7 +179,7 @@ struct ContentView: View {
           LowerCellInputView(hasNotch: hasNotch, upper_cell_size: upper_cell_size, lower_cell_size: lower_cell_size,
                              url_string: $url_string,
                              the_total_number_of_URLSessions: $the_total_number_of_URLSessions,
-                             willAddNewTask_to_create_new_URLSession: $willAddNewTask_to_create_new_URLSession, error_message_from_the_web_endpoint: $error_message_from_the_web_endpoint,
+                             will_AddNewTaskMessage_for_creating_new_URLSession: $will_AddNewTaskMessage_to_create_new_URLSession, error_message_from_the_web_endpoint: $error_message_from_the_web_endpoint,
                              dataStore: dataStore)
             .onAppear {
               
@@ -198,8 +198,8 @@ struct ContentView: View {
           
           /// The `url_string` added shall be used immediately that
           ///   It won't block the next message any soon.
-          TextMessageWhileWaitingView(url_string: $url_string,
-                                      willAddNewTask_to_create_new_URLSession: $willAddNewTask_to_create_new_URLSession,
+          ProgressInformation_Or_ErrorMessageHandling_WhileWaitingForShortCodeView(url_string: $url_string,
+                                      will_AddNewTaskMessage_for_creating_new_URLSession: $will_AddNewTaskMessage_to_create_new_URLSession,
                                       error_message_from_the_web_endpoint: $error_message_from_the_web_endpoint,
                                       the_total_number_of_URLSessions: $the_total_number_of_URLSessions)
         }

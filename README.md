@@ -139,9 +139,9 @@ If you created the project on Xcode 13, it won't happen.  However, in order to m
      This could be done by introducing simplying a private property to each URLSession that is called `url_string_private_for_this_URLSession`.
      By the principle, this is actually multiple URLSessions because the URLSessions are being created on multi-threading. 
      
-  - And all the waiting message for URLSession shall be done by `TextMessageWhileWaitingView`.
+  - And all the waiting message for URLSession shall be done by `ProgressInformation_Or_ErrorMessageHandling_WhileWaitingForShortCodeView`.
   
-  - `TextMessageWhileWaitingView`:  The Transient Error Message from the web endpoint + The Transient Task Message for adding `url_string` + Progress animation
+  - `ProgressInformation_Or_ErrorMessageHandling_WhileWaitingForShortCodeView`:  The Transient Error Message from the web endpoint + The Transient Task Message for adding `url_string` + Progress animation
     This is designed to give not only newly added url task information and progress animation but also 
       the error message from the remote (SHRTCODE) end point.
       And previously made func `errorReason_SHRTCODEWAY(fromErrorCode:)` could give the user more detail error message for the end point.
