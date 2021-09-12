@@ -8,10 +8,10 @@
 import SwiftUI
 
 
-/// The functions that this struct gives:
-/// 1. The Transient Error Message from the web endpoint +
-/// 2. The Transient Task Message for adding `url_string` +
-/// 3. Progress animation
+/// The three child-views that this struct gives:
+/// 1. The Transient Task Messages for adding `url_string` +
+/// 2. The Transient Error Messages from the web endpoint +
+/// 3. Task Progress Information as animating text representation
 struct ProgressInformation_Or_ErrorMessageHandling_WhileWaitingForShortCodeView: View {
   
   @Binding var url_string: String
@@ -42,7 +42,8 @@ struct ProgressInformation_Or_ErrorMessageHandling_WhileWaitingForShortCodeView:
       
       ZStack {
         
-        // MARK: - The Transient Task Message for adding `url_string`
+        
+        // MARK: - 1. The Transient Task Message for adding `url_string`
         VStack {
           
           //TODO: incomplete. this approah depends on how fast the user tap on the button.
@@ -90,7 +91,8 @@ struct ProgressInformation_Or_ErrorMessageHandling_WhileWaitingForShortCodeView:
         }
         
         
-        // MARK: - The Transient Error Message from the web endpoint
+        
+        // MARK: - 2. The Transient Error Message from the web endpoint
         VStack {
           
           if let error_message_from_the_web_endpoint = error_message_from_the_web_endpoint {
@@ -123,7 +125,8 @@ struct ProgressInformation_Or_ErrorMessageHandling_WhileWaitingForShortCodeView:
       }
       
       
-      // MARK: - The animating text that is running until the last URLSession finishes.
+      
+      // MARK: - 3. The Task Progress Information: The animating text that is running until the last URLSession finishes.
       if the_total_number_of_URLSessions > 0 {
         
         Text("Fetching Data\n(\(the_total_number_of_URLSessions) tasks)")
