@@ -261,7 +261,7 @@ struct LowerCellInputView: View {
                   /// Because it is **NEITHER** a part of `InputFieldError_Enum`.
                   if dataStore.doesContain(url_string: url_string_private_for_this_URLSession) {
                     
-                    error_message_from_the_web_endpoint = "Task \(url_string):\n It is a duplicate!"
+                    error_message_from_the_web_endpoint = "Task \(url_string_private_for_this_URLSession):\n It is a duplicate!"
                     
                   } else {
                     
