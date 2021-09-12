@@ -139,6 +139,10 @@ If you created the project on Xcode 13, it won't happen.  However, in order to m
      This could be done by introducing simplying a private property to each URLSession that is called `url_string_private_for_this_URLSession`.
      By the principle, this is actually multiple URLSessions because the URLSessions are being created on multi-threading. 
      
+     Given the fact that fetch data from SHRTCODE to S. Korea takes 18 sec. on average that was found by the previous work of os.signpost logging,
+       This feature is necessary to improve the user experience of the app.
+       
+     
   - And all the waiting message for URLSession shall be done by `ProgressInformation_Or_ErrorMessageHandling_WhileWaitingForShortCodeView`.
   
   - `ProgressInformation_Or_ErrorMessageHandling_WhileWaitingForShortCodeView`:  The Transient Error Message from the web endpoint + The Transient Task Message for adding `url_string` + Progress animation
@@ -147,6 +151,9 @@ If you created the project on Xcode 13, it won't happen.  However, in order to m
       And previously made func `errorReason_SHRTCODEWAY(fromErrorCode:)` could give the user more detail error message for the endpoint.
       However, I think that overwhelming the screen with too much information would not be pleasant to the user that I gave up using the func.
       
+      And I perfectionated `ProgressInformation_Or_ErrorMessageHandling_WhileWaitingForShortCodeView` in terms of multi-threading paradigm (Dispatch or GCD), as seen
+       on my iOS game `Birdie's Dream`. Therefore, the programmer who haven't experienced so much in multi-threading programming may have some difficulty in
+       the understanding of the multi-threading logic behind the view `ProgressInformation_Or_ErrorMessageHandling_WhileWaitingForShortCodeView`.
       
   - Upon tapping the textField, the `url_string` should be nil, in order for the user to feel comfortable.
     By this, I could improve the user experience.

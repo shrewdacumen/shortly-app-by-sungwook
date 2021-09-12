@@ -62,7 +62,7 @@ struct UpperCellDataView: View {
                   .frame(alignment: .bottomTrailing)
                   .onTapGesture {
                     
-                    withAnimation(.easeIn(duration: TheGlobalUIParameter.animation_duration)) {
+                    withAnimation(.easeIn(duration: TheGlobalUIParameter.more_slowly_animation_duration)) {
                       
                       dataStore.remove(urlPair: urlPair)
                     }

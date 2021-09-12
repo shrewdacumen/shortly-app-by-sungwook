@@ -42,14 +42,14 @@ struct CopyButtonView: View {
             
             urlPair.isCopied = true
             
-            withAnimation(.easeIn(duration: 1.0)) {
+            withAnimation(.easeIn(duration: TheGlobalUIParameter.slow_animation_duration)) {
               
               is_Copied_Alive = true
             }
             
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(TheGlobalUIParameter.message_animation_duration)) {
               
-              withAnimation(.easeIn(duration: 1.0)) {
+              withAnimation(.easeIn(duration: TheGlobalUIParameter.slow_animation_duration)) {
                 
                 is_Copied_Alive = false
               }
@@ -83,14 +83,14 @@ struct CopyButtonView: View {
             
             UIPasteboard.general.string = urlPair.shortened_url
             
-            withAnimation(.easeIn(duration: 1.0)) {
+            withAnimation(.easeIn(duration: TheGlobalUIParameter.slow_animation_duration)) {
               
               is_Copied_Alive = true
             }
             
             DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(TheGlobalUIParameter.message_animation_duration)) {
               
-              withAnimation(.easeIn(duration: 1.0)) {
+              withAnimation(.easeIn(duration: TheGlobalUIParameter.slow_animation_duration)) {
                 
                 is_Copied_Alive = false
               }

@@ -14,6 +14,7 @@ import SwiftUI
 /// 3. Task Progress Information as animating text representation
 struct ProgressInformation_Or_ErrorMessageHandling_WhileWaitingForShortCodeView: View {
   
+  // MARK: - Inherited the sources of truth.
   @Binding var url_string: String
 
   @Binding var will_AddNewTaskMessage_for_creating_new_URLSession: Bool
@@ -23,6 +24,9 @@ struct ProgressInformation_Or_ErrorMessageHandling_WhileWaitingForShortCodeView:
   
   @Binding var the_total_number_of_URLSessions: Int
   
+  
+  
+  // MARK: - Native the sources of truth to here!
   @State var rotationDegree = 0.0
   
   @State var hide_addTaskMessage: DispatchWorkItem?
@@ -35,6 +39,7 @@ struct ProgressInformation_Or_ErrorMessageHandling_WhileWaitingForShortCodeView:
     Animation.timingCurve(0.1, 0.2, 0.6, 0.9, duration: 16).repeatForever()
   }
   
+  
   var body: some View {
         
     
@@ -46,41 +51,30 @@ struct ProgressInformation_Or_ErrorMessageHandling_WhileWaitingForShortCodeView:
         // MARK: - 1. The Transient Task Message for adding `url_string`
         VStack {
           
-          //TODO: incomplete. this approah depends on how fast the user tap on the button.
-          /// However, I have no enough time to mull over another avenue or look at from long distance.
-          /// Even if it works, for the most user can NOT react against machine that fast.
+          
           if will_AddNewTaskMessage_for_creating_new_URLSession {
             
             Text("Adding \(url_string)")
               .font(Font.custom("Poppins-Bold", size: TheGlobalUIParameter.message_font_size_smaller))
               .foregroundColor(Color(hex_string: ColorEnum.secondary_red.rawValue))
               .animation(.easeIn)
-              ///
-              /// when `the_total_number_of_URLSessions` changes,
-              /// Or when a new `addNewTask` is added again,
+              /// - `onChange(of:)`
+              ///   when `the_total_number_of_URLSessions` changes,
+              ///   Or when a new `addNewTask` is added again,
               .onChange(of: the_total_number_of_URLSessions) { newValue in
                 
                 hide_addTaskMessage?.cancel()
                 hide_addTaskMessage = nil
-                will_AddNewTaskMessage_for_creating_new_URLSession = false
                 
+                hide_AddingTeskMessage_withAnimation()
+                
+                #if DEBUG
                 print("the_total_number_of_URLSessions \(the_total_number_of_URLSessions) \(newValue) cancelled")
+                #endif
               }
               .onAppear {
                 
-                hide_addTaskMessage = DispatchWorkItem {
-                  
-                  withAnimation(.easeIn(duration: 0.5)) {
-                    
-                    will_AddNewTaskMessage_for_creating_new_URLSession = false
-                  }
-                }
-                
-                if let hide_addTaskMessage = hide_addTaskMessage {
-                  
-                  DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(TheGlobalUIParameter.the_duration_of_adding_new_task_message), execute: hide_addTaskMessage)
-                }
-                
+                hide_AddingTeskMessage_withAnimation()
               }
               .padding(.top, UIScreen.main.bounds.height*TheGlobalUIParameter.the_position_of_new_URLSession_message_in_percent)
             
@@ -103,11 +97,21 @@ struct ProgressInformation_Or_ErrorMessageHandling_WhileWaitingForShortCodeView:
               .lineLimit(nil)
               .multilineTextAlignment(/*@START_MENU_TOKEN@*/.leading/*@END_MENU_TOKEN@*/)
               .foregroundColor(Color(hex_string: ColorEnum.primary_violet.rawValue))
+              .onChange(of: the_total_number_of_URLSessions, perform: { value in
+                
+                /// This can be a makeshit solution or a safe-guard both.
+                ///  so much so that it is uttermost necessary.
+                if value == 0 { /// When all pending tasks are done.
+                  
+                  self.error_message_from_the_web_endpoint = nil
+                }
+                
+              })
               .onAppear {
                 
                 DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(TheGlobalUIParameter.the_duration_of_the_Transient_Error_Message_from_the_web_endpoint)) {
                   
-                  withAnimation(.easeIn(duration: 0.5)) {
+                  withAnimation(.easeIn(duration: TheGlobalUIParameter.snappy_animation_duration)) {
                     
                     self.error_message_from_the_web_endpoint = nil
                   }
@@ -150,7 +154,29 @@ struct ProgressInformation_Or_ErrorMessageHandling_WhileWaitingForShortCodeView:
       }
       
     }
+    
   }
+  
+  
+  /// The animation function, backed by `Dispatch` framework.
+  func hide_AddingTeskMessage_withAnimation() {
+    
+    hide_addTaskMessage = DispatchWorkItem {
+      
+      withAnimation(.easeIn(duration: TheGlobalUIParameter.snappy_animation_duration)) {
+        
+        will_AddNewTaskMessage_for_creating_new_URLSession = false
+      }
+    }
+    
+    if let hide_addTaskMessage = hide_addTaskMessage {
+      
+      DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(TheGlobalUIParameter.the_duration_of_adding_new_task_message), execute: hide_addTaskMessage)
+    }
+    
+  }
+  
+  
 }
 
 struct ProgressInformation_Or_ErrorMessageHandling_WhileWaitingForShortCodeView_Previews: PreviewProvider {

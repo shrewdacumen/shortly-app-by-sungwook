@@ -115,7 +115,7 @@ struct LowerCellInputView: View {
               
               DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(TheGlobalUIParameter.delay_before_clearing_the_error_message)) {
                 
-                withAnimation(.easeIn(duration: TheGlobalUIParameter.snap_animation_duration)) {
+                withAnimation(.easeIn(duration: TheGlobalUIParameter.snappier_animation_duration)) {
                   
                   inputFieldError = .noError
                 }
@@ -251,7 +251,7 @@ struct LowerCellInputView: View {
                 /// Testing the performance of the remote web endpoint, SHRTCODE/
                 os_signpost(.event, log: TheGlobalUIParameter.pointsOfInterest, name: "Button URLSession", signpostID: osSignpostID, "End")
                 
-                withAnimation(.easeIn(duration: TheGlobalUIParameter.animation_duration)) {
+                withAnimation(.easeIn(duration: TheGlobalUIParameter.more_slowly_animation_duration)) {
                   
                   /// This is necessary until this URLSession gets from the remote endpoint,
                   ///  by the logic it is impossible to determine whether it is a duplicate or not.
@@ -334,7 +334,7 @@ struct LowerCellInputView: View {
   
   func isValidString() -> Bool {
     
-    withAnimation(.easeIn(duration: TheGlobalUIParameter.snap_animation_duration)) {
+    withAnimation(.easeIn(duration: TheGlobalUIParameter.snappier_animation_duration)) {
       
       /// input string == empty string
       if url_string.isEmpty {
