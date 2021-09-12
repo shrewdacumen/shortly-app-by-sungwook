@@ -54,6 +54,7 @@ struct ProgressInformation_Or_ErrorMessageHandling_WhileWaitingForShortCodeView:
             Text("Adding \(url_string)")
               .font(Font.custom("Poppins-Bold", size: TheGlobalUIParameter.message_font_size_smaller))
               .foregroundColor(Color(hex_string: ColorEnum.secondary_red.rawValue))
+              .animation(.easeIn)
               ///
               /// when `the_total_number_of_URLSessions` changes,
               /// Or when a new `addNewTask` is added again,
