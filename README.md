@@ -1,21 +1,31 @@
 #  ReadMe for the Code Challenge
 
-        Written Sep 09, 2021 by Sungwook Kim.
+        Written Sep 12, 2021 by Sungwook Kim.
 
 
 
 
 
-## I typed all the followings in chronological order, not considering the integrity of ReadMe file.
+## I typed all the followings in chronological order, not considering fully the integrity of ReadMe file.
 
 
 ## The `DEMO` movie file was included: 
-  the file name: `shortly demo by sungwook.mov`
-  I forgot to demonstrate when the user enters the same url again.
-  for example, the user entered "sungw.net"  and then the app got a short code for it.
-  when the user enters again "sungw.net"  and then it won't access the SHRTCODE endpoint but
-    give off an error message on the overlay of text field "It is a duplicate".
+  the file name: `The shortly Demo Video, Sep 12, 2021 by Sungwook.mp4`. (I reduced the size.)
 
+There are two cases of the duplicate error message:
+
+  For the 1st example: the user entered "sungw.net"  and then the app got a short code for it.
+  when the user enters again "sungw.net"  even before getting access to the SHRTCODE remote endpoint,
+    it will give off an error message on the overlay of text field "It is a duplicate".
+    This will save the time of reaching out the remote url and getting back the shortcode that eventually
+      improves the user experience.
+    
+  And for the 2nd example: let's say that the user entered "sungw.net".
+   while he is waiting for the short code from the remote endpoint. He entered impatiently again "sungw.net".
+   In this case, the duplicate message should come only after these two tasks are done.
+   Because there are alway a possibility that there can be an error from the remote endpoint.
+  After having processed 2 tasks, the app will return "a duplicate url" in the end only if there are 2 successful short-codes on hand.
+  
 
 ## My Environment Xcode 13 beta 5 (Not Xcode 12): SwiftUI3 capable.
 I'm using **Swift3**, the latest one which is included only in **Xcode 13 Beta 5**.
@@ -223,6 +233,14 @@ If you created the project on Xcode 13, it won't happen.  However, in order to m
     there was no glitch.  And I also manually tested unit-testing and ui-testing as well on both the real devices and virtual devices.
     
   
+## os.log & os.signpost logging
+
+Because it takes 18 seconds from S. Korea to SHRTCODE germany that I found from os logging performance testing.
+see the file `OS.log Test - URLSession 18 seconds.png` and `HTTP Traffic not enabled for iPhoneSE2.png`
+However, I could not test HTTP traffic through Instruments because my iOS devices are limited: iPhoneSE2, not iPhone12 or 11.
+
+When I try to find performance glitches or its tuning, I used to use this framework and Instruments involving Logging profiles.
+
   
 ## Thread Sanitizer
 In this project, it does NOT need to include this, but I added it to test for the thread-safe.
@@ -261,4 +279,5 @@ But this project contains scarcely Dispatch. So, it is not necessary.
 
 ## please note the folder `Network glitch, ownership problem, etc` for the trouble I've faced
 
-## The simulator may give off some glitch on Xcode12.  Please test this project on real devices if possible.
+## The simulator may give off some glitch on Xcode12, not on Xcode13. 
+  Please test this project on real devices if possible.  The truth is that it depends on the bug of Xcode12.
