@@ -264,7 +264,7 @@ But this project contains scarcely Dispatch. So, it is not necessary.
       Alert (deprecated in SwiftUI3.0) or view modifier .alert can show the message when the url entered by the user violate the policy of SHRTCODE.
       or see animating SwiftUI element poping up to notify when the situation of SHRTCODE server is down or the url entered by the user violate the policy of SHRTCODE.
       
-  --> I think that I had already solved this: because this does not look necessary at the current result of the development.
+  --> I think that I had already solved this: because this does not look necessary, seeing the current user interface of the app.
   
 ## iOS devices and virtual devices/tools - unit-test, UI-test, performance test, profiling, thread sanitizing.
   - iPhone 12, 12 Pro Max -> Simulator
