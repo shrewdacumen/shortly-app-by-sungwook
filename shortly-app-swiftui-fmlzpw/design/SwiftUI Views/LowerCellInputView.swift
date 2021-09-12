@@ -240,7 +240,9 @@ struct LowerCellInputView: View {
               }
               
               
+              #if DEBUG
               print("\(shortCode)")
+              #endif
               
               
               ///  this should be on main thread, for updating the source of truth.
@@ -251,7 +253,21 @@ struct LowerCellInputView: View {
                 
                 withAnimation(.easeIn(duration: TheGlobalUIParameter.animation_duration)) {
                   
-                  dataStore.urlPairs.append(UrlAndShortened_Pair(url_string: url_string_private_for_this_URLSession, shortened_url: shortCode))
+                  /// This is necessary until this URLSession gets from the remote endpoint,
+                  ///  by the logic it is impossible to determine whether it is a duplicate or not.
+                  ///  Partly because there can be an error from the endpoint as well.
+                  ///
+                  /// And this can **NOT** be the state `.duplicated` of `InputFieldError_Enum`
+                  /// Because it is **NEITHER** a part of `InputFieldError_Enum`.
+                  if dataStore.doesContain(url_string: url_string_private_for_this_URLSession) {
+                    
+                    error_message_from_the_web_endpoint = "Task \(url_string):\n It is a duplicate!"
+                    
+                  } else {
+                    
+                    dataStore.urlPairs.append(UrlAndShortened_Pair(url_string: url_string_private_for_this_URLSession, shortened_url: shortCode))
+                  }
+                  
                   
                   /// if there aren't another URLSession is running,
                   /// Or, to paraphrase this, if this is the last URLSession that the user asked for,

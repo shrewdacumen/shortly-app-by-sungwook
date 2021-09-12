@@ -13,7 +13,7 @@
   the file name: `shortly demo by sungwook.mov`
   I forgot to demonstrate when the user enters the same url again.
   for example, the user entered "sungw.net"  and then the app got a short code for it.
-  when the user enters again "sungw.net"  and then it won't access the SHRTCODE end point but
+  when the user enters again "sungw.net"  and then it won't access the SHRTCODE endpoint but
     give off an error message on the overlay of text field "It is a duplicate".
 
 
@@ -143,8 +143,8 @@ If you created the project on Xcode 13, it won't happen.  However, in order to m
   
   - `ProgressInformation_Or_ErrorMessageHandling_WhileWaitingForShortCodeView`:  The Transient Error Message from the web endpoint + The Transient Task Message for adding `url_string` + Progress animation
     This is designed to give not only newly added url task information and progress animation but also 
-      the error message from the remote (SHRTCODE) end point.
-      And previously made func `errorReason_SHRTCODEWAY(fromErrorCode:)` could give the user more detail error message for the end point.
+      the error message from the remote (SHRTCODE) endpoint.
+      And previously made func `errorReason_SHRTCODEWAY(fromErrorCode:)` could give the user more detail error message for the endpoint.
       However, I think that overwhelming the screen with too much information would not be pleasant to the user that I gave up using the func.
       
       
@@ -165,7 +165,22 @@ If you created the project on Xcode 13, it won't happen.  However, in order to m
   }
 ```
 
-  --------------------------------------------------------------------------------------------------------
+
+- Upon `LowerCellInputView`: When the input url gets its shortcode from the remote endpoint, it again check if there is a duplicate.
+
+  Again, This is NOT a part of spec. of the code challenge but I need this to improve the user experience.
+  
+  This is necessary until this URLSession gets from the remote endpoint,
+    by the logic it is impossible to determine whether it is a duplicate or not.
+    Partly because there can be an error from the endpoint as well.
+    
+    And this can **NOT** be the state `.duplicated` of `InputFieldError_Enum`
+    Because it is **NEITHER** a part of `InputFieldError_Enum`.
+
+    
+    
+    
+--------------------------------------------------------------------------------------------------------
   
   
   
