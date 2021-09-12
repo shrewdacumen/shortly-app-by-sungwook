@@ -178,7 +178,10 @@ If you created the project on Xcode 13, it won't happen.  However, in order to m
     Because it is **NEITHER** a part of `InputFieldError_Enum`.
 
     
-    
+- `LowerCellInputView`: Upon the tap on the text field, the text is reset to empty.
+   Otherwise, the user should delete the previously typed url string before entering a new one.
+   This will improve again the user experience.
+
     
 --------------------------------------------------------------------------------------------------------
   
