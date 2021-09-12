@@ -111,7 +111,7 @@
 		09A5E03426E7303F00C0854D /* OS.log Test - URLSession 18 seconds.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "OS.log Test - URLSession 18 seconds.png"; sourceTree = "<group>"; };
 		09A5E03526E7343C00C0854D /* HTTP Traffic not enabled for iPhoneSE2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HTTP Traffic not enabled for iPhoneSE2.png"; sourceTree = "<group>"; };
 		09B366B126E5BCEA003E2BDE /* DebuggingBorderModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebuggingBorderModifier.swift; sourceTree = "<group>"; };
-		09C5231526EE143B002AFB80 /* The shortly Demo Video by Sungwook.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "The shortly Demo Video by Sungwook.mov"; sourceTree = "<group>"; };
+		09C5231626EE1809002AFB80 /* The shortly Demo Video, Sep 12, 2021 by Sungwook.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "The shortly Demo Video, Sep 12, 2021 by Sungwook.mp4"; sourceTree = "<group>"; };
 		09D259D026E0E46200E78369 /* shortly-app-swiftui-fmlzpw.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "shortly-app-swiftui-fmlzpw.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		09D259D726E0E46400E78369 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		09D259DA26E0E46400E78369 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -278,7 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				0931040C26E9EA5000699409 /* README.md */,
-				09C5231526EE143B002AFB80 /* The shortly Demo Video by Sungwook.mov */,
+				09C5231626EE1809002AFB80 /* The shortly Demo Video, Sep 12, 2021 by Sungwook.mp4 */,
 				09D259D226E0E46200E78369 /* shortly-app-swiftui-fmlzpw */,
 				09D259E426E0E46400E78369 /* shortly-app-swiftui-fmlzpwTests */,
 				09D259EF26E0E46400E78369 /* shortly-app-swiftui-fmlzpwUITests */,
