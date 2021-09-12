@@ -97,7 +97,6 @@
 		092B308E26E5E91200B2222B /* BackgroundUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BackgroundUIView.swift; sourceTree = "<group>"; };
 		092B309026E5F93C00B2222B /* errorReason.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = errorReason.swift; sourceTree = "<group>"; };
 		092B309226E5FE0C00B2222B /* sneakPeak_JSONObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = sneakPeak_JSONObject.swift; sourceTree = "<group>"; };
-		0931040926E9E60600699409 /* shortly demo by sungwook.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "shortly demo by sungwook.mov"; sourceTree = "<group>"; };
 		0931040C26E9EA5000699409 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		09341BFC26E4E9DB00C212E1 /* FacadeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacadeView.swift; sourceTree = "<group>"; };
 		09341BFE26E5053500C212E1 /* TheShapeImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheShapeImageView.swift; sourceTree = "<group>"; };
@@ -112,6 +111,7 @@
 		09A5E03426E7303F00C0854D /* OS.log Test - URLSession 18 seconds.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "OS.log Test - URLSession 18 seconds.png"; sourceTree = "<group>"; };
 		09A5E03526E7343C00C0854D /* HTTP Traffic not enabled for iPhoneSE2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "HTTP Traffic not enabled for iPhoneSE2.png"; sourceTree = "<group>"; };
 		09B366B126E5BCEA003E2BDE /* DebuggingBorderModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebuggingBorderModifier.swift; sourceTree = "<group>"; };
+		09C5231526EE143B002AFB80 /* The shortly Demo Video by Sungwook.mov */ = {isa = PBXFileReference; lastKnownFileType = video.quicktime; path = "The shortly Demo Video by Sungwook.mov"; sourceTree = "<group>"; };
 		09D259D026E0E46200E78369 /* shortly-app-swiftui-fmlzpw.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "shortly-app-swiftui-fmlzpw.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		09D259D726E0E46400E78369 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		09D259DA26E0E46400E78369 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
@@ -278,6 +278,7 @@
 			isa = PBXGroup;
 			children = (
 				0931040C26E9EA5000699409 /* README.md */,
+				09C5231526EE143B002AFB80 /* The shortly Demo Video by Sungwook.mov */,
 				09D259D226E0E46200E78369 /* shortly-app-swiftui-fmlzpw */,
 				09D259E426E0E46400E78369 /* shortly-app-swiftui-fmlzpwTests */,
 				09D259EF26E0E46400E78369 /* shortly-app-swiftui-fmlzpwUITests */,
@@ -336,7 +337,6 @@
 		09D259FE26E0E5BF00E78369 /* design */ = {
 			isa = PBXGroup;
 			children = (
-				0931040926E9E60600699409 /* shortly demo by sungwook.mov */,
 				091DC9AB26E1090F00C4F2CF /* Network glitch, ownership problem, etc */,
 				0931040726E9D9B500699409 /* OS logging test and HTTP Traffic test on Instruments */,
 				09A5E02E26E7060500C0854D /* SwiftUI Views */,
