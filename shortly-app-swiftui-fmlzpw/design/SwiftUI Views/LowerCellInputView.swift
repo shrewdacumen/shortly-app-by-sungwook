@@ -18,6 +18,18 @@ import os.signpost
 
 struct LowerCellInputView: View {
   
+  
+  enum Enum_ErrorSeriousNess {
+    
+    /// casual network error
+    case casualError_networkError
+    
+    /// Something like the endpoint has been replaced by a server with totally different service
+    case seriousError_endPointRelocated
+  }
+  
+  
+  
   let hasNotch: Bool
   
   let upper_cell_size: CGSize
@@ -133,10 +145,8 @@ struct LowerCellInputView: View {
             }
             
             
-            #if DEBUG
             /// Animation + log started here.
-            print("Just entered URLSession.")
-            #endif
+            DEBUG_print("Just entered URLSession.")
             
             self.initialization_of_this_URLSession()
             
@@ -176,7 +186,9 @@ struct LowerCellInputView: View {
                 
                 guard let statusCode = (response as? HTTPURLResponse)?.statusCode else {
                   
-                  fatalError()
+                  set_error_message_from_the_web_endpoint(with_url_string: url_string_private_for_this_URLSession, errorSeriousness: .seriousError_endPointRelocated)
+                  
+                  return
                 }
                 
                 guard  statusCode == 200 || statusCode == 201 else {
@@ -185,7 +197,7 @@ struct LowerCellInputView: View {
                   print("An unknown error")
                   
                   //MARK: The Transient Error Message from the web endpoint
-                  set_error_message_from_the_web_endpoint(with_url_string: url_string_private_for_this_URLSession)
+                  set_error_message_from_the_web_endpoint(with_url_string: url_string_private_for_this_URLSession, errorSeriousness: .casualError_networkError)
                   
                   return
                 }
@@ -193,12 +205,21 @@ struct LowerCellInputView: View {
               
               guard let web_raw_data_NonOptional = web_raw_data else {
                 
-                fatalError("no data received")
+                DEBUG_print("no data received")
+
+                
+                set_error_message_from_the_web_endpoint(with_url_string: url_string_private_for_this_URLSession, errorSeriousness: .seriousError_endPointRelocated)
+                
+                return
               }
               
               guard let received_JSONObject = try? JSONSerialization.jsonObject(with: web_raw_data_NonOptional, options: [.mutableContainers]) else {
                 
-                fatalError("the error in jasonObject catch")
+                DEBUG_print("the error in jasonObject catch")
+                
+                set_error_message_from_the_web_endpoint(with_url_string: url_string_private_for_this_URLSession, errorSeriousness: .seriousError_endPointRelocated)
+                
+                return
               }
               
               
@@ -209,7 +230,11 @@ struct LowerCellInputView: View {
               
               guard let dic = received_JSONObject as? Dictionary<String, Any> else {
                 
-                fatalError("Wrong JSon Format! (should be Dictionary<String, Any>)")
+                DEBUG_print("Wrong JSon Format! (should be Dictionary<String, Any>)")
+                
+                set_error_message_from_the_web_endpoint(with_url_string: url_string_private_for_this_URLSession, errorSeriousness: .seriousError_endPointRelocated)
+                
+                return
               }
               
               
@@ -219,7 +244,7 @@ struct LowerCellInputView: View {
                 print("\((dic["error"] as? String) ?? "no error message")")
                 
                 //MARK: The Transient Error Message from the web endpoint
-                set_error_message_from_the_web_endpoint(with_url_string: url_string_private_for_this_URLSession)
+                set_error_message_from_the_web_endpoint(with_url_string: url_string_private_for_this_URLSession, errorSeriousness: .casualError_networkError)
                 
                 return
               }
@@ -229,20 +254,27 @@ struct LowerCellInputView: View {
               /// Therefore, it is safe to fatalError()
               guard let result = dic["result"] as? [String : String] else {
                 
-                fatalError("result format error")
+                
+                DEBUG_print("result format error")
+                
+                set_error_message_from_the_web_endpoint(with_url_string: url_string_private_for_this_URLSession, errorSeriousness: .seriousError_endPointRelocated)
+                
+                return
               }
               
               /// If this happens, it is caused by the programming logic.
               /// Therefore, it is safe to fatalError()
               guard let shortCode = result["full_short_link"] else {
                 
-                fatalError("full_short_link not found")
+                DEBUG_print("full_short_link not found")
+                
+                set_error_message_from_the_web_endpoint(with_url_string: url_string_private_for_this_URLSession, errorSeriousness: .seriousError_endPointRelocated)
+                
+                return
               }
               
               
-              #if DEBUG
-              print("\(shortCode)")
-              #endif
+              DEBUG_print("\(shortCode)")
               
               
               ///  this should be on main thread, for updating the source of truth.
@@ -383,10 +415,20 @@ struct LowerCellInputView: View {
   }
   
   
-  func set_error_message_from_the_web_endpoint(with_url_string url_string: String) {
+  /// The errors from the server will be classified as two categories.
+  /// 1. casualError_networkError -> just a network error
+  /// 2. seriousError_endPointRelocated -> only when SHRTCODE service is not available or replaced by another service.
+  func set_error_message_from_the_web_endpoint(with_url_string url_string: String, errorSeriousness: Enum_ErrorSeriousNess) {
     
-    self.error_message_from_the_web_endpoint = "Task \(url_string):\n An Error from the SHRTCODE endpoint"
+    switch errorSeriousness {
     
+    case .casualError_networkError:
+      self.error_message_from_the_web_endpoint = "Task \(url_string):\nAn Error from the SHRTCODE endpoint"
+      
+    case .seriousError_endPointRelocated:
+      self.error_message_from_the_web_endpoint = "Task \(url_string):\nA Serious error, please CONTACT Shortly"
+      
+    }
     self.the_total_number_of_URLSessions -= 1
   }
   

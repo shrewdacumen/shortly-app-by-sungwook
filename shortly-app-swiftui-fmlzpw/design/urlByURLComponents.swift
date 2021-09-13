@@ -31,6 +31,7 @@ func urlByURLComponents(from_url_string url_string:String ) -> URL {
   
   guard let url = urlComponents.url else {
     
+    /// This will only happen when it is under development.
     fatalError("wrong url")
   }
   

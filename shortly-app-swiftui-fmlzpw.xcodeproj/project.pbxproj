@@ -24,6 +24,7 @@
 		0962BF2B26E6614A00AC7CB1 /* UpperCellDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0962BF2A26E6614A00AC7CB1 /* UpperCellDataView.swift */; };
 		0962BF2D26E6630200AC7CB1 /* LowerCellInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0962BF2C26E6630200AC7CB1 /* LowerCellInputView.swift */; };
 		09664EA426E784D3000DF64C /* RoundedRectangkeOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09664EA326E784D3000DF64C /* RoundedRectangkeOverlay.swift */; };
+		0968976926EF4B7E00F71B74 /* DEBUG_print.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0968976826EF4B7E00F71B74 /* DEBUG_print.swift */; };
 		0994293426E511C600B9298B /* ConditionalTextFieldOverlayModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0994293326E511C600B9298B /* ConditionalTextFieldOverlayModifier.swift */; };
 		09A5E03226E7129A00C0854D /* AdaptivePaddingOverAllDevices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09A5E03126E7129A00C0854D /* AdaptivePaddingOverAllDevices.swift */; };
 		09B366B226E5BCEA003E2BDE /* DebuggingBorderModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09B366B126E5BCEA003E2BDE /* DebuggingBorderModifier.swift */; };
@@ -106,6 +107,7 @@
 		0962BF2A26E6614A00AC7CB1 /* UpperCellDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpperCellDataView.swift; sourceTree = "<group>"; };
 		0962BF2C26E6630200AC7CB1 /* LowerCellInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LowerCellInputView.swift; sourceTree = "<group>"; };
 		09664EA326E784D3000DF64C /* RoundedRectangkeOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedRectangkeOverlay.swift; sourceTree = "<group>"; };
+		0968976826EF4B7E00F71B74 /* DEBUG_print.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DEBUG_print.swift; sourceTree = "<group>"; };
 		0994293326E511C600B9298B /* ConditionalTextFieldOverlayModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalTextFieldOverlayModifier.swift; sourceTree = "<group>"; };
 		09A5E03126E7129A00C0854D /* AdaptivePaddingOverAllDevices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptivePaddingOverAllDevices.swift; sourceTree = "<group>"; };
 		09A5E03426E7303F00C0854D /* OS.log Test - URLSession 18 seconds.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "OS.log Test - URLSession 18 seconds.png"; sourceTree = "<group>"; };
@@ -270,6 +272,7 @@
 			isa = PBXGroup;
 			children = (
 				092B309226E5FE0C00B2222B /* sneakPeak_JSONObject.swift */,
+				0968976826EF4B7E00F71B74 /* DEBUG_print.swift */,
 			);
 			path = Debugging;
 			sourceTree = "<group>";
@@ -534,6 +537,7 @@
 				09341BFD26E4E9DB00C212E1 /* FacadeView.swift in Sources */,
 				09D25A1A26E0E5BF00E78369 /* ContentView.swift in Sources */,
 				0994293426E511C600B9298B /* ConditionalTextFieldOverlayModifier.swift in Sources */,
+				0968976926EF4B7E00F71B74 /* DEBUG_print.swift in Sources */,
 				09B366B226E5BCEA003E2BDE /* DebuggingBorderModifier.swift in Sources */,
 				092B308F26E5E91200B2222B /* BackgroundUIView.swift in Sources */,
 				09D25A1826E0E5BF00E78369 /* UrlAndShortened_Pair.swift in Sources */,

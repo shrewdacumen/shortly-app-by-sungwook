@@ -68,9 +68,8 @@ struct ProgressInformation_Or_ErrorMessageHandling_WhileWaitingForShortCodeView:
                 
                 hide_AddingTeskMessage_withAnimation()
                 
-                #if DEBUG
-                print("the_total_number_of_URLSessions \(the_total_number_of_URLSessions) \(newValue) cancelled")
-                #endif
+
+                DEBUG_print("the_total_number_of_URLSessions \(the_total_number_of_URLSessions) \(newValue) cancelled")
               }
               .onAppear {
                 

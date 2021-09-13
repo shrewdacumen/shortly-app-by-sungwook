@@ -198,6 +198,15 @@ If you created the project on Xcode 13, it won't happen.  However, in order to m
 - `LowerCellInputView`: Upon the tap on the text field, the text is reset to empty.
    Otherwise, the user should delete the previously typed url string before entering a new one.
    This will improve again the user experience.
+   
+- DEBUG_print(_ items: Any..., separator: String = " ", terminator: String = "\n") : 
+    to ease the debugging while not burdening the release app.
+    
+- `func set_error_message_from_the_web_endpoint(with_url_string url_string: String, errorSeriousness: Enum_ErrorSeriousNess)` on `LowerCellInputView` 
+    The errors from the server will be classified as two categories.
+      1. casualError_networkError -> just a network error
+      2. seriousError_endPointRelocated -> only when SHRTCODE service is not available or replaced by another service.
+    
 
     
 --------------------------------------------------------------------------------------------------------
