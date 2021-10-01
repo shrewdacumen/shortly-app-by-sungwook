@@ -34,6 +34,9 @@ struct UpperCellDataView: View {
           .adaptivePaddingOverAllDevices(hasNotch: hasNotch, padding_for_notched_device: TheGlobalUIParameter.padding_to_avoid_notch, padding_for_device_without_notch: TheGlobalUIParameter.padding_to_avoid_statusBar)
         
         
+        /// ** CAVEAT **
+        /// Because the element of [urlPairs] or the type `UrlAndShortened_Pair` is `Observable`, I don't need to using @Binding var for
+        /// each element that corresponds to `urlPari` captured variable in the closure.
         ForEach(dataStore.urlPairs) { urlPair in
           
           ZStack(alignment: .center) {
