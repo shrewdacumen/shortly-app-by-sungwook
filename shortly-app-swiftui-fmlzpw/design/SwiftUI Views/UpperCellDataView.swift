@@ -36,7 +36,7 @@ struct UpperCellDataView: View {
         
         /// ** CAVEAT **
         /// Because the element of [urlPairs] or the type `UrlAndShortened_Pair` is `Observable`, I don't need to using @Binding var for
-        /// each element that corresponds to `urlPari` captured variable in the closure.
+        /// each element that corresponds to `urlPair` captured variable in the closure.
         ForEach(dataStore.urlPairs) { urlPair in
           
           ZStack(alignment: .center) {
