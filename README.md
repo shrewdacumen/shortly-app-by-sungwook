@@ -3,10 +3,10 @@
         Written Sep 12, 2021 by Sungwook Kim.
 
 
-Copyright (c) 2021 by Sungwook Kim
-I created this in Creative Commons (CC BY-NC 4.0).
-https://creativecommons.org/licenses/by-nc/4.0/
-However, anyone who has donated can use it as OPEN SOURCE with ATTRIBUTION ASSURANCE LICENSE.
+## Copyright (c) 2021 by Sungwook Kim
+## This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.
+## https://creativecommons.org/licenses/by-nc/4.0/
+## However, anyone who has donated can use it as OPEN SOURCE with ATTRIBUTION ASSURANCE LICENSE.
 
 
 
