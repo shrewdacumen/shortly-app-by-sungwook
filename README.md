@@ -10,8 +10,22 @@
 
 
 
-## I typed all the followings in chronological order, not considering fully the integrity of ReadMe file.
+# This project was created in a code challenge manner.
+##  I limited the total time I've spent to 2 + 1 = 3 hours of involvement: 
+##    At first, I intended 2 hours, and then after a break, I added 1 hour to improve it after having the urge of a new idea of design.
+##    that had not been intended as an initial part of the code challenge.
+##  I acknowledge that I forget some of what I've learned while doing other projects: I crammed too much knowledge into my brain.
+##
+##  During this work, I got the second jab of COVID19 and then was sick seriously that I had to have 2-3 days of a break.
+##  And I rushed the implementation the first 2 hours and then after 2-3 days of a break I recovered little,
+##  I've improved this project further by completing the Multi-threading feature.  Since then, I have never revisited
+##  this project to improve more.
+##  For this reason, some implementation of this project may look implemented hastily.
+##  However, I just want to give a hint of how multi-threading programming can improve this simple SwiftUI app.
 
+
+
+## I typed all the followings in chronological order, not considering fully the integrity of ReadMe file.
 
 ## The `DEMO` movie file was included: 
   the file name: `The shortly Demo Video, Sep 12, 2021 by Sungwook.mp4`. (I reduced the size.)
