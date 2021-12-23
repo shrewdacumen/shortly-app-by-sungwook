@@ -9,8 +9,7 @@
 ## However, anyone who has donated can use it as OPEN SOURCE with ATTRIBUTION ASSURANCE LICENSE.
 
 
-\
-\
+#-----------------------------------------------------------------------------
 # This project was created in a code challenge manner.
 ##  I limited the total time I've spent to 2 + 1 = 3 hours of involvement: 
 ##    At first, I intended 2 hours, and then after a break, I added 1 hour to improve it after having the urge of a new idea of design.
@@ -23,10 +22,10 @@
 ##  this project to improve more.
 ##  For this reason, some implementation of this project may look implemented hastily.
 ##  However, I just want to give a hint of how multi-threading programming can improve this simple SwiftUI app.
-\
-\
 
 
+
+#-----------------------------------------------------------------------------
 ## I typed all the followings in chronological order, not considering fully the integrity of ReadMe file.
 
 ## The `DEMO` movie file was included: 

@@ -85,7 +85,6 @@
 		091DC9A626E108AC00C4F2CF /* illustration.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = illustration.svg; sourceTree = "<group>"; };
 		091DC9A726E108AC00C4F2CF /* logo.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = logo.svg; sourceTree = "<group>"; };
 		091DC9A826E108AC00C4F2CF /* del.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = del.svg; sourceTree = "<group>"; };
-		091DC9A926E108AC00C4F2CF /* CS README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "CS README.md"; sourceTree = "<group>"; };
 		091DC9AA26E108AC00C4F2CF /* style-guide.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "style-guide.md"; sourceTree = "<group>"; };
 		091DC9AC26E1090F00C4F2CF /* command line attempts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "command line attempts.png"; sourceTree = "<group>"; };
 		091DC9AD26E1090F00C4F2CF /* bug due to starbucks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bug due to starbucks.png"; sourceTree = "<group>"; };
@@ -180,7 +179,6 @@
 			children = (
 				091DC9A026E108AC00C4F2CF /* design */,
 				091DC9A426E108AC00C4F2CF /* images */,
-				091DC9A926E108AC00C4F2CF /* CS README.md */,
 				091DC9AA26E108AC00C4F2CF /* style-guide.md */,
 			);
 			path = "Documents for The Code Challenge";
